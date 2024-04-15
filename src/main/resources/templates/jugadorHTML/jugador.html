@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <title>Tarjeta con Bootstrap</title>
+  <style>
+    body {
+        margin-top: 20px; /* Márgen superior de 20px */
+        margin-bottom: 20px; /* Márgen inferior de 20px */
+    }
+    .container {
+      text-align: center;
+    }
+    .card {
+      width: 35%;
+      margin: 0 auto;
+      margin-bottom: 20px;
+    }
+    .card-body {
+      text-align: left; /* Alinea el texto a la izquierda */
+    }
+    .line {
+      display: flex;
+    }
+    .table-container {
+      flex: 0 0 70%;
+      margin-right: 20px;
+    }
+    .form-container {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title text-center">Detalle del Jugador</h2>
+        <span><strong>DNI: </strong><span th:text="${jugador.dni}">DNI</span></span><br>
+        <span><strong>Nombre: </strong><span th:text="${jugador.nombre}">nombre</span></span><br>
+        <span><strong>Equipo: </strong><span th:text="${jugador.equipo?.nombre}">Equipo </span></span><br>
+        <span><strong>Número de Seguro: </strong><span th:text="${jugador.numeroSeguro}">Seguro </span></span><br>
+        <span><strong>Talla Camiseta: </strong><span th:text="${jugador.tallaCamiseta}">Camiseta </span></span><br>
+        <span><strong>Portero: </strong><span th:text="${jugador.portero}">portero</span></span><br>
+        <div class="mt-4 d-flex justify-content-between">
+          <span><a th:href="@{~/jugadores}" class="btn btn-secondary">Volver</a></span>
+          <span><a th:href="@{~/jugador/edit/{dni}(dni = ${jugador.dni})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
+        </div>
+      </div>
+    </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
