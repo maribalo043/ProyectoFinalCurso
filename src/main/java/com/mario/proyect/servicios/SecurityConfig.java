@@ -36,11 +36,10 @@ public class SecurityConfig {
 	    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.requestMatchers("/").permitAll()
-			.requestMatchers("/jugadores/**", "/equipos/**", "/categorias/**", "/partidos/**").authenticated()
-			.requestMatchers("/jugador/del/**", "/equipo/del/**", "/categoria/del/**", "/partido/del/**","/jugador/edit/**","/equipo/edit/**","/categoria/edit/**","/partido/edit/**").hasAuthority("ADMIN")
+			.requestMatchers("/jugador/del/**", "/equipo/del/**", "/categoria/del/**", "/partido/del/**","/jugador/edit/**","/equipo/edit/**"
+			,"/categoria/edit/**","/partido/edit/**").hasAuthority("ADMIN")
 			.and()
 			.formLogin();
-
 		return http.build();
 	}
 }
