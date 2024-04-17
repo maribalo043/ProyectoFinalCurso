@@ -8,10 +8,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class GeneralController {
 
-    @GetMapping("path")
-    public ModelAndView getInicio() {
-
-        ModelAndView model = new ModelAndView();
+//    @GetMapping("/")
+//    public ModelAndView getInicio() {
+//
+//        ModelAndView model = new ModelAndView();
+//        return model;
+//    }
+    @GetMapping("/torneo")
+    public ModelAndView getTorneo() {
+    	ModelAndView model = new ModelAndView();
+    	model.setViewName("generalHTML/Torneo");
         return model;
     }
     

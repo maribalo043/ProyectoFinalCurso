@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CD Patinalon</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../static/img/EscudoPatinalon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap"
+    />
+
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: white;
+        scrollbar-width: thin;
+        scrollbar-color: #00794d transparent;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Roboto", sans-serif;
+      }
+      p {
+        font-family: "Open Sans", sans-serif;
+      }
+      .navbar {
+        background-color: #d41a1e;
+      }
+      .navbar-brand img {
+        width: 40px;
+        margin-right: 10px;
+      }
+      .navbar-brand a {
+        color: white;
+      }
+      .navbar-nav a {
+        color: white;
+      }
+      .dropdown-menu {
+        background-color: #d41a1e;
+        border: none;
+      }
+      .dropdown-item {
+        color: white;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .caret {
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(-45deg);
+        vertical-align: middle;
+      }
+      .container {
+        margin-top: 20px;
+      }
+      .footer {
+        background-color: #d41a1e;
+        color: white;
+        padding: 10px 0;
+        text-align: center;
+      }
+      .carousel-control-prev-icon {
+        background-color: red;
+        color: black;
+        padding: 10px;
+        border-radius: 10px;
+      }
+      .carousel-control-next-icon {
+        background-color: red;
+        color: black;
+        padding: 10px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+
+    <main class="container">
+      <div id="miCarrusel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="../static/img/EscudoPatinalon.png"
+              class="d-block mx-auto w-15 img-fluid"
+              alt="Imagen 1"
+              width="150px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../static/img/EscudoPatinalon.png"
+              class="d-block mx-auto w-15 img-fluid"
+              alt="Imagen 2"
+              width="150px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../static/img/EscudoPatinalon.png"
+              class="d-block mx-auto w-15 img-fluid"
+              alt="Imagen 3"
+              width="150px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../static/img/EscudoPatinalon.png"
+              class="d-block mx-auto w-15 img-fluid"
+              alt="Imagen 4"
+              width="150px"
+            />
+          </div>
+          <div class="carousel-item">
+            <img
+              src="../static/img/EscudoPatinalon.png"
+              class="d-block mx-auto w-15 img-fluid"
+              alt="Imagen 5"
+              width="150px"
+            />
+          </div>
+        </div>
+        <a
+          class="carousel-control-prev"
+          href="#miCarrusel"
+          role="button"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Anterior</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#miCarrusel"
+          role="button"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Siguiente</span>
+        </a>
+      </div>
+      <script>
+        $(document).ready(function () {
+          $("#miCarrusel").carousel({
+            interval: 5000,
+          });
+        });
+      </script>
+      <div class="row">
+        <div class="col-lg-12">
+          <h1>Bienvenido a la Página del CD Patinalon</h1>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-12">
+          <p>
+            Somos un equipo de Hockey sobre patines de Langreo (Asturias). En
+            nuestra página web tenemos diferentes secciones donde podéis
+            conocernos un poco más, tanto la historia del equipo como las
+            diferentes categorías que tenemos en la actualidad. Así como las
+            competiciones en las que nos encontramos, a nivel provincial y
+            nacional. Esperamos que disfrutéis de ella y podáis conocer más de
+            cerca el Hockey sobre patines. Desde C.D. Patinalón no solo
+            fomentamos el deporte y la igualdad, sino también los valores y la
+            deportividad ante todo.
+          </p>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-6 d-flex align-items-center">
+          <img
+            src="../static/img/EscudoPatinalon.png"
+            width="60px"
+            alt="Imagen 1"
+            class="img-fluid mr-3"
+          />
+          <div>
+            <h2>Nuestra Categorias</h2>
+            <p>Los diferentes equipos que compiten en nuestras categorías.</p>
+          </div>
+        </div>
+        <div class="col-lg-6 d-flex align-items-center">
+          <img
+            src="../static/img/EscudoPatinalon.png"
+            width="60px"
+            alt="Imagen 2"
+            class="img-fluid mr-3"
+          />
+          <div>
+            <h2>Historia del club</h2>
+            <p>
+              Conoce un poco más sobre la progresión a través de los años de
+              nuestro querido Patinalon.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-6 d-flex align-items-center">
+          <img
+            src="../static/img/EscudoPatinalon.png"
+            width="60px"
+            alt="Imagen 3"
+            class="img-fluid mr-3"
+          />
+          <div>
+            <h2>Contacta con nosotros</h2>
+            <p>
+              ¿Tienes algún problema?,¿Alguna duda?,¿Quieres obtener información
+              sobre algo?, contacta con nosotros a través de este sencillo
+              formulario.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-6 d-flex align-items-center">
+          <img
+            src="../static/img/EscudoPatinalon.png"
+            width="60px"
+            alt="Imagen 4"
+            class="img-fluid mr-3"
+          />
+          <div>
+            <h2>Enlaces de interés</h2>
+            <p>
+              Enlaces a nuestras federaciones, tanto a los partidos como a los
+              reglamentos.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <p>&copy; 2024 CD Patinalon. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

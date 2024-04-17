@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CD Patinalon</title>
+  <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #ffd3cc;
+      scrollbar-width: thin;
+      scrollbar-color: #3498db transparent;
+    }
+
+    h1,h2,h3,h4,h5,h6 {
+      font-family: "Roboto", sans-serif;
+    }
+
+    p {
+      font-family: "Open Sans", sans-serif;
+    }
+
+    .navbar {
+      background-color: #bf3730;
+    }
+
+    .navbar-brand img {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    .navbar-brand a {
+      color: white;
+    }
+
+    .navbar-nav a {
+      color: white;
+    }
+
+    .dropdown-menu {
+      background-color: #ff4940;
+      border: none;
+    }
+
+    .dropdown-item {
+      color: white;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .caret {
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      display: inline-block;
+      padding: 3px;
+      transform: rotate(-45deg);
+      vertical-align: middle;
+    }
+
+    .container {
+      margin-top: 20px;
+    }
+
+    .footer {
+      background-color: #ff4940;
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="~/index.html">
+        <img src="../static/img/EscudoPatinalon.png" alt="Escudo" />
+        CD Patinalon
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/jugadores">Nuestros Equipos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">3x3 Sara Roces</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Enlaces</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sobre Nosotros</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contacto</a>
+          </li>
+          <li class="nav-item dropdown" id="dropdownMenu">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Más
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Aviso Legal</a>
+                <a class="dropdown-item" href="#">Política de Privacidad</a>
+            </div>
+            </li>
+        </ul>
+        </div>
+    </div>
+    </nav>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="enlace asturiana">
+                <a href="https://www.fpasturias.es/website/">
+                    <h2>Federación Asturiana de Patinaje(FDPPA)</h2>
+                </a>
+                <a href="https://www.fpasturias.es/website/">
+                    <img class="imagen img-fluid" src="/images/Escudos/Imagen federacion.jpg" alt="jpg">
+                </a>
+                <p>Aquí podéis encontrar el enlace a nuestra Federación de Patinaje de Asturias (FDPPA),
+                    para poder consultar cualquier información sobre cualquier deporte de esta Federación.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="enlace partidosAsturiana">
+                <a href="https://www.fpasturias.es/website/?page_id=16&seccion=competiciones&id_modal=1">
+                    <h2>Partidos de la Federación Asturiana(FDPPA)</h2>
+                </a>
+                <a href="https://www.fpasturias.es/website/?page_id=16&seccion=competiciones&id_modal=1">
+                    <img class="imagen img-fluid" src="/images/Escudos/Imagen asturias.png" alt="jpg">
+                </a>
+                <p>Aquí podéis consultar cualquier información sobre los partidos de hockey en la Federación Asturiana de Patinaje</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="enlace española">
+                <a href="https://fep.es/website/index.asp">
+                    <h2>Federación Española de Patinaje(RFEP)</h2>
+                </a>
+                <a href="https://fep.es/website/index.asp">
+                    <img class="imagen img-fluid" src="/images/Escudos/imagen federacion española.jpg" alt="jpg">
+                </a>
+                <p>Aquí podéis encontrar el enlace a nuestra Federación de Patinaje Española (RFEP),
+                    para poder consultar cualquier información sobre cualquier deporte de esta Federación.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="enlace partidosEspañola">
+                <a href="http://www.hockeypatines.fep.es/">
+                    <h2>Partidos de la Federación Española de Patinaje(RFEP)</h2>
+                </a>
+                <a href="http://www.hockeypatines.fep.es/">
+                    <img class="imagen img-fluid" src="/images/Escudos/imagen federacion española.jpg" alt="jpg">
+                </a>
+                <p>Aquí podéis consultar cualquier información sobre los partidos de hockey en la Federación Española de Patinaje</p>
+            </div>
+        </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

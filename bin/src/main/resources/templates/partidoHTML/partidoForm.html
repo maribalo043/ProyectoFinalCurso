@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <title>Formulario de Partidos</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h2 class="text-center mb-4">Formulario del Partido</h2>
+          <form
+            th:action="@{~/partido/save}"
+            method="post"
+            th:object="${partidoNuevo}"
+          >
+            <div class="form-group"></div>
+            <div class="form-group">
+              <label for="golesLocal">Resultado del partido:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="golesLocal"
+                placeholder="Ingrese los goles del equipo Local"
+                required
+                th:field="*{golesLocal}"
+              />
+              <p th:if="${#fields.hasErrors('golesLocal')}" th:errors="*{golesLocal}" class="btn btn-danger">Error</p>
+            </div>
+            <div class="form-group">
+              <label for="golesVisitante">Resultado del partido:</label>
+              <input
+                type="number"
+                class="form-control"
+                id="golesVisitante"
+                placeholder="Ingrese los goles del equipo Visitante"
+                required
+                th:field="*{golesVisitante}"
+              />
+              <p th:if="${#fields.hasErrors('golesVisitante')}" th:errors="*{golesVisitante}" class="btn btn-danger">Error</p>
+            </div>
+            <div class="form-group">
+              <label for="pista">Pista:</label>
+              <select
+                class="form-control rounded bg-light"
+                id="pista"
+                th:field="*{pista}">
+                <option value="Sara Roces">Sara Roces</option>
+                <option value="Marta Piquero">Marta Piquero</option>
+              </select>
+            </div>
+            <!-- Equipo Local -->
+            <div class="form-group">
+              <label for="equipoLocal">Equipo Local:</label>
+              <select
+                class="form-control rounded bg-light"
+                id="equipoLocal"
+                th:field="*{equipoLocal}"
+                required
+              >
+                <option
+                  th:each="equipo : ${equipos}"
+                  th:text="${equipo.nombre}"
+                  th:value="${equipo.id}"
+                ></option>
+              </select>
+            </div>
+
+            <!-- Equipo Visitante -->
+            <div class="form-group">
+              <label for="equipoVisitante">Equipo Visitante:</label>
+              <select
+                class="form-control rounded bg-light"
+                id="equipoVisitante"
+                th:field="*{equipoVisitante}"
+                required
+              >
+                <option
+                  th:each="equipo : ${equipos}"
+                  th:text="${equipo.nombre}"
+                  th:value="${equipo.id}"
+                ></option>
+              </select>
+            </div>
+
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Añadir Partido"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          var equipoLocalSelect = document.getElementById('equipoLocal');
+          var equipoVisitanteSelect = document.getElementById('equipoVisitante');
+  
+          equipoLocalSelect.addEventListener('change', function () {
+              actualizarEquiposDisponibles(equipoLocalSelect, equipoVisitanteSelect);
+          });
+  
+          // Al cargar la página, asegúrate de que los dos selects no tengan el mismo equipo
+          actualizarEquiposDisponibles(equipoLocalSelect, equipoVisitanteSelect);
+      });
+  
+      function actualizarEquiposDisponibles(selectOrigen, selectDestino) {
+          // Reinicia el select de destino
+          selectDestino.innerHTML = '';
+  
+          // Copia todas las opciones desde el select original al destino
+          var opcionesDisponibles = Array.from(selectOrigen.options);
+          opcionesDisponibles.forEach(function (option) {
+              if (option.value !== selectOrigen.value) {
+                  selectDestino.appendChild(option.cloneNode(true));
+              }
+          });
+      }
+  </script>
+  
+  
+  
+  
+  
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

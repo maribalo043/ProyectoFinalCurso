@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Añadir Jugador</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h2 class="text-center mb-4">Formulario de Jugadores</h2>
+          <form
+            th:action="@{~/jugador/save}"
+            method="post"
+            th:object="${jugadorNuevo}"
+          >
+            <!-- Campo 'dni' -->
+            <div class="form-group">
+              <label for="dni">DNI:</label>
+              <input
+                th:if="${jugadorNuevo.dni != null and !#fields.hasErrors('dni')}"
+                type="text"
+                class="form-control"
+                id="dni"
+                placeholder="Ingrese el DNI"
+                th:field="*{dni}"
+                readonly
+              />
+              <!-- Segundo input: se muestra cuando el dni es nulo o hay errores -->
+              <input
+                th:if="${jugadorNuevo.dni == null or #fields.hasErrors('dni')}"
+                type="text"
+                class="form-control"
+                id="dni"
+                placeholder="Ingrese el DNI"
+                th:field="*{dni}"
+              />
+              <p
+                th:if="${#fields.hasErrors('dni')}"
+                th:errors="*{dni}"
+                class="btn btn-danger"
+              >
+                Error en el DNI
+              </p>
+            </div>
+
+            <!-- Campo 'nombre' -->
+            <div class="form-group">
+              <label for="nombre">Nombre y apellidos del Jugador:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombre"
+                placeholder="Ingrese el nombre"
+                th:field="*{nombre}"
+              />
+              <p
+                th:if="${#fields.hasErrors('nombre')}"
+                th:errors="*{nombre}"
+                class="btn btn-danger"
+              >
+                Error en el nombre
+              </p>
+            </div>
+
+            <!-- Campo 'numeroSeguro' -->
+            <div class="form-group">
+              <label for="numeroSeguro">Número de Seguro:</label>
+              <input
+                type="text"
+                class="form-control"
+                id="numeroSeguro"
+                placeholder="Ingrese el número de seguro"
+                size="20"
+                th:field="*{numeroSeguro}"
+              />
+              <p
+                th:if="${#fields.hasErrors('numeroSeguro')}"
+                th:errors="*{numeroSeguro}"
+                class="btn btn-danger"
+              >
+                Error en el número de seguro
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="tallaCamiseta">Talla de Camiseta:</label>
+              <select
+                class="form-control"
+                id="tallaCamiseta"
+                th:field="*{tallaCamiseta}"
+              >
+                <option value="3XL">3XL</option>
+                <option value="2XL">2XL</option>
+                <option value="XL">XL</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="S">S</option>
+                <option value="XS">XS</option>
+                <option value="3XS">3XS</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="equipo">Equipo:</label>
+              <select
+                class="form-control rounded bg-light"
+                id="equipo"
+                th:field="*{equipo}"
+              >
+                <option value="">No Asignado</option>
+                <option
+                  th:each="equipo : ${equipos}"
+                  th:text="${equipo.nombre}"
+                  th:value="${equipo.id}"
+                ></option>
+              </select>
+              <p
+                th:if="${#fields.hasErrors('equipo')}"
+                th:errors="*{equipo}"
+                class="btn btn-danger"
+              >
+                Error
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label>¿Es portero?</label>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="portero"
+                  id="porteroSi"
+                  value="true"
+                  th:field="*{portero}"
+                />
+                <label class="form-check-label" for="porteroSi">Sí</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="portero"
+                  id="porteroNo"
+                  value="false"
+                  checked
+                  th:field="*{portero}"
+                />
+                <label class="form-check-label" for="porteroNo">No</label>
+              </div>
+            </div>
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Añadir Jugador"
+            />
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
