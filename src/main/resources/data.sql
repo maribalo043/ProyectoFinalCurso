@@ -23,13 +23,13 @@ INSERT INTO partidos (goles_Local, goles_Visitante, pista, equipo_Local, equipo_
 INSERT INTO partidos (goles_Local, goles_Visitante, pista, equipo_Local, equipo_Visitante) VALUES (4,4,'Sara Roces',2,4);
 
 INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234567A','Mario',1234,'L',false,1);
-INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234567B','Mario',1234,'S',false,1);
-INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234587D','Mario',1234,'XS',false,2);
-INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234564D','Mario',1234,'M',false,2);
-INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234567C','Mario',1234,'2XL',true,1);
-INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234567D','Mario',1234,'3XL',false,1);
-INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1634567D','Mario',1234,'S',true,2);
-INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234527D','Mario',1234,'3XS',false,2);
+INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234567B','Paloma',1234,'S',false,1);
+INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234587D','Pepito',1234,'XS',false,2);
+INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234564D','Manolito',1234,'M',false,2);
+INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234567C','Josito',1234,'2XL',true,1);
+INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234567D','David',1234,'3XL',false,1);
+INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1634567D','Antonio',1234,'S',true,2);
+INSERT INTO jugadores (dni, nombre, numero_Seguro,talla_Camiseta,portero,equipo_id) VALUES ('1234527D','Maria Jesus',1234,'3XS',false,2);
 
 /*La contraseña es mario, ADMIN*/
 INSERT INTO Usuario (usuario,password) VALUES ('mario','$2a$12$MwHuCgJDFt4qZQaK28VyieKCR61gyk42n8ntG1QPeluwMqBJEIK3i');
