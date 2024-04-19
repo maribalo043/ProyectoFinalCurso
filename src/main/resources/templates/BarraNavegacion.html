@@ -19,22 +19,22 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <div class="nav-item">                            
-                    <a class="nav-link" th:href="@{/}">Inicio</a>
+                    <a class="nav-link" th:href="@{~/}">Inicio</a>
                 </div>
                 <li class="nav-item">
-                    <a class="nav-link" href="/jugadores">Nuestros Equipos</a>
+                    <a class="nav-link" th:href="@{~/nuestrosEquipos}">Nuestros Equipos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">3x3 Sara Roces</a>
+                    <a class="nav-link" th:href="@{~/torneo}">3x3 Sara Roces</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{~/Links.html}">Enlaces</a>
+                    <a class="nav-link" th:href="@{~/links}">Enlaces</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Sobre Nosotros</a>
+                    <a class="nav-link" th:href="@{~/sobreNosotros}">Sobre Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" th:href="@{~/contacto}">Contacto</a>
                 </li>
                 <li class="nav-item dropdown" id="dropdownMenu" sec:authorize="hasAuthority('ADMIN')">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
