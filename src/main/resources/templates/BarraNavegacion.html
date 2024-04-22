@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-red fixed-top" th:fragment="menuSuperior">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" th:href="@{~/}">
         <img src="../static/img/EscudoPatinalon.png" width="30" height="30" class="d-inline-block align-top" alt="">
         CD Patinalon
     </a>
@@ -50,6 +50,7 @@
                 </div>
             </li>
         </ul>
+        "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\XAMPP"
         <ul class="navbar-nav">
             <li sec:authorize="!isAuthenticated()">
                 <a class="btn btn-warning" th:href="@{/login}">Iniciar Sesión</a>

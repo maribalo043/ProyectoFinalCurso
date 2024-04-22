@@ -17,78 +17,13 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap"
     />
-
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: white;
-        scrollbar-width: thin;
-        scrollbar-color: #00794d transparent;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Roboto", sans-serif;
-      }
-      p {
-        font-family: "Open Sans", sans-serif;
-      }
-      .navbar {
-        background-color: #d41a1e;
-      }
-      .navbar-brand img {
-        width: 40px;
-        margin-right: 10px;
-      }
-      .navbar-brand a {
-        color: white;
-      }
-      .navbar-nav a {
-        color: white;
-      }
-      .dropdown-menu {
-        background-color: #d41a1e;
-        border: none;
-      }
-      .dropdown-item {
-        color: white;
-      }
-      .dropdown:hover .dropdown-menu {
-        display: block;
-      }
-      .caret {
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 3px;
-        transform: rotate(-45deg);
-        vertical-align: middle;
-      }
-      .container {
-        margin-top: 20px;
-      }
-      .footer {
-        background-color: #d41a1e;
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-      }
-      .carousel-control-prev-icon {
-        background-color: red;
-        color: black;
-        padding: 10px;
-        border-radius: 10px;
-      }
-      .carousel-control-next-icon {
-        background-color: red;
-        color: black;
-        padding: 10px;
-        border-radius: 10px;
-      }
-    </style>
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <!-- Estilos Index -->
+    <link rel="stylesheet" href="../static/css/estilosIndex.css"/>
   </head>
   <body>
     <header>
@@ -140,7 +75,7 @@
           </div>
         </div>
         <a
-          class="carousel-control-prev"
+          class="carousel-control-prev control-carrusel"
           href="#miCarrusel"
           role="button"
           data-slide="prev"
@@ -149,7 +84,7 @@
           <span class="sr-only">Anterior</span>
         </a>
         <a
-          class="carousel-control-next"
+          class="carousel-control-next control-carrusel"
           href="#miCarrusel"
           role="button"
           data-slide="next"
