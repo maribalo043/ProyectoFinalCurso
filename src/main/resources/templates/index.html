@@ -22,6 +22,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
     <!-- Estilos Index -->
     <link rel="stylesheet" href="../static/css/estilosIndex.css"/>
   </head>
@@ -182,12 +185,47 @@
           </div>
         </div>
       </div>
-    </main>
-    <footer class="footer">
+      <!-- Casusel de Cards -->
       <div class="container">
-        <p>&copy; 2024 CD Patinalon. Todos los derechos reservados.</p>
+        <div class="row">
+          <!--Tarjeta-->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card custom-card">
+              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+              <div class="card-overlay"></div>
+              <div class="card-body">
+                <h5 class="card-title">Card Title</h5>
+                <p class="card-text">This is a sample description. You can add more details here.</p>
+              </div>
+            </div>
+          </div>
+          <!--Tarjeta-->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card custom-card">
+              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+              <div class="card-overlay"></div>
+              <div class="card-body">
+                <h5 class="card-title">Card Title</h5>
+                <p class="card-text">This is a sample description. You can add more details here.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Add more cards here -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card custom-card">
+              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+              <div class="card-overlay"></div>
+              <div class="card-body">
+                <h5 class="card-title">Card Title</h5>
+                <p class="card-text">This is a sample description. You can add more details here.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </footer>
+
+    </main>
+    <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
