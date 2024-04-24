@@ -1,14 +1,16 @@
+body{
+  width: 100%;
+}
 .carousel-control-prev-icon {
     background-color: red;
-    padding: 20px;
+    padding: 2.5vh;
     border-radius: 50%;
 }
 .carousel-control-next-icon {
     background-color: red;
-    padding: 20px;
+    padding: 2.5vh;
     border-radius: 50%;
 }
-
 
 .custom-card {
     position: relative;
@@ -47,3 +49,23 @@
     color: #fff;
     z-index: 1;
   }
+
+  .contenedorPatrocinadores{
+    margin-top:7.5vh;
+    margin-bottom:7.5vh;
+    padding: 3ch;
+    background-color: rgb(140, 253, 140);
+    padding: 3px 10px;
+    border: red 10px double;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .tituloPatrocinadores{
+    margin: 2.5vh;
+  }
+  .card-title{
+    color: black;
+    font-weight: bold;
+    text-decoration:underline;
+  }
+  

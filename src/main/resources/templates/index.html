@@ -34,7 +34,7 @@
     </header>
 
     <main class="container">
-      <div id="miCarrusel" class="carousel slide" data-ride="carousel">
+      <section id="miCarrusel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
@@ -95,7 +95,7 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Siguiente</span>
         </a>
-      </div>
+      </section>
       <script>
         $(document).ready(function () {
           $("#miCarrusel").carousel({
@@ -123,7 +123,7 @@
           </p>
         </div>
       </div>
-      <div class="row mt-4">
+      <section class="row mt-4 informacion">
         <div class="col-lg-6 d-flex align-items-center">
           <img
             src="../static/img/EscudoPatinalon.png"
@@ -151,8 +151,8 @@
             </p>
           </div>
         </div>
-      </div>
-      <div class="row mt-4">
+      </section>
+      <section class="row mt-4">
         <div class="col-lg-6 d-flex align-items-center">
           <img
             src="../static/img/EscudoPatinalon.png"
@@ -184,45 +184,52 @@
             </p>
           </div>
         </div>
-      </div>
-      <!-- Casusel de Cards -->
-      <div class="container">
+      </section>
+      <!-- Galeria de Cards -->
+      <section class="container contenedorPatrocinadores">
+        <h2 class="text-center tituloPatrocinadores">Patrocinadores</h2>
         <div class="row">
           <!--Tarjeta-->
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card custom-card">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+              <img src="../static/img/Alonso y Cuesta.jpg" class="card-img-top" alt="Alonso y Cuesta">
               <div class="card-overlay"></div>
               <div class="card-body">
-                <h5 class="card-title">Card Title</h5>
-                <p class="card-text">This is a sample description. You can add more details here.</p>
+                <h5 class="card-title">ALONSO Y CUESTA</h5>
               </div>
             </div>
           </div>
           <!--Tarjeta-->
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card custom-card">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+              <img src="../static/img/El Almacen de Lena.jpg" class="card-img-top" alt="Almacén de Lena">
               <div class="card-overlay"></div>
               <div class="card-body">
-                <h5 class="card-title">Card Title</h5>
-                <p class="card-text">This is a sample description. You can add more details here.</p>
+                <h5 class="card-title">EL ALMACÉN DE LENA</h5>
               </div>
             </div>
           </div>
-          <!-- Add more cards here -->
+          <!--Tarjeta-->
           <div class="col-lg-4 col-md-6 mb-4">
             <div class="card custom-card">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="...">
+              <img src="../static/img/cafeSafari.png" class="card-img-top" alt="Café Safari">
               <div class="card-overlay"></div>
               <div class="card-body">
-                <h5 class="card-title">Card Title</h5>
-                <p class="card-text">This is a sample description. You can add more details here.</p>
+                <h5 class="card-title">CAFE SAFARI</h5>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+          <!--Tarjeta-->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card custom-card">
+              <img src="../static/img/CaldilloDArriba.jpg" class="card-img-top" alt="Casa Caldillo de Arriba">
+              <div class="card-overlay"></div>
+              <div class="card-body">
+                <h5 class="card-title">CALDILLO D' ARRIBA</h5>
+              </div>
+            </div>
+          </div>
+      </section>
 
     </main>
     <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
