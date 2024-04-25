@@ -98,7 +98,7 @@
     }
     .otroContenido {
         flex: 1 0 auto;
-        width: 95%;
+        width: 100%;
         padding: 0;
         margin:0;
         margin-top: 2.5vh;
@@ -126,3 +126,15 @@
         max-width: 30px;
     }
 }
+@media (orientation: landscape) {
+    .otroContenido {
+        flex: 1 0 auto;
+        width: 100%;
+        padding: 0;
+        margin:0;
+        margin-top: 2.5vh;
+        margin-left: 1vh;
+        margin-right: 1vh;
+        padding: 0 50vh;
+    }
+  }
