@@ -1,30 +1,10 @@
-/*Ajustes de la scrollbar*/
-::-webkit-scrollbar {
-  width: 10px;
-  position: absolute;
-  z-index: 0;
-}
-
-::-webkit-scrollbar-track {
-  background-color: hidden;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #d41a1e;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-corner {
-  display: none;
-}
-
-::-webkit-scrollbar-button {
-  display: none;
-}
 /*Ajustes de la barra en general*/
 body{
   width: 100%;
   overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;
 }
 .carousel-control-prev-icon {
     background-color: #d41a1e;
@@ -38,22 +18,25 @@ body{
 }
 
 .custom-card {
-    position: relative;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 10px;
+    height: 300px;
   }
   .custom-card img {
     width: 100%;
-    height: auto;
-    max-width: 300px;
-    height: 200px;
     transition: transform 0.5s;
+    object-fit: contain;
+  }
+  img.cuadrado{
+    padding: 35px;
   }
   .custom-card:hover img {
     transform: scale(1.1);
   }
+ 
   .custom-card .card-overlay {
     position: absolute;
     top: 0;
@@ -74,23 +57,20 @@ body{
     color: #fff;
     z-index: 1;
   }
-
+ 
   .contenedorPatrocinadores{
     margin-top:7.5vh;
     margin-bottom:7.5vh;
     padding: 3ch;
-    background-color: rgb(140, 253, 140);
+    background-color: rgb(227, 227, 227);
     padding: 3px 10px;
-    border: red 10px double;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-radius: 20px;
   }
   .tituloPatrocinadores{
     margin: 2.5vh;
   }
   .card-title{
     color: black;
-    font-weight: bold;
-    text-decoration:underline;
+ 
   }
   

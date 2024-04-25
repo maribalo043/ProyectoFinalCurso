@@ -4,9 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CD Patinalon</title>
-    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap"/>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../static/img/EscudoPatinalon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap"
+    />
     <!-- Cosas Barra de navegación -->
     <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +32,7 @@
     <header>
       <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
     </header>
-
+ 
     <main class="container">
       <section id="miCarrusel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -115,29 +125,26 @@
       </div>
       <section class="row mt-4 informacion">
         <div class="col-lg-6 d-flex align-items-center">
-          <a th:href="@{~/nuestrosEquipos}">
           <img
             src="../static/img/EscudoPatinalon.png"
             width="60px"
             alt="Imagen 1"
             class="img-fluid mr-3"
-          /></a>
+          />
           <div>
-            <a th:href="@{~/nuestrosEquipos}"><h2>Nuestra Categorias</h2></a>
+            <h2>Nuestra Categorias</h2>
             <p>Los diferentes equipos que compiten en nuestras categorías.</p>
           </div>
-        
         </div>
         <div class="col-lg-6 d-flex align-items-center">
-          <a th:href="@{~/nuestrosEquipos}">
-            <img
-              src="../static/img/EscudoPatinalon.png"
-              width="60px"
-              alt="Imagen 1"
-              class="img-fluid mr-3"
-            /></a>
+          <img
+            src="../static/img/EscudoPatinalon.png"
+            width="60px"
+            alt="Imagen 2"
+            class="img-fluid mr-3"
+          />
           <div>
-            <a th:href="@{~/nuestrosEquipos}"><h2>Historia del club</h2></a>
+            <h2>Historia del club</h2>
             <p>
               Conoce un poco más sobre la progresión a través de los años de
               nuestro querido Patinalon.
@@ -147,15 +154,14 @@
       </section>
       <section class="row mt-4">
         <div class="col-lg-6 d-flex align-items-center">
-          <a th:href="@{~/nuestrosEquipos}">
-            <img
-              src="../static/img/EscudoPatinalon.png"
-              width="60px"
-              alt="Imagen 1"
-              class="img-fluid mr-3"
-            /></a>
+          <img
+            src="../static/img/EscudoPatinalon.png"
+            width="60px"
+            alt="Imagen 3"
+            class="img-fluid mr-3"
+          />
           <div>
-            <a th:href="@{~/nuestrosEquipos}"><h2>Contacta con nosotros</h2></a>
+            <h2>Contacta con nosotros</h2>
             <p>
               ¿Tienes algún problema?,¿Alguna duda?,¿Quieres obtener información
               sobre algo?, contacta con nosotros a través de este sencillo
@@ -164,15 +170,14 @@
           </div>
         </div>
         <div class="col-lg-6 d-flex align-items-center">
-          <a th:href="@{~/nuestrosEquipos}">
-            <img
-              src="../static/img/EscudoPatinalon.png"
-              width="60px"
-              alt="Imagen 1"
-              class="img-fluid mr-3"
-            /></a>
+          <img
+            src="../static/img/EscudoPatinalon.png"
+            width="60px"
+            alt="Imagen 4"
+            class="img-fluid mr-3"
+          />
           <div>
-            <a th:href="@{~/nuestrosEquipos}"><h2>Enlaces de interés</h2></a>
+            <h2>Enlaces de interés</h2>
             <p>
               Enlaces a nuestras federaciones, tanto a los partidos como a los
               reglamentos.
@@ -186,46 +191,50 @@
         <div class="row">
           <!--Tarjeta-->
           <div class="col-lg-4 col-md-6 mb-4">
+            <a href="https://alonsoycuesta.com/" target="_blank">
             <div class="card custom-card">
-              <img src="../static/img/Alonso y Cuesta.jpg" class="card-img-top" alt="Alonso y Cuesta">
+              <img src="../static/img/Alonso y Cuesta.jpg" class="card-img-top cuadrado" alt="Alonso y Cuesta">
               <div class="card-overlay"></div>
               <div class="card-body">
-                <h5 class="card-title">ALONSO Y CUESTA</h5>
               </div>
             </div>
+            </a>
           </div>
           <!--Tarjeta-->
           <div class="col-lg-4 col-md-6 mb-4">
+            <a href="https://www.google.com/maps/place/Piensos+%22El+almacen+de+Lena%22/@43.16372,-5.82957,17z/data=!3m1!4b1!4m6!3m5!1s0xd36fa167af706d5:0x3b1eb9813a59dc6b!8m2!3d43.16372!4d-5.82957!16s%2Fg%2F11g9n0xsyk?hl=es&entry=ttu" target="_blank">
             <div class="card custom-card">
               <img src="../static/img/El Almacen de Lena.jpg" class="card-img-top" alt="Almacén de Lena">
               <div class="card-overlay"></div>
               <div class="card-body">
-                <h5 class="card-title">EL ALMACÉN DE LENA</h5>
               </div>
             </div>
+            </a>
           </div>
           <!--Tarjeta-->
           <div class="col-lg-4 col-md-6 mb-4">
+            <a href="https://cafesafari.es/" target="_blank">
             <div class="card custom-card">
               <img src="../static/img/cafeSafari.png" class="card-img-top" alt="Café Safari">
               <div class="card-overlay"></div>
               <div class="card-body">
-                <h5 class="card-title">CAFE SAFARI</h5>
               </div>
             </div>
+            </a>
           </div>
           <!--Tarjeta-->
           <div class="col-lg-4 col-md-6 mb-4">
+            <a href="https://casacaldillo.es/" target="_blank">
             <div class="card custom-card">
               <img src="../static/img/CaldilloDArriba.jpg" class="card-img-top" alt="Casa Caldillo de Arriba">
               <div class="card-overlay"></div>
               <div class="card-body">
-                <h5 class="card-title">CALDILLO D' ARRIBA</h5>
               </div>
             </div>
+          </a>
           </div>
       </section>
-
+ 
     </main>
     <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
