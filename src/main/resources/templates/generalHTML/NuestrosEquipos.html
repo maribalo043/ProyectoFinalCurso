@@ -5,19 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestros Equipos</title>
 
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
     <!-- Cosas Barra de navegación -->
     <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
     <!-- Estilos Barra inferior -->
-    <link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
+    <!-- Estilos Nuetros Equipos -->
+    <link rel="stylesheet" href="../../static/css/estilosNuestrosEquipos.css">
+    <style>
+        .galeriaTarjetas {
+            padding: 10px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .tarjeta {
+            flex: 0 0 calc(33.33% - 20px); /* Cambio en el ancho de la tarjeta */
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Asegura que el padding no afecte al tamaño total */
+        }
+
+        .tarjeta img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .tarjeta h3 {
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
         <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
-      </header>
-    <h1>Nuestros Equipos</h1>
+    </header>
+    <main class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 galeriaTarjetas">
+                <h1>Nuestros Equipos</h1>
+                <section class="galeriaTarjetas">
+                    <!-- Tarjeta 1 -->
+                    <div class="tarjeta">
+                        <img src="ruta/a/imagen1.jpg" alt="Equipo 1">
+                        <h3>Equipo 1</h3>
+                    </div>
+                    <!-- Tarjeta 2 -->
+                    <div class="tarjeta">
+                        <img src="ruta/a/imagen2.jpg" alt="Equipo 2">
+                        <h3>Equipo 2</h3>
+                    </div>
+                    <!-- Tarjeta 3 -->
+                    <div class="tarjeta">
+                        <img src="ruta/a/imagen3.jpg" alt="Equipo 3">
+                        <h3>Equipo 3</h3>
+                    </div>
+                    <!-- Repite estas tres tarjetas según sea necesario -->
+                </section>
+            </div>
+            <div class="col-md-4 otroContenido">
+                <h2>Otro Contenido</h2>
+                <!-- Aquí va tu otro contenido distinto de la galería de fotos -->
+            </div>
+        </div>
+    </main>
     <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
 </body>
 </html>

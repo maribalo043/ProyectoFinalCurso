@@ -1,0 +1,40 @@
+.contenedor{
+    display: flex;
+    flex-direction: row;
+}
+
+.galeriaTarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    flex: 0 0 60%;
+    padding: 10px;
+    margin-right: 20px; /* Agrega un margen entre las dos secciones */
+}
+
+.tarjeta {
+    flex: 1 1 calc(33.33% - 20px); /* El 20px es para el margen */
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Asegura que el padding no afecte al tamaño total */
+}
+
+.tarjeta img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.tarjeta h3 {
+    margin-top: 10px;
+}
+
+.otroContenido {
+    flex: 0 0 40%;
+    padding: 10px;
+    flex-direction: column;
+}
