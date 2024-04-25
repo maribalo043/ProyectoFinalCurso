@@ -1,13 +1,38 @@
+/*Ajustes de la scrollbar*/
+::-webkit-scrollbar {
+  width: 10px;
+  position: absolute;
+  z-index: 0;
+}
+
+::-webkit-scrollbar-track {
+  background-color: hidden;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d41a1e;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+/*Ajustes de la barra en general*/
 body{
   width: 100%;
+  overflow-x: hidden;
 }
 .carousel-control-prev-icon {
-    background-color: red;
+    background-color: #d41a1e;
     padding: 2.5vh;
     border-radius: 50%;
 }
 .carousel-control-next-icon {
-    background-color: red;
+    background-color: #d41a1e;
     padding: 2.5vh;
     border-radius: 50%;
 }
