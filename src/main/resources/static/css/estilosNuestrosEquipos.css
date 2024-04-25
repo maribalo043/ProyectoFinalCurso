@@ -1,3 +1,8 @@
+.main{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
 .contenedor{
     display: flex;
     flex-direction: row;
@@ -8,23 +13,31 @@
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
-    flex: 0 0 60%;
-    padding: 10px;
-    margin-right: 20px; /* Agrega un margen entre las dos secciones */
+    flex: 0 0 70%;
+    padding-left: 10vh;
+    padding-top: 0;
+    margin-top: -50vh;
+    margin-right: 20px;
 }
 
+.conjuntoTarjetas{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
 .tarjeta {
-    flex: 1 1 calc(33.33% - 20px); /* El 20px es para el margen */
+    flex: 1 1 calc(33.33% - 20px);
     margin: 10px;
     padding: 10px;
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 5px;
-    box-sizing: border-box; /* Asegura que el padding no afecte al tamaño total */
+    box-sizing: border-box;
 }
 
 .tarjeta img {
-    max-width: 100%;
+    max-width: 50%;
     height: auto;
     border-radius: 5px;
 }
@@ -34,7 +47,75 @@
 }
 
 .otroContenido {
-    flex: 0 0 40%;
-    padding: 10px;
+    flex: 0 0 30%;
+    padding-right: 10vh;
+    margin-top: 5vh;
+    margin-right: 15vh;
     flex-direction: column;
+}
+
+.tarjetaPartido {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.imagenPartido {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    max-width: 50px; 
+    border-radius: 5px;
+}
+
+.imagenPartido.izquierda {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.imagenPartido.derecha {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.tarjetaPartido h4 {
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.tarjetaPartido .equipos {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .contenedor {
+        flex-direction: column;
+    }
+    .otroContenido {
+        flex: 1 0 auto;
+        width: 100%;
+        padding: 0;
+        margin:0;
+    }
+    .imagenPartido{
+        max-width: 30px;
+    }
+    .galeriaTarjetas {
+        flex: 1 0 auto;
+        width: 100%;
+        margin: 0;
+        padding-left: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .imagenPartido {
+        max-width: 30px;
+    }
 }
