@@ -98,17 +98,24 @@
     }
     .otroContenido {
         flex: 1 0 auto;
-        width: 100%;
+        width: 95%;
         padding: 0;
         margin:0;
+        margin-top: 2.5vh;
+        margin-left: 1vh;
+        margin-right: 1vh;
     }
     .imagenPartido{
         max-width: 30px;
     }
     .galeriaTarjetas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex: 1 0 auto;
         width: 100%;
         margin: 0;
+        margin-top: 1vh;
         padding-left: 0;
         margin-right: 0;
     }
