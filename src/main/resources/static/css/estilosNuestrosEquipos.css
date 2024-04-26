@@ -1,140 +1,69 @@
+*{
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0;
+  }
 .main{
+    width: 100vw;
+    overflow-x: hidden;
     display: flex;
-    align-items: start;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
 }
 .contenedor{
     display: flex;
     flex-direction: row;
+    margin: 2vh;
 }
 
-.galeriaTarjetas {
+.galeriaTarjetas{
+    width: 70%;
+
+}
+.conjuntoTarjetas{
     display: flex;
     flex-wrap: wrap;
+}
+.tarjeta{
+    display: flex;
+    width: 32%;
+    flex-direction: column;
     justify-content: center;
-    flex-direction: column;
-    flex: 0 0 70%;
-    padding-left: 10vh;
-    padding-top: 0;
-    margin-top: -50vh;
-    margin-right: 20px;
+    align-items: center;
+    border: rgb(157, 157, 157) 1px solid; 
+    padding-top: 1vh;
+    margin: 0.5vh;
+    border-radius: 10px;
+}
+.tarjeta img{
+    width:30%;
+}
+.galeriaPartidos{
+    width: 30%;
+}
+h1,h2,h3,h4,h5,h6{
+    overflow: hidden;
 }
 
-.conjuntoTarjetas{
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    
+.tarjetaPartido{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: rgb(157, 157, 157) 1px solid; 
+    margin: 2vh;
+    padding: 0.5vh;
+    padding-top: 1.5vh;
+    border-radius: 150px;
 }
-.tarjeta {
-    flex: 1 1 calc(33.33% - 20px);
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
+.tarjetaPartido img{
+    width:15%;
+    height: 12.5%;
 }
-
-.tarjeta img {
-    max-width: 50%;
-    height: auto;
-    border-radius: 5px;
+.tarjetaPartido p{
+    font-size: 80%;
 }
-
-.tarjeta h3 {
-    margin-top: 10px;
+.tarjetaPartido h4{
+    font-size: 120%;
 }
-
-.otroContenido {
-    flex: 0 0 30%;
-    padding-right: 10vh;
-    margin-top: 5vh;
-    margin-right: 15vh;
-    flex-direction: column;
-}
-
-.tarjetaPartido {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 20px;
-    position: relative;
-}
-
-.imagenPartido {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    max-width: 50px; 
-    border-radius: 5px;
-}
-
-.imagenPartido.izquierda {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-}
-
-.imagenPartido.derecha {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-.tarjetaPartido h4 {
-    margin-top: 0;
-    font-size: 16px;
-}
-
-.tarjetaPartido .equipos {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-@media (max-width: 1024px) {
-    .contenedor {
-        flex-direction: column;
-    }
-    .otroContenido {
-        flex: 1 0 auto;
-        width: 100%;
-        padding: 0;
-        margin:0;
-        margin-top: 2.5vh;
-        margin-left: 1vh;
-        margin-right: 1vh;
-    }
-    .imagenPartido{
-        max-width: 30px;
-    }
-    .galeriaTarjetas {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex: 1 0 auto;
-        width: 100%;
-        margin: 0;
-        margin-top: 1vh;
-        padding-left: 0;
-        margin-right: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .imagenPartido {
-        max-width: 30px;
-    }
-}
-@media (orientation: landscape) {
-    .otroContenido {
-        flex: 1 0 auto;
-        width: 100%;
-        padding: 0;
-        margin:0;
-        margin-top: 2.5vh;
-        margin-left: 1vh;
-        margin-right: 1vh;
-        padding: 0 50vh;
-    }
-  }
