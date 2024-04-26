@@ -67,3 +67,34 @@ h1,h2,h3,h4,h5,h6{
 .tarjetaPartido h4{
     font-size: 120%;
 }
+/* Media Queries */
+
+/* Para tabletas */
+@media screen and (max-width: 1024px) {
+    .contenedor {
+        flex-direction: column;
+    }
+    .tarjeta {
+        width: 48%;
+    }
+    .galeriaPartidos{
+        margin-top: 3vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .galeriaPartidos, .galeriaTarjetas {
+        width: 100%;
+    }
+}
+
+/* Para dispositivos móviles */
+@media screen and (max-width: 600px) {
+    .tarjeta {
+        width: 100%;
+    }
+    .tarjeta img {
+        width: 50%;
+    }
+}
