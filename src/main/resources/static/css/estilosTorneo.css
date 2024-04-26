@@ -1,5 +1,35 @@
-*{
+
+.listaBotones{
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
 }
+.listaBotones .btn{
+    width: 30%;
+    height: 20%;
+    margin: 5vh;
+    padding: 1.5vh;
+}
+.listaBotones .btn:nth-child(1),.listaBotones .btn:nth-child(2){
+    background-color: rgb(242, 61, 61);
+    border: 5px solid black;
+    font-size: xx-large;
+    border-radius: 50px;
+}
+.listaBotones .btn:nth-child(3){
+    background-color: rgb(60, 146, 246);
+    border: 5px solid black;
+    font-size: xx-large;
+    border-radius: 50px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
