@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,27 +27,20 @@
     <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
   </header>
 
-  <main class="container text-center">
-    <h1 class="mt-5 mb-4">Torneo 3x3 Sara Roces</h1>
+  <main class="container">
+    <h1 class="titulo">Torneo 3x3 Sara Roces</h1>
     <div class="contenido">
-      <div class="imagen">
-        <img src="" alt="Imagen Sara">
-      </div>
       <div class="listaBotones">
         <button type="button" class="btn">INSCRIPCIÓN</button>
         <button type="button" class="btn">CLASIFICACIÓN</button>
         <button type="button" class="btn">HISTORIA</button>
       </div>
-      <div class="imagen">
-        <img src="" alt=" Imagen Sara">
-      </div>
     </div>
   </main>
 
-  <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+  <footer th:replace="~{MenuInferior :: menuInferior}" class="footer"></footer>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
-
 </html>

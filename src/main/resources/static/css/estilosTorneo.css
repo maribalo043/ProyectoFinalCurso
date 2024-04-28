@@ -1,27 +1,69 @@
-
-.listaBotones{
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("../img/Foto Sara.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:top;
+    height: 100vh;
     display: flex;
+    justify-content: center;
     align-items: center;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.titulo{
+    color: white;
+}
+
+.listaBotones {
+    display: flex;
+    align-items: start;
     justify-content: center;
     flex-direction: column;
+}
 
+.listaBotones .btn {
+    position: relative;
+    padding-left: 40px;
+    font-size: xx-large;
 }
-.listaBotones .btn{
-    width: 30%;
-    height: 20%;
-    margin: 5vh;
-    padding: 1.5vh;
+
+.listaBotones .btn {
+    position: relative;
+    padding-left: 30px;
+    font-size: xx-large;
+    margin-bottom: 1vw;
 }
-.listaBotones .btn:nth-child(1),.listaBotones .btn:nth-child(2){
+
+.listaBotones .btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.listaBotones .btn:nth-child(1),
+.listaBotones .btn:nth-child(2) {
     background-color: rgb(242, 61, 61);
     border: 5px solid black;
-    font-size: xx-large;
     border-radius: 50px;
 }
-.listaBotones .btn:nth-child(3){
+
+.listaBotones .btn:nth-child(3) {
     background-color: rgb(60, 146, 246);
     border: 5px solid black;
-    font-size: xx-large;
     border-radius: 50px;
 }
 
@@ -31,5 +73,14 @@
     width: 100%;
     text-align: center;
     padding: 10px 0;
-  }
-  
+}
+@media (max-width: 768px) {
+    .listaBotones .btn {
+        width: 50%;
+        height: auto;
+        font-size: large;
+    }
+    .titulo{
+        color: white;
+    }   
+}

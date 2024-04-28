@@ -52,7 +52,7 @@
         </ul>
         <ul class="navbar-nav">
             <li sec:authorize="!isAuthenticated()">
-                <a class="btn btn-warning" th:href="@{/login}">Iniciar Sesión</a>
+                <a class="btn btn-warning" th:href="@{/login}">Iniciar Sesión / Registrarse</a>
             </li>
             <li sec:authorize="isAuthenticated()">
                 <span class="btn btn-success">¡Hola, <span th:text="${#authentication.name}"></span>!</span>

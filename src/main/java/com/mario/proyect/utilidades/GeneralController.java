@@ -56,5 +56,19 @@ public class GeneralController {
     	model.setViewName("generalHTML/PoliticaPrivacidad");
         return model;
     }
+
+    @GetMapping("/login")
+    public ModelAndView getLogin() {
+    	ModelAndView model = new ModelAndView();
+    	model.setViewName("index");
+        return model;
+    }
+    
+    @GetMapping("/logout")
+    public ModelAndView getLogOut() {
+    	ModelAndView model = new ModelAndView();
+    	model.setViewName("index");
+        return model;
+    }
     
 }
