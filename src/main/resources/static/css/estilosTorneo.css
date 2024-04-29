@@ -7,23 +7,26 @@ body {
     background-position:top;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
-.container{
+main.container{
+    margin: 0;
+    width: 90vw;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: start;
 }
 
 .titulo{
     color: white;
+    font-size: 7.5vh;
 }
 
 .listaBotones {
     display: flex;
     align-items: start;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
 }
 
@@ -71,6 +74,7 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
+    justify-content: center;
     text-align: center;
     padding: 10px 0;
 }
