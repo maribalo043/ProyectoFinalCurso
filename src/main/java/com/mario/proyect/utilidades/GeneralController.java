@@ -22,13 +22,6 @@ public class GeneralController {
         return model;
     }
     
-    @GetMapping("/sobreNosotros")
-    public ModelAndView getSobreNosotros() {
-    	ModelAndView model = new ModelAndView();
-    	model.setViewName("generalHTML/SobreNosotros");
-        return model;
-    }
-    
     @GetMapping("/contacto")
     public ModelAndView getContacto() {
     	ModelAndView model = new ModelAndView();
@@ -60,7 +53,7 @@ public class GeneralController {
     @GetMapping("/login")
     public ModelAndView getLogin() {
     	ModelAndView model = new ModelAndView();
-    	model.setViewName("index");
+    	model.setViewName("generalHTML/LogIn");
         return model;
     }
     
