@@ -19,12 +19,12 @@ public class Partido {
 	
 	@ManyToOne 
 	@MapsId("IdEquipoLocal")
-	@JoinColumn(name = "equipo_Local")
+	@JoinColumn(name = "equipo_Local_id")
 	private Equipo equipoLocal;
 
 	@ManyToOne
 	@MapsId("IdEquipoVisitante")
-	@JoinColumn(name = "equipo_Visitante")
+	@JoinColumn(name = "equipo_Visitante_id")
 	private Equipo equipoVisitante;
 	
 	@Size(min = 0,max=100, message = "Debe ser un número entero no negativo")

@@ -1,0 +1,81 @@
+/*Ajustes de la barra en general*/
+body{
+  width: 100%;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;
+}
+.carousel-control-prev-icon {
+    background-color: #d41a1e;
+    padding: 2.5vh;
+    border-radius: 50%;
+}
+.carousel-control-next-icon {
+    background-color: #d41a1e;
+    padding: 2.5vh;
+    border-radius: 50%;
+}
+.col-lg-4 {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+.custom-card {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    height: 195px;
+  }
+  .custom-card img {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    object-fit: contain;
+  }
+  .custom-card:hover img {
+    transform: scale(1.1);
+  }
+ 
+  .custom-card .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .custom-card:hover .card-overlay {
+    opacity: 1;
+  }
+  .custom-card .card-body {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    z-index: 1;
+  }
+ 
+  .contenedorPatrocinadores{
+    margin-top:7.5vh;
+    margin-bottom:7.5vh;
+    padding: 3ch;
+    background-color: rgb(227, 227, 227);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  /* section.contenedorPatrocinadores div.row{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  } */
+  .tituloPatrocinadores{
+    margin: 2.5vh;
+  }
+  .card-title{
+    color: black;
+  }
+  

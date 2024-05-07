@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body:not(.logged-in) #login-code-container a,
+body.logged-in #login-code-container form {
+  display: none;
+}
+
+#container-login {
+  width: 100%;
+  height: 100%;
+}
+
+#user,
+#pass {
+  width: 100%;
+  height: 40%;
+}
+
+label {
+  width: 30%;
+  font-size: 80%;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 68%;
+  border-radius: 5px;
+  border: 1px blue solid;
+}
+
+#login-botton {
+  color: white;
+  background-color: blue;
+  border-radius: 3px;
+}
+    </style>
+</head>
+<body>
+    <div id="container-login">
+        <form method="post" action="#" id="loginform" name="login-form">
+          <div id="user">
+            <label for="user_nick">Usuario o correo electrónico</label>
+            <input name="log" type="text" id="user_nick" />
+          </div>
+      
+          <div id="pass">
+            <label for="user_pass">Contraseña </label>
+            <input name="pwd" type="password" id="user_pass" />
+          </div>
+          <div id="login_botton">
+            <input type="submit" name="wp-submit" id="wp-submit" value="Acceder" />
+            <input type="hidden" name="redirect_to" value="/" />
+          </div>
+        </form>
+      </div> 
+</body>
+</html>

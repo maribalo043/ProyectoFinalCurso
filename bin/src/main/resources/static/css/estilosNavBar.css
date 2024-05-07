@@ -1,0 +1,20 @@
+.bg-red {
+    background-color:#d41a1e;
+}
+a{
+    font-weight: bold;
+    font-family: "Open Sans";
+}
+.iconoNavegacion{
+    font-size: 20px;
+}
+
+body {
+    padding-top: 56px;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding-top: 72px;
+    }
+}

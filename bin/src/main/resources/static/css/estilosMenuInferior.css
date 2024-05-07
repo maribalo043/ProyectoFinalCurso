@@ -1,0 +1,29 @@
+.footer{
+    background-color: #d41a1e;
+    color: black;
+    padding: 2vh;
+    height: 17vh;
+    width: 100vw; 
+}
+.social-icons{
+    display: flex;
+    justify-content: center;
+}
+.bordeIconos{
+    background-color: black;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: white 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    text-decoration: none;
+}
+.iconos{
+    color:white;
+    font-size: large;
+    text-decoration: none;
+}

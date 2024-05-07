@@ -1,11 +1,103 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestros Equipos</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuestros Equipos</title>
+
+  <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+  <!-- Cosas Barra de navegación -->
+  <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <!-- Estilos Barra inferior -->
+  <link rel="stylesheet" href="../static/css/style.css" />
+  <link rel="stylesheet" href="../static/css/estilosMenuInferior.css" />
+  <!-- Estilos Nuetros Equipos -->
+  <link rel="stylesheet" href="../../static/css/estilosNuestrosEquipos.css" />
 </head>
+
 <body>
-    <h1>Nuestros Equipos</h1>
+  <header>
+    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+  </header>
+  <main class="main">
+    <div class="contenedor">
+      <div class="galeriaTarjetas">
+        <h1 class="titulo">Categorias</h1>
+        <section class="conjuntoTarjetas">
+          <!-- Tarjeta -->
+          <div class="tarjeta">
+            <img src="../../static/img/EscudoPatinalon.png" alt="Equipo 3">
+            <h3>Liga Bronce Masculina</h3>
+          </div>
+          <div class="tarjeta">
+            <img src="../../static/img/EscudoPatinalon.png" alt="Equipo 3">
+            <h3>Liga Bronce Masculina</h3>
+          </div>
+          <div class="tarjeta">
+            <img src="../../static/img/EscudoPatinalon.png" alt="Equipo 3">
+            <h3>Liga Bronce Masculina</h3>
+          </div>
+          <div class="tarjeta">
+            <img src="../../static/img/EscudoPatinalon.png" alt="Equipo 3">
+            <h3>Liga Bronce Masculina</h3>
+          </div>
+          <div class="tarjeta">
+            <img src="../../static/img/EscudoPatinalon.png" alt="Equipo 3">
+            <h3>Liga Bronce Masculina</h3>
+          </div>
+        </section>
+      </div>
+      <div class="galeriaPartidos">
+        <h2>Partidos Semanales</h2>
+        <div class="contenidoTarjetas">
+          <!-- Tarjeta -->
+          <div class="tarjetaPartido">
+            <img src="../../static/img/EscudoPatinalon.png" alt="Escudo de equipo 1" class="imagenPartido izquierda" />
+            <div class="tarjetaPartido_info">
+              <h4 class="text-center">Categoría</h4>
+              <p class="text-center">Hora - Lugar</p>
+              <p class="text-center equipos">EquipoLocal vs EquipoVisitante</p>
+              <p class="text-center">Resultado</p>
+            </div>
+            <img src="../../static/img/EscudoAreces.jpg" alt="Escudo de equipo 2" class="imagenPartido derecha" />
+          </div>
+          <div class="tarjetaPartido">
+            <img src="../../static/img/EscudoMieres.jpg" alt="Escudo de equipo 1" class="imagenPartido izquierda" />
+            <div class="tarjetaPartido_info">
+              <h4 class="text-center">Categoría</h4>
+              <p class="text-center">Hora - Lugar</p>
+              <p class="text-center equipos">EquipoLocal vs EquipoVisitante</p>
+              <p class="text-center">Resultado</p>
+            </div>
+            <img src="../../static/img/EscudoPatinalon.png" alt="Escudo de equipo 2" class="imagenPartido derecha" />
+          </div>
+          <div class="tarjetaPartido">
+            <img src="../../static/img/EscudoPatinalon.png" alt="Escudo de equipo 1" class="imagenPartido izquierda" />
+            <div class="tarjetaPartido_info">
+              <h4 class="text-center">Categoría</h4>
+              <p class="text-center">Hora - Lugar</p>
+              <p class="text-center equipos">EquipoLocal vs EquipoVisitante</p>
+              <p class="text-center">Resultado</p>
+            </div>
+            <img src="../../static/img/EscudoMieres.jpg" alt="Escudo de equipo 2" class="imagenPartido derecha" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>

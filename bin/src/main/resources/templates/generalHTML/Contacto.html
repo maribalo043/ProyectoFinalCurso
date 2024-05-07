@@ -4,8 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contacto</title>
+
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/estilosMenuInferior.css" />
+    <!-- Estilos Contacto -->
+    <link rel="stylesheet" href="../../static/css/estilosContacto.css" />
 </head>
 <body>
-    <h1>Contacto</h1>
+    <header class="header">
+        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+    <main class="main">
+        <h1>Contacto</h1>
+        <fieldset class="formulario">
+            <legend>Formulario de Contacto</legend>
+            <form th:action="@{~/}" method="post" netlify class="formulario">
+                <label for="mail"></label>
+                <input type="email" id="mail" name="mail" placeholder="Correo electrónico" required/>
+
+                <label for="nombreApellidos"></label>
+                <input type="text" name="nombreApellidos" id="nombreApellidos" 
+                placeholder="Nombre y apellidos" required/>
+
+                <label for="comentario"></label>
+                <textarea name="comentario" id="comentario" cols="30" rows="5" placeholder="Comentarios o consulta" required></textarea>
+
+                <button type="submit">Enviar</button>
+            </form>
+        </fieldset>
+    </main>
+    <footer th:replace="~{MenuInferior :: menuInferior}" class="footer"></footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
