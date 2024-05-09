@@ -1,39 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <title>Formulario de Creación de Categorias</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<title>Formulario de Creación de Categorias</title>
+	<link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+	<!-- Cosas Barra de navegación -->
+	<link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+		rel="stylesheet">
+	<!-- Estilos Barra inferior -->
+	<link rel="stylesheet" href="../static/css/style.css">
+	<link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
 </head>
+
 <body>
 
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <h2 class="text-center mb-4">Crear Nueva Categoria</h2>
-      <form th:action="@{~/categoria/save}" method="post" th:object="${categoriaNueva}">
-        <div class="form-group">
-          <label for="id" hidden>ID</label>
-          <input type="text" class="form-control" id="id" placeholder="ID" required th:field="*{id}" readonly hidden>
-          <label for="nombreCategoria">Nombre de la Categoria:</label>
-          <input type="text" class="form-control" id="nombreEquipo" placeholder="Ingrese el nombre de la categoria" required th:field="*{nombre}">
-        </div>
+	<header>
+		<div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+	</header>
 
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="activa" th:field="*{activa}">
-            <label class="form-check-label" for="activa">Activa</label>
-        </div>
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<h2 class="text-center mb-4">Crear Nueva Categoria</h2>
+				<form th:action="@{~/categoria/save}" method="post" th:object="${categoriaNueva}">
+					<div class="form-group">
+						<label for="id" hidden>ID</label>
+						<input type="text" class="form-control" id="id" placeholder="ID" required th:field="*{id}"
+							readonly hidden>
+						<label for="nombreCategoria">Nombre de la Categoria:</label>
+						<input type="text" class="form-control" id="nombreEquipo"
+							placeholder="Ingrese el nombre de la categoria" required th:field="*{nombre}">
+					</div>
 
-        <input type="submit" class="btn btn-primary" value="Añadir Equipo">
-      </form>
-    </div>
-  </div>
-</div>
+					<div class="mb-3 form-check">
+						<input type="checkbox" class="form-check-input" id="activa" th:field="*{activa}">
+						<label class="form-check-label" for="activa">Activa</label>
+					</div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+					<input type="submit" class="btn btn-primary" value="Añadir Equipo">
+				</form>
+			</div>
+		</div>
+	</div>
 
+	<footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>
