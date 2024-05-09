@@ -80,7 +80,7 @@
 <body>
     <header>
         <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
-      </header>
+    </header>
     <div class="container mt-5">
         <h2 class="text-start mb-4">Lista de Categorias
             <a class="btn btn-primary float-right m-2" th:href="@{~/categoria/add}" th:if="${not #lists.isEmpty(categorias)}">Añadir Categoria</a>
