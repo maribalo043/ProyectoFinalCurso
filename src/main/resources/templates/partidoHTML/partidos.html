@@ -1,139 +1,92 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestion de partidos</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .empty-table-message {
-            font-style: italic;
-            color: #888;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todas las Categorias</title>
+  <link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+  <!-- Cosas Barra de navegación -->
+  <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <!-- Estilos Barra inferior -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
 
-        .result {
-            font-weight: bold;
-        }
-
-        .edit-button,
-        .delete-button {
-            display: inline-block;
-            margin: 0 5px;
-        }
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: white;
-        scrollbar-width: thin;
-        scrollbar-color: #00794d transparent;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Roboto", sans-serif;
-      }
-      p {
-        font-family: "Open Sans", sans-serif;
-      }
-      .navbar {
-        background-color: #d41a1e;
-      }
-      .navbar-brand img {
-        width: 40px;
-        margin-right: 10px;
-      }
-      .navbar-brand a {
-        color: white;
-      }
-      .navbar-nav a {
-        color: white;
-      }
-      .dropdown-menu {
-        background-color: #d41a1e;
-        border: none;
-      }
-      .dropdown-item {
-        color: white;
-      }
-      .dropdown:hover .dropdown-menu {
-        display: block;
-      }
-      .caret {
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 3px;
-        transform: rotate(-45deg);
-        vertical-align: middle;
-      }
-      .container {
-        margin-top: 20px;
-      }
-      .footer {
-        background-color: #d41a1e;
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-      }
-      .carousel-control-prev-icon {
-        background-color: red;
-        color: black;
-        padding: 10px;
-        border-radius: 10px;
-      }
-      .carousel-control-next-icon {
-        background-color: red;
-        color: black;
-        padding: 10px;
-        border-radius: 10px;
-      }
-    </style>
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #d41a1e;
+      text-align: center;
+      padding: 10px 0;
+    }
+  </style>
 </head>
-<body>
-    <header>
-        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
-      </header>
-    <div class="container mt-5">
-        <h2 class="text-start mb-4">Lista de Partidos
-            <a class="btn btn-primary float-right m-2" th:href="@{~/partido/add}" th:if="${not #lists.isEmpty(partidos)}">Añadir Partido</a>
-        </h2>
-        <div th:if="${#lists.isEmpty(partidos)}" class="empty-table-message">
-            <h3>La tabla de Partidos está vacía. ¡Añada usted el primer partido!</h3>
-            <a class="btn btn-primary float-right m-2" th:href="@{~/partido/add}">Añadir Partido</a>
-        </div>
-        <table th:if="${not #lists.isEmpty(partidos)}" class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th>Local</th>
-                    <th>Resultado</th>
-                    <th>Visitante</th>
-                    <th>Pista</th>
-                    <th>Ver</th>
-                    <th sec:authorize="hasAuthority('ADMIN')">Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="p:${partidos}">
-                    <td th:text="${p.equipoLocal?.nombre}">Equipo 1</td>
-                    <td class="result"><span th:text="${p.golesLocal}"></span>-<span th:text="${p.golesVisitante}"></span></td>
-                    <td th:text="${p.equipoVisitante?.nombre}">Equipo 1</td>
-                    <td th:text="${p.pista}">Pista 1</td>
-                    <td>
-                        <a class="circular-button edit-button text-decoration-none" title="Edita" th:href="@{~/partido/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}">👁️</a>
-                    </td>
-                    <td sec:authorize="hasAuthority('ADMIN')">
-                        <a class="circular-button delete-button text-decoration-none" th:href="@{~/partido/del/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}" title="Eliminar" sec:authorize="hasAuthority('ADMIN')">❌</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<body>
+  <header>
+    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+  </header>
+  <div class="container mt-5">
+    <h2 class="text-start mb-4">Lista de Partidos
+      <a class="btn btn-primary float-right m-2" th:href="@{~/partido/add}"
+        th:if="${not #lists.isEmpty(partidos)}">Añadir Partido</a>
+    </h2>
+    <div th:if="${#lists.isEmpty(partidos)}" class="empty-table-message">
+      <h3>La tabla de Partidos está vacía. ¡Añada usted el primer partido!</h3>
+      <a class="btn btn-primary float-right m-2" th:href="@{~/partido/add}">Añadir Partido</a>
+    </div>
+    <table th:if="${not #lists.isEmpty(partidos)}" class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Local</th>
+          <th>Resultado</th>
+          <th>Visitante</th>
+          <th>Pista</th>
+          <th>Ver</th>
+          <th sec:authorize="hasAuthority('ADMIN')">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="p:${partidos}">
+          <td th:text="${p.equipoLocal?.nombre}">Equipo 1</td>
+          <td class="result"><span th:text="${p.golesLocal}"></span>-<span th:text="${p.golesVisitante}"></span></td>
+          <td th:text="${p.equipoVisitante?.nombre}">Equipo 1</td>
+          <td th:text="${p.pista}">Pista 1</td>
+          <td>
+            <a class="circular-button edit-button text-decoration-none" title="Edita"
+              th:href="@{~/partido/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}">👁️</a>
+          </td>
+          <td sec:authorize="hasAuthority('ADMIN')">
+            <a class="circular-button delete-button text-decoration-none"
+              th:href="@{~/partido/del/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}"
+              title="Eliminar" sec:authorize="hasAuthority('ADMIN')">❌</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>

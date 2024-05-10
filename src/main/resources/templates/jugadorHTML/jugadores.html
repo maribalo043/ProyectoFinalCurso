@@ -1,156 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CD Patinalon</title>
-    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png">
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap"
-    />
 
-    <style>
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Todos los Jugadores</title>
+  <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+  <!-- Cosas Barra de navegación -->
+  <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <!-- Estilos Barra inferior -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
+</head>
 
-      ::-webkit-scrollbar-thumb {
-        background-color: transparent;
-        border: 2px solid #3498db;
-        border-radius: 4px;
-      }
-
-      ::-webkit-scrollbar-track {
-        background-color: transparent;
-      }
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #ffd3cc;
-      }
-      h1,h2,h3,h4,h5,h6 {
-        font-family: "Roboto", sans-serif;
-      }
-      p {
-        font-family: "Open Sans", sans-serif;
-      }
-      .navbar {
-        background-color: #bf3730;
-      }
-      .navbar-brand img {
-        width: 40px;
-        margin-right: 10px;
-      }
-      .navbar-brand a {
-        color: white;
-      }
-      .navbar-nav a {
-        color: white;
-      }
-      .dropdown-menu {
-        background-color: #ff4940;
-        border: none;
-      }
-      .dropdown-item {
-        color: white;
-      }
-      .dropdown:hover .dropdown-menu {
-        display: block;
-      }
-      .caret {
-        border: solid white;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding: 3px;
-        transform: rotate(-45deg);
-        vertical-align: middle;
-      }
-      .container {
-        margin-top: 20px;
-        color:  black;
-      }
-      .footer {
-        background-color: #ff4940;
-        color: white;
-        padding: 10px 0;
-        text-align: center;
-      }
-      .table {
-        color: black;
-      }
-
-      .table-dark tbody th,
-      .table-dark tbody td {
-          border:solid 2.5px #dc3545;
-      }
-
-      .circular-button {
-          display: inline-block;
-          width: 30px;
-          height: 30px;
-          border-radius: 50%;
-          text-align: center;
-          line-height: 30px;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
-    </header>
-    <div class="container">
-        <h2 class="text-start mb-4">Lista de Jugadores
-            <a class="btn btn-success float-right m-2" th:if="${not #lists.isEmpty(jugadores)}" th:href="@{~/jugador/add}">Añadir Jugador</a>
-            <a class="btn btn-success float-right m-2" th:href="@{/jugadores/tallaCamiseta(tallaCamiseta=tallaCamiseta)}" th:if="${not #lists.isEmpty(jugadores)}">Filtrar por Talla Camiseta</a>
-            <a class="btn btn-success float-right m-2" th:href="@{/jugadores/equipo(equipo=equipo)}" th:if="${not #lists.isEmpty(jugadores)}">Filtrar por Equipo</a>
-        </h2>
-        <div th:if="${#lists.isEmpty(jugadores)}" class="m-2">
-          <h3>La tabla de Jugadores esta vacía</h3>
-          <a class="btn btn-primary float-right m-2" th:href="@{~/jugador/add}" th:if="${#lists.isEmpty(jugadores)}">Añadir Jugador</a>
-        </div>
-        <table class="table table-hover table-striped" th:if="${not#lists.isEmpty(jugadores)}">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">DNI</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Equipo</th>
-                    <th scope="col">Número de Seguro</th>
-                    <th scope="col">Talla de Camiseta</th>
-                    <th scope="col">Portero</th>
-                    <th scope="col">Ver</th>
-                    <th scope="col" sec:authorize="hasAuthority('ADMIN')">Eliminar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="jugador : ${jugadores}">
-                    <td>#</td>
-                    <td th:text="${jugador.dni}">1234567A</td>
-                    <td th:text="${jugador.nombre}">Mario</td>
-                    <td th:text="${jugador.equipo?.nombre}">Jaimitos</td>
-                    <td th:text="${jugador.numeroSeguro}">1234</td>
-                    <td th:text="${jugador.tallaCamiseta}">XL</td>
-                    <td th:if="${jugador.portero==true}">SI</td>
-                    <td th:if="${jugador.portero!=true}">NO</td>
-                    <td><a class="circular-button edit-button text-decoration-none" title="Edita" th:href="@{~/jugador/{dni}(dni = ${jugador.dni})}">👁️</a></td>
-                    <td sec:authorize="hasAuthority('ADMIN')"><a sec:authorize="hasAuthority('ADMIN')" class="circular-button delete-button text-decoration-none" title="Eliminar" th:href="@{~/jugador/del/{dni}(dni=${jugador.dni})}">❌</a></td>
-                </tr>
-            </tbody>
-        </table>
+<body>
+  <header>
+    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+  </header>
+  <div class="container">
+    <h2 class="text-start mb-4">Lista de Jugadores
+      <a class="btn btn-success float-right m-2" th:if="${not #lists.isEmpty(jugadores)}"
+        th:href="@{~/jugador/add}">Añadir Jugador</a>
+      <a class="btn btn-success float-right m-2" th:href="@{/jugadores/tallaCamiseta(tallaCamiseta=tallaCamiseta)}"
+        th:if="${not #lists.isEmpty(jugadores)}">Filtrar por Talla Camiseta</a>
+      <a class="btn btn-success float-right m-2" th:href="@{/jugadores/equipo(equipo=equipo)}"
+        th:if="${not #lists.isEmpty(jugadores)}">Filtrar por Equipo</a>
+    </h2>
+    <div th:if="${#lists.isEmpty(jugadores)}" class="m-2">
+      <h3>La tabla de Jugadores esta vacía</h3>
+      <a class="btn btn-primary float-right m-2" th:href="@{~/jugador/add}" th:if="${#lists.isEmpty(jugadores)}">Añadir
+        Jugador</a>
     </div>
+    <table class="table table-hover table-striped" th:if="${not#lists.isEmpty(jugadores)}">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">DNI</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Equipo</th>
+          <th scope="col">Número de Seguro</th>
+          <th scope="col">Talla de Camiseta</th>
+          <th scope="col">Portero</th>
+          <th scope="col">Ver</th>
+          <th scope="col" sec:authorize="hasAuthority('ADMIN')">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="jugador : ${jugadores}">
+          <td>#</td>
+          <td th:text="${jugador.dni}">1234567A</td>
+          <td th:text="${jugador.nombre}">Mario</td>
+          <td th:text="${jugador.equipo?.nombre}">Jaimitos</td>
+          <td th:text="${jugador.numeroSeguro}">1234</td>
+          <td th:text="${jugador.tallaCamiseta}">XL</td>
+          <td th:if="${jugador.portero==true}">SI</td>
+          <td th:if="${jugador.portero!=true}">NO</td>
+          <td><a class="circular-button edit-button text-decoration-none" title="Edita"
+              th:href="@{~/jugador/{dni}(dni = ${jugador.dni})}">👁️</a></td>
+          <td sec:authorize="hasAuthority('ADMIN')"><a sec:authorize="hasAuthority('ADMIN')"
+              class="circular-button delete-button text-decoration-none" title="Eliminar"
+              th:href="@{~/jugador/del/{dni}(dni=${jugador.dni})}">❌</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-    <footer class="footer">
-      <div class="container">
-        <p>&copy; 2024 CD Patinalon. Todos los derechos reservados.</p>
-      </div>
-    </footer>
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 CD Patinalon. Todos los derechos reservados.</p>
+    </div>
+  </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  </body>
+  <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
 </html>

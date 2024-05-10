@@ -1,15 +1,39 @@
-.footer{
+/* Estilos para cuando hay que hacer scroll */
+.footer {
+    position: relative;
+}
+
+/* Estilos para cuando no hay que hacer scroll */
+html {
+    overflow-y: scroll;
+}
+
+body {
+    margin-bottom: 100px;
+    /* Ajusta este valor según la altura de tu footer */
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer {
     background-color: #d41a1e;
     color: black;
     padding: 2vh;
     height: 17vh;
-    width: 100vw; 
+    width: 100vw;
 }
-.social-icons{
+
+.social-icons {
     display: flex;
     justify-content: center;
 }
-.bordeIconos{
+
+.bordeIconos {
     background-color: black;
     margin-left: 10px;
     margin-right: 10px;
@@ -22,8 +46,9 @@
     border-radius: 50%;
     text-decoration: none;
 }
-.iconos{
-    color:white;
+
+.iconos {
+    color: white;
     font-size: large;
     text-decoration: none;
 }
