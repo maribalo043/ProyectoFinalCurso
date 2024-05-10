@@ -5,10 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <title>Tarjeta con Bootstrap</title>
+  <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+  <!-- Cosas Barra de navegación -->
+  <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
+  <!-- Estilos Barra inferior -->
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
   <style>
     body {
-        margin-top: 20px; /* Márgen superior de 20px */
-        margin-bottom: 20px; /* Márgen inferior de 20px */
+        margin-top: 20px;
+        overflow-x: hidden;
     }
     .container {
       text-align: center;
@@ -19,7 +32,7 @@
       margin-bottom: 20px;
     }
     .card-body {
-      text-align: left; /* Alinea el texto a la izquierda */
+      text-align: left;
     }
     .line {
       display: flex;
@@ -34,6 +47,9 @@
   </style>
 </head>
 <body>
+  <header>
+    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+  </header>
   <div class="container">
     <div class="card">
       <div class="card-body">
@@ -164,8 +180,9 @@
     </div>
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>

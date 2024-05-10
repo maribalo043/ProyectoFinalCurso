@@ -19,41 +19,31 @@
 	<link rel="stylesheet" href="../static/css/style.css">
 	<link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
 	<style>
-		body {
-			background-image: url('../static/Images/EscudoPatinalon.png');
-			background-size: cover;
-			background-position: center;
-			height: 100vh;
-			margin: 0;
+		body{
 			display: flex;
+			justify-content: center;
 			align-items: center;
+			flex-direction: column;
 		}
-
-		.card {
-			background-color: rgba(255, 255, 255, 0.8);
-			max-width: 400px;
-			margin: auto;
-			padding: 20px;
-			border-radius: 10px;
-			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-		}
-
-		.card-title {
-			font-size: 24px;
-			font-weight: bold;
+		.footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: #d41a1e;
+			text-align: center;
+			padding: 10px 0;
 		}
 	</style>
 </head>
-
 <body>
 	<header>
 		<div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
 	</header>
 
-
-	<div class="card">
+	<div class="card" style="width: 18rem;">
 		<div class="card-body">
-			<h2 class="card-title">Detalles de la Categoria</h2>
+			<h2 class="card-title">Detalle de la Categoria</h2>
 			<span><strong>ID:</strong><span th:text="${categoria.id}">id</span></span><br>
 			<span><strong>Nombre:</strong><span th:text="${categoria.nombre}">equipo</span></span><br>
 			<span><strong>Activa:</strong><span th:text="${categoria.activa}">email</span></span><br>

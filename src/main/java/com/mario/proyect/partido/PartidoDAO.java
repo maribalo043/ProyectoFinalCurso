@@ -14,7 +14,7 @@ public interface PartidoDAO extends CrudRepository<Partido,PartidoKey>{
 
     List<Partido> findByEquipoLocalInOrEquipoVisitanteIn(List<Equipo> equipos, List<Equipo> equipos2);
 
-    @Query(value = "SELECT * FROM partidos WHERE equipo_Local = :equipoId OR equipo_Visitante = :equipoId", nativeQuery = true)
+    @Query(value = "SELECT * FROM partidos WHERE equipo_Local_id = :equipoId OR equipo_Visitante_id = :equipoId", nativeQuery = true)
     List<Partido> obtenerPartidosPorEquipo(@Param("equipoId") long equipoId);
     
 }

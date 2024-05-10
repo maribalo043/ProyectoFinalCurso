@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<title>Formulario de Creación de Categorias</title>
-	<link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+	<link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
@@ -17,8 +17,27 @@
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
 		rel="stylesheet">
 	<!-- Estilos Barra inferior -->
-	<link rel="stylesheet" href="../static/css/style.css">
-	<link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
+	<link rel="stylesheet" href="../../static/css/style.css">
+	<link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
+
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.footer {
+			position: fixed;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			background-color: #d41a1e;
+			text-align: center;
+			padding: 10px 0;
+		}
+	</style>
 </head>
 
 <body>
@@ -30,7 +49,7 @@
 	<div class="container mt-5">
 		<div class="row justify-content-center">
 			<div class="col-md-6">
-				<h2 class="text-center mb-4">Crear Nueva Categoria</h2>
+				<h2 class="text-center mb-4">Formulario Nueva Categoria</h2>
 				<form th:action="@{~/categoria/save}" method="post" th:object="${categoriaNueva}">
 					<div class="form-group">
 						<label for="id" hidden>ID</label>
@@ -53,6 +72,7 @@
 	</div>
 
 	<footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
