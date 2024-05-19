@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+  }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.row{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contenedorBotones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.categoria-button {
+    margin: 1vh;
+    width: 50vh;
+    height: 50px;
+    background-color: red;
+}

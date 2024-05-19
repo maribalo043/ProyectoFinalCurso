@@ -21,9 +21,6 @@
             <li class="nav-item">
                 <a class="nav-link iconoNavegacion" th:href="@{~/links}">Enlaces</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link iconoNavegacion" th:href="@{~/contacto}">Contacto</a>
-            </li>
             <li class="nav-item dropdown" id="dropdownMenu" sec:authorize="hasAuthority('ADMIN')">
                 <a class="nav-link iconoNavegacion" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -34,16 +31,6 @@
                     <a class="nav-link" th:href="@{/equipos}">Equipos</a>
                     <a class="nav-link" th:href="@{/categorias}">Categorias</a>
                     <a class="nav-link" th:href="@{/partidos}">Partidos</a>
-                </div>
-            </li>
-            <li class="nav-item dropdown" id="dropdownMenu">
-                <a class="nav-link iconoNavegacion" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    Más
-                </a>
-                <div class="dropdown-menu dropdown-menu-right iconoNavegacion" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item iconoNavegacion" href="#">Aviso Legal</a>
-                    <a class="dropdown-item iconoNavegacion" href="#">Política de Privacidad</a>
                 </div>
             </li>
         </ul>
