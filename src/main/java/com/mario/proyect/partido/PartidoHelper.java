@@ -1,12 +1,18 @@
 package com.mario.proyect.partido;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.categoria.CategoriaDAO;
+import com.mario.proyect.equipo.Equipo;
 import com.mario.proyect.equipo.EquipoDAO;
+import com.mario.proyect.equipo.EquipoHelper;
 
 public class PartidoHelper {
+
+    @Autowired
+    private EquipoHelper equipoHelper;
 
     @SuppressWarnings("null")
     protected ModelAndView helperViewPartido(long idLocal, long idVisitante, CategoriaDAO categoriaDao,
@@ -28,8 +34,6 @@ public class PartidoHelper {
     protected ModelAndView helperSavePartido(Partido partidoNuevo, BindingResult bindingResult,
             CategoriaDAO categoriaDao, EquipoDAO equipoDao, PartidoDAO partidoDao) {
         ModelAndView model = new ModelAndView();
-        /* , BindingResult bindingResult */
-        /* Revisar que todo se setea o ver si se guarda etc */
         if (bindingResult.hasErrors()) {
             model.setViewName("partidoForm");
 
@@ -48,6 +52,11 @@ public class PartidoHelper {
                 existente.setGolesLocal(partidoNuevo.getGolesLocal());
                 existente.setGolesVisitante(partidoNuevo.getGolesVisitante());
                 existente.setPista(partidoNuevo.getPista());
+                Equipo local = existente.getEquipoLocal();
+                Equipo visitante = existente.getEquipoLocal();
+
+                equipoHelper.updateDatosEquipo(local, visitante);
+
                 partidoDao.save(existente);
             }
         } else {

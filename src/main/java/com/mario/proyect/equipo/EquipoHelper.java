@@ -68,4 +68,10 @@ public class EquipoHelper {
         return model;
     }
 
+    public Equipo updateDatosEquipo(Equipo local, Equipo visitante){
+
+
+        return null;
+    }
+
 }
