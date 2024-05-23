@@ -41,5 +41,21 @@ public class JugadorHelper {
         model.setViewName("redirect:/jugadores");
         return model;
     }
+    protected ModelAndView helperSaveJugadorTorneo(Jugador jugadorNuevo, BindingResult bindingResult, JugadorDAO jugadorDao,
+            EquipoDAO equipoDao) {
+        ModelAndView model = new ModelAndView();
+
+        if (bindingResult.hasErrors()) {
+            model.addObject("jugadorNuevo", jugadorNuevo);
+            model.addObject("equipos", equipoDao.findAll());
+            model.setViewName("jugadorHTML/jugadoresForm");
+            return model;
+        }
+        jugadorNuevo.setEquipo(jugadorNuevo.getEquipo());
+        jugadorDao.save(jugadorNuevo);
+
+        model.setViewName("redirect:/equipo/jugador/"+jugadorNuevo.getEquipo().getId());
+        return model;
+    }
 
 }

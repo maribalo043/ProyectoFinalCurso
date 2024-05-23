@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.categoria.CategoriaDAO;
 import com.mario.proyect.jugador.JugadorDAO;
+import com.mario.proyect.partido.Partido;
 import com.mario.proyect.partido.PartidoDAO;
 
 import jakarta.validation.Valid;
@@ -84,6 +85,20 @@ public class EquipoController {
         }
         model.setViewName("equipoHTML/equipoForm");
         return model;
+    }
+
+    @GetMapping("/inscripcion/equipo")
+    public ModelAndView addEquipoTorneo() {
+        ModelAndView model = new ModelAndView();
+        model.addObject("equipoNuevo", new Equipo());
+        model.addObject("categorias", categoriaDao.categoriasActive());
+        model.setViewName("torneoHTML/inscripcionEquipo");
+
+        return model;
+    }
+    @PostMapping("/equipoTorneo/save")
+    public ModelAndView saveEquipoTorneo(@ModelAttribute @Valid Equipo equipo, BindingResult bindingResult) {
+        return helper.helperSaveEquipoTorneo(equipo, bindingResult, jugadorDao, categoriaDao, equipoDao, partidoDao);
     }
 
 }

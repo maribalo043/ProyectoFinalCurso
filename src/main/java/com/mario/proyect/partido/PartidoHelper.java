@@ -52,10 +52,10 @@ public class PartidoHelper {
                 existente.setGolesLocal(partidoNuevo.getGolesLocal());
                 existente.setGolesVisitante(partidoNuevo.getGolesVisitante());
                 existente.setPista(partidoNuevo.getPista());
-                Equipo local = existente.getEquipoLocal();
-                Equipo visitante = existente.getEquipoLocal();
+                // Equipo local = existente.getEquipoLocal();
+                // Equipo visitante = existente.getEquipoLocal();
 
-                equipoHelper.updateDatosEquipo(local, visitante);
+                // equipoHelper.updateDatosEquipo(local, visitante);
 
                 partidoDao.save(existente);
             }

@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.mario.proyect.equipo.Equipo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Categoria {
     private String nombre;
     private boolean activa;
 
-	@OneToMany(mappedBy = "categoria")
+	@OneToMany(mappedBy = "categoria",cascade = CascadeType.ALL)
     private List<Equipo> equipos;
 	
 	public long getId() {

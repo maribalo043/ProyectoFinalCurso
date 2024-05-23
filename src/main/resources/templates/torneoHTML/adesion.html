@@ -15,23 +15,6 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
 		rel="stylesheet">
-	<style>
-		body{
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-		}
-		.footer {
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			background-color: #d41a1e;
-			text-align: center;
-			padding: 10px 0;
-		}
-	</style>
 </head>
 <body>
 	<header>
@@ -39,17 +22,8 @@
 	</header>
 
 	<div class="card" style="width: 18rem;">
-		<div class="card-body">
-			<h2 class="card-title">Detalle de la Categoria</h2>
-			<span><strong>ID:</strong><span th:text="${categoria.id}">id</span></span><br>
-			<span><strong>Nombre:</strong><span th:text="${categoria.nombre}">equipo</span></span><br>
-			<span><strong>Activa:</strong><span th:text="${categoria.activa}">email</span></span><br>
-			<div class="mt-4">
-				<span><a th:href="@{~/categorias}" class="btn btn-secondary">Volver</a></span>
-				<span><a class="btn btn-primary ml-2" th:href="@{~/categoria/edit/{id}(id=${categoria.id})}"
-						sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
-			</div>
-		</div>
+		<h1>El equipo ha sido añadido correctamente</h1>
+        <button>volver al inicio</button>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

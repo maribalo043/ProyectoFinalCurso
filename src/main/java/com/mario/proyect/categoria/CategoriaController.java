@@ -60,7 +60,12 @@ public class CategoriaController {
     @GetMapping("/categoria/del/{id}")
     public ModelAndView deleteCategoria(@PathVariable long id) {
 
-        return helper.helperDelCategoria(id, categoriaDao, equipoDao, partidoDao);
+        ModelAndView model = new ModelAndView();
+        model.setViewName("redirect:/categorias");
+
+        CategoriaHelper.deleteCategoria(id,categoriaDao);
+
+        return model;
     }
 
     @PostMapping("categoria/save")

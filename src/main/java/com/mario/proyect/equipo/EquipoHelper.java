@@ -68,10 +68,21 @@ public class EquipoHelper {
         return model;
     }
 
-    public Equipo updateDatosEquipo(Equipo local, Equipo visitante){
+    @SuppressWarnings("null")
+    protected ModelAndView helperSaveEquipoTorneo(Equipo equipo, BindingResult bindingResult, JugadorDAO jugadorDao,
+            CategoriaDAO categoriaDao, EquipoDAO equipoDao, PartidoDAO partidoDao) {
+        ModelAndView model = new ModelAndView();
 
-
-        return null;
+        if (bindingResult.hasErrors()) {
+            model.addObject("equipoNuevo", equipo);
+            model.addObject("categorias", categoriaDao.categoriasActive());
+            model.setViewName("equipoHTML/equipoForm");
+            return model;
+        }
+        equipoDao.save(equipo);
+        model.setViewName("redirect:/equipo/jugador/" + equipo.getId());
+        
+        return model;
     }
 
 }

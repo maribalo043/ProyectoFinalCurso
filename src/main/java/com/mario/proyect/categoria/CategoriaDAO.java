@@ -17,7 +17,7 @@ public interface CategoriaDAO extends CrudRepository<Categoria,Long>{
     "JOIN Equipo eqLocal ON p.equipoLocal.id = eqLocal.id " +
     "JOIN Categoria c ON eqLocal.categoria.id = c.id " +
     "WHERE c.nombre = :nombreCategoria")
-List<Partido> findPartidosByNombreCategoria(@Param("nombreCategoria") String nombreCategoria);
+    List<Partido> findPartidosByNombreCategoria(@Param("nombreCategoria") String nombreCategoria);
 
 
     

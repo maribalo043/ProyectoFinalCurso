@@ -10,9 +10,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.mario.proyect.equipo.Equipo;
 import com.mario.proyect.equipo.EquipoDAO;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.service.annotation.PatchExchange;
+
 
 @Controller
 public class JugadorController {
@@ -86,5 +91,28 @@ public class JugadorController {
         }
 
         return model;
+    }
+    @GetMapping("/equipo/jugador/{id}")
+    public ModelAndView postJugadorEquipo(@PathVariable long id) {
+        System.out.println("Equipo creado, ahora los jugadores");
+        ModelAndView model = new ModelAndView();
+        Optional<Equipo> equipoModificado = equipoDao.findById(id);
+        model.addObject("jugadorNuevo", new Jugador());
+        model.addObject("equipo",equipoModificado.get() );
+        model.addObject("equipoItem", equipoDao.findAll());
+        if(equipoModificado.get().getJugadores().size()==4){
+            model.setViewName("torneoHTML/adesion");
+        }else{
+            model.setViewName("torneoHTML/inscripcionJugadores");
+        }
+        
+
+        return model;
+    }
+    @PostMapping("/jugadorTorneo/save")
+    public ModelAndView saveJugadorTorneo(@ModelAttribute("jugadorNuevo") @Valid Jugador jugadorNuevo,
+            BindingResult bindingResult) {
+        return helper.helperSaveJugadorTorneo(jugadorNuevo, bindingResult, jugadorDao, equipoDao);
+
     }
 }
