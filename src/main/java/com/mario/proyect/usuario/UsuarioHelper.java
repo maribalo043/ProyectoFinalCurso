@@ -10,14 +10,6 @@ public class UsuarioHelper {
 	public ModelAndView helperSaveUsuario(@Valid Usuario usuarioNuevo, BindingResult bindingResult,
 			UsuarioDAO usuarioDao) {
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		return null;
 	}
 

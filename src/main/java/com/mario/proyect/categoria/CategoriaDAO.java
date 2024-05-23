@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.mario.proyect.equipo.Equipo;
 import com.mario.proyect.partido.Partido;
 
 public interface CategoriaDAO extends CrudRepository<Categoria,Long>{
@@ -18,6 +19,9 @@ public interface CategoriaDAO extends CrudRepository<Categoria,Long>{
     "JOIN Categoria c ON eqLocal.categoria.id = c.id " +
     "WHERE c.nombre = :nombreCategoria")
     List<Partido> findPartidosByNombreCategoria(@Param("nombreCategoria") String nombreCategoria);
+    
+    @Query("SELECT e.* FROM equipo where e.categoria = :nombreCategoria")
+    List<Equipo> findEquiposByNombreCategoria(@Param("nombreCategoria") String nombreCategoria);
 
 
     

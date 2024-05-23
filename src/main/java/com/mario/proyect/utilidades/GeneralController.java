@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.categoria.CategoriaDAO;
+import com.mario.proyect.equipo.Equipo;
 import com.mario.proyect.partido.Partido;
 import com.mario.proyect.partido.PartidoDAO;
 
@@ -79,9 +80,16 @@ public class GeneralController {
     public ModelAndView getPartidosCategoria(@PathVariable String cat) {
         ModelAndView model = new ModelAndView();
         List<Partido> partidos = categoriaDao.findPartidosByNombreCategoria(cat);
+        List<Equipo> equipos = categoriaDao.findEquiposByNombreCategoria(cat);
 
         model.setViewName("/torneoHTML/PartidosCategoria");
-        model.addObject("partidos", partidos);
+        if(!partidos.isEmpty()) {
+        	model.addObject("partidos", partidos);
+        }
+        if(!equipos.isEmpty()) {
+        	model.addObject("equiposCategoria", equipos);
+        }
+        
 
         return model;
     }

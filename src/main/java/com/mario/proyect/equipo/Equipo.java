@@ -25,134 +25,145 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "equipos")
 public class Equipo {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Size(min=1,max=50,message = "El minimo es 1 y el maximo es 50")
+
+    @Size(min = 1, max = 50, message = "El minimo es 1 y el maximo es 50")
     private String nombre;
-	@Email(message = "Dale del formato de una dirección de correo electrónico. EJ: ejemplo@email.com")
+
+    @Email(message = "Debe tener el formato de una dirección de correo electrónico. EJ: ejemplo@email.com")
     private String emailContacto;
-	@Digits(integer = 9, fraction = 0, message = "Número de teléfono debe contener 9 dígitos")
-	private int numeroTelefonoContacto;
-	@Min(value = 0, message = "Debe ser un número entero no negativo")
+
+    @Digits(integer = 9, fraction = 0, message = "Número de teléfono debe contener 9 dígitos")
+    private String numeroTelefonoContacto;
+
+    @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int puntos;
-	@Min(value = 0, message = "Debe ser un número entero no negativo")
+
+    @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int golesFavor;
-	@Min(value = 0, message = "Debe ser un número entero no negativo")
+
+    @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int golesContra;
-	@Min(value = 0, message = "Debe ser un número entero no negativo")
+
+    @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int partidosGanados;
-	@Min(value = 0, message = "Debe ser un número entero no negativo")
+
+    @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int partidosPerdidos;
-	@Min(value = 0, message = "Debe ser un número entero no negativo")
+
+    @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int partidosEmpatados;
-    
+
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
     private List<Jugador> jugadores;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-    
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		
-		this.id = id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public String getEmailContacto() {
-		return emailContacto;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public void setEmailContacto(String emailContacto) {
-		this.emailContacto = emailContacto;
-	}
+    public String getEmailContacto() {
+        return emailContacto;
+    }
 
-	public int getNumeroTelefonoContacto() {
-		return numeroTelefonoContacto;
-	}
+    public void setEmailContacto(String emailContacto) {
+        this.emailContacto = emailContacto;
+    }
 
-	public void setNumeroTelefonoContacto(int numeroTelefonoContacto) {
-		this.numeroTelefonoContacto = numeroTelefonoContacto;
-	}
+    public String getNumeroTelefonoContacto() {
+        return numeroTelefonoContacto;
+    }
 
-	public int getPuntos() {
-		return puntos;
-	}
+    public void setNumeroTelefonoContacto(String numeroTelefonoContacto) {
+        this.numeroTelefonoContacto = numeroTelefonoContacto;
+    }
 
-	public void setPuntos(int puntos) {
-		this.puntos = puntos;
-	}
+    public int getPuntos() {
+        return puntos;
+    }
 
-	public int getGolesFavor() {
-		return golesFavor;
-	}
+    public void setPuntos(int puntos) {
+        this.puntos = puntos;
+    }
 
-	public void setGolesFavor(int golesFavor) {
-		this.golesFavor = golesFavor;
-	}
+    public int getGolesFavor() {
+        return golesFavor;
+    }
 
-	public int getGolesContra() {
-		return golesContra;
-	}
+    public void setGolesFavor(int golesFavor) {
+        this.golesFavor = golesFavor;
+    }
 
-	public void setGolesContra(int golesContra) {
-		this.golesContra = golesContra;
-	}
+    public int getGolesContra() {
+        return golesContra;
+    }
 
-	public int getPartidosGanados() {
-		return partidosGanados;
-	}
+    public void setGolesContra(int golesContra) {
+        this.golesContra = golesContra;
+    }
 
-	public void setPartidosGanados(int partidosGanados) {
-		this.partidosGanados = partidosGanados;
-	}
+    public int getPartidosGanados() {
+        return partidosGanados;
+    }
 
-	public int getPartidosPerdidos() {
-		return partidosPerdidos;
-	}
+    public void setPartidosGanados(int partidosGanados) {
+        this.partidosGanados = partidosGanados;
+    }
 
-	public void setPartidosPerdidos(int partidosPerdidos) {
-		this.partidosPerdidos = partidosPerdidos;
-	}
+    public int getPartidosPerdidos() {
+        return partidosPerdidos;
+    }
 
-	public int getPartidosEmpatados() {
-		return partidosEmpatados;
-	}
+    public void setPartidosPerdidos(int partidosPerdidos) {
+        this.partidosPerdidos = partidosPerdidos;
+    }
 
-	public void setPartidosEmpatados(int partidosEmpatados) {
-		this.partidosEmpatados = partidosEmpatados;
-	}
+    public int getPartidosEmpatados() {
+        return partidosEmpatados;
+    }
 
-	public List<Jugador> getJugadores() {
-		return jugadores;
-	}
+    public void setPartidosEmpatados(int partidosEmpatados) {
+        this.partidosEmpatados = partidosEmpatados;
+    }
 
-	public void setJugadores(List<Jugador> jugadores) {
-		this.jugadores = jugadores;
-	}
+    public List<Jugador> getJugadores() {
+        return jugadores;
+    }
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
+    public void setJugadores(List<Jugador> jugadores) {
+        this.jugadores = jugadores;
+    }
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+    public Categoria getCategoria() {
+        return categoria;
+    }
 
-	public List<Equipo> obtenerEquiposNoEnlazadosConId(EquipoDAO equipoDao,PartidoDAO partidoDao) {
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public int getGolAverage() {
+        return this.golesFavor - this.golesContra;
+    }
+    public List<Equipo> obtenerEquiposNoEnlazadosConId(EquipoDAO equipoDao,PartidoDAO partidoDao) {
 
         ArrayList<Equipo> allEquipos = (ArrayList<Equipo>) equipoDao.findAll();
         allEquipos.remove(equipoDao.findById(this.id).get());
@@ -170,8 +181,7 @@ public class Equipo {
         return allEquipos;
 
     }
-
-	@Override
+    @Override
     public String toString() {
         return "Equipo [id=" + id + ", nombre=" + nombre + "]";
     }
