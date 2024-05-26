@@ -17,7 +17,6 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     @Autowired
 	private UsuarioDAO usuarioDao;
 	
-	@SuppressWarnings("null")
     @Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
