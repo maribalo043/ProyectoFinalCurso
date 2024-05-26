@@ -49,7 +49,7 @@
 
         <div class="form-group">
           <label for="numeroTelefonoContacto">Número de Teléfono:</label>
-          <input type="tel" class="form-control" id="numeroTelefonoContacto" placeholder="Ingrese el número de teléfono" required th:field="*{numeroTelefonoContacto}">
+          <input type="text" class="form-control" id="numeroTelefonoContacto" placeholder="Ingrese el número de teléfono" required th:field="*{numeroTelefonoContacto}">
           <p th:if="${#fields.hasErrors('numeroTelefonoContacto')}" th:errors="*{numeroTelefonoContacto}" class="btn btn-danger">
               Error en el número de teléfono
           </p>

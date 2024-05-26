@@ -10,6 +10,7 @@ import com.mario.proyect.partido.PartidoDAO;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -57,7 +58,11 @@ public class Equipo {
     @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int partidosEmpatados;
 
-    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
+    @Min(value = 0, message = "Debe ser un número entero no negativo")
+    private int partidosJugados;
+    
+
+    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Jugador> jugadores;
 
     @ManyToOne
@@ -160,6 +165,8 @@ public class Equipo {
         this.categoria = categoria;
     }
 
+    
+
     public int getGolAverage() {
         return this.golesFavor - this.golesContra;
     }
@@ -184,5 +191,13 @@ public class Equipo {
     @Override
     public String toString() {
         return "Equipo [id=" + id + ", nombre=" + nombre + "]";
+    }
+
+    public int getPartidosJugados() {
+        return partidosJugados;
+    }
+
+    public void setPartidosJugados(int partidosJugados) {
+        this.partidosJugados = partidosJugados;
     }
 }

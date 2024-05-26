@@ -18,12 +18,12 @@ public class Partido {
     private PartidoKey id; 
     
     @ManyToOne 
-    @MapsId("IdEquipoLocal")
+    @MapsId("idEquipoLocal")
     @JoinColumn(name = "equipo_Local_id")
     private Equipo equipoLocal;
 
     @ManyToOne
-    @MapsId("IdEquipoVisitante")
+    @MapsId("idEquipoVisitante")
     @JoinColumn(name = "equipo_Visitante_id")
     private Equipo equipoVisitante;
     

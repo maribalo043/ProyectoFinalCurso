@@ -45,6 +45,9 @@ public class Usuario implements UserDetails{
 		if(usuario.compareTo("mario")==0) {
 			permiso = new SimpleGrantedAuthority("ADMIN");
 		}
+		else if(usuario.compareTo("javi")==0) {
+			permiso = new SimpleGrantedAuthority("AUTORIZADO");
+		}
 		else {
 			permiso = new SimpleGrantedAuthority("USER");
 		}

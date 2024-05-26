@@ -21,7 +21,7 @@
             <li class="nav-item">
                 <a class="nav-link iconoNavegacion" th:href="@{~/links}">Enlaces</a>
             </li>
-            <li class="nav-item dropdown" id="dropdownMenu" sec:authorize="hasAuthority('ADMIN')">
+            <li class="nav-item dropdown" id="dropdownMenu" sec:authorize="hasAuthority('ADMIN') || hasAuthority('AUTORIZADO')">
                 <a class="nav-link iconoNavegacion" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Admin:
@@ -31,6 +31,8 @@
                     <a class="nav-link" th:href="@{/equipos}">Equipos</a>
                     <a class="nav-link" th:href="@{/categorias}">Categorias</a>
                     <a class="nav-link" th:href="@{/partidos}">Partidos</a>
+                    <a class="nav-link" th:href="@{/partidos}" sec:authorize="hasAuthority('ADMIN')">Usuarios</a>
+                    <a class="nav-link" th:href="@{/partidos}">Estadisticas</a>
                 </div>
             </li>
         </ul>

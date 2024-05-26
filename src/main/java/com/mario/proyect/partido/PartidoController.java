@@ -15,7 +15,6 @@ import com.mario.proyect.categoria.CategoriaDAO;
 import com.mario.proyect.equipo.EquipoDAO;
 
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller

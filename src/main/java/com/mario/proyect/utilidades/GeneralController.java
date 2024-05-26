@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.categoria.CategoriaDAO;
 import com.mario.proyect.equipo.Equipo;
+import com.mario.proyect.equipo.EquipoDAO;
 import com.mario.proyect.partido.Partido;
 import com.mario.proyect.partido.PartidoDAO;
 
@@ -23,6 +24,9 @@ public class GeneralController {
 
     @Autowired 
     private PartidoDAO partidoDao;
+
+    @Autowired
+    private EquipoDAO equipoDao;
 
     @GetMapping("/torneo")
     public ModelAndView getTorneo() {
@@ -79,8 +83,8 @@ public class GeneralController {
     @GetMapping("/torneo/categoria/{cat}")
     public ModelAndView getPartidosCategoria(@PathVariable String cat) {
         ModelAndView model = new ModelAndView();
-        List<Partido> partidos = categoriaDao.findPartidosByNombreCategoria(cat);
-        List<Equipo> equipos = categoriaDao.findEquiposByNombreCategoria(cat);
+        List<Partido> partidos = partidoDao.findPartidosByCategoria(cat);
+        List<Equipo> equipos = equipoDao.findByCategoria_Nombre(cat);
 
         model.setViewName("/torneoHTML/PartidosCategoria");
         if(!partidos.isEmpty()) {

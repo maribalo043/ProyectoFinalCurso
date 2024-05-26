@@ -7,24 +7,23 @@ import jakarta.persistence.Embeddable;
 @Embeddable
 public class PartidoKey {
 
-    private long IdEquipoLocal;
-    private long IdEquipoVisitante;
-    
+    private long idEquipoLocal;
+    private long idEquipoVisitante;
 	public long getIdEquipoLocal() {
-		return IdEquipoLocal;
+		return idEquipoLocal;
 	}
 	public void setIdEquipoLocal(long idEquipoLocal) {
-		IdEquipoLocal = idEquipoLocal;
+		this.idEquipoLocal = idEquipoLocal;
 	}
 	public long getIdEquipoVisitante() {
-		return IdEquipoVisitante;
+		return idEquipoVisitante;
 	}
 	public void setIdEquipoVisitante(long idEquipoVisitante) {
-		IdEquipoVisitante = idEquipoVisitante;
+		this.idEquipoVisitante = idEquipoVisitante;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(IdEquipoLocal, IdEquipoVisitante);
+		return Objects.hash(idEquipoLocal, idEquipoVisitante);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -35,7 +34,13 @@ public class PartidoKey {
 		if (getClass() != obj.getClass())
 			return false;
 		PartidoKey other = (PartidoKey) obj;
-		return IdEquipoLocal == other.IdEquipoLocal && IdEquipoVisitante == other.IdEquipoVisitante;
+		return idEquipoLocal == other.idEquipoLocal && idEquipoVisitante == other.idEquipoVisitante;
 	}
+	@Override
+	public String toString() {
+		return "PartidoKey [idEquipoLocal=" + idEquipoLocal + ", idEquipoVisitante=" + idEquipoVisitante + "]";
+	}
+    
+	
 
 }

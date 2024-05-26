@@ -22,11 +22,11 @@ public class EquipoUtils {
                     return Integer.compare(e2.getGolAverage(), e1.getGolAverage());
                 }
                 // Si el gol average también es igual, ordenar por el resultado del partido entre ellos
-                Optional<Partido> partido = partidoDao.findByIdEquipoLocalAndIdEquipoVisitante(e1.getId(), e2.getId());
+                Partido partido = partidoDao.findPartidoEntreEquipos(e1.getId(), e2.getId());
                 if (partido != null) {
-                    if (partido.get().getEquipoLocal().equals(e1) && partido.get().getGolesLocal() > partido.get().getGolesVisitante()) {
+                    if (partido.getEquipoLocal().equals(e1) && partido.getGolesLocal() > partido.getGolesVisitante()) {
                         return -1; // e1 ganó
-                    } else if (partido.get().getEquipoVisitante().equals(e1) && partido.get().getGolesVisitante() > partido.get().getGolesLocal()) {
+                    } else if (partido.getEquipoVisitante().equals(e1) && partido.getGolesVisitante() > partido.getGolesLocal()) {
                         return -1; // e1 ganó
                     } else {
                         return 1; // e2 ganó o empate
