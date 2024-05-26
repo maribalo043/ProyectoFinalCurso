@@ -1,7 +1,5 @@
-package com.mario.proyect.categoria;
+package com.mario.proyect.entity;
 import java.util.List;
-
-import com.mario.proyect.equipo.Equipo;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

@@ -1,4 +1,4 @@
-package com.mario.proyect.utilidades;
+package com.mario.proyect.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

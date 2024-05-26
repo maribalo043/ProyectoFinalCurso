@@ -1,11 +1,11 @@
-package com.mario.proyect.equipo;
+package com.mario.proyect.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.mario.proyect.categoria.Categoria;
+import com.mario.proyect.entity.Equipo;
 
 
 public interface EquipoDAO extends CrudRepository<Equipo,Long>{

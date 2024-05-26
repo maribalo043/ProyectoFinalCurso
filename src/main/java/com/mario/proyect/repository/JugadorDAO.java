@@ -1,9 +1,11 @@
-package com.mario.proyect.jugador;
+package com.mario.proyect.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+
+import com.mario.proyect.entity.Jugador;
 
 public interface JugadorDAO extends CrudRepository<Jugador,String>{
     

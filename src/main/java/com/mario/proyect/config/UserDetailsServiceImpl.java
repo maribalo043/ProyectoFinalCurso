@@ -1,4 +1,4 @@
-package com.mario.proyect.servicios;
+package com.mario.proyect.config;
 
 import java.util.Optional;
 
@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.mario.proyect.usuario.Usuario;
-import com.mario.proyect.usuario.UsuarioDAO;
+import com.mario.proyect.entity.Usuario;
+import com.mario.proyect.repository.UsuarioDAO;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{

@@ -1,6 +1,4 @@
-package com.mario.proyect.jugador;
-
-import com.mario.proyect.equipo.Equipo;
+package com.mario.proyect.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

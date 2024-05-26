@@ -1,4 +1,4 @@
-package com.mario.proyect.utilidades;
+package com.mario.proyect.controller;
 
 import java.util.List;
 
@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mario.proyect.categoria.CategoriaDAO;
-import com.mario.proyect.equipo.Equipo;
-import com.mario.proyect.equipo.EquipoDAO;
-import com.mario.proyect.partido.Partido;
-import com.mario.proyect.partido.PartidoDAO;
+import com.mario.proyect.entity.Equipo;
+import com.mario.proyect.entity.Partido;
+import com.mario.proyect.repository.CategoriaDAO;
+import com.mario.proyect.repository.EquipoDAO;
+import com.mario.proyect.repository.PartidoDAO;
 
 
 

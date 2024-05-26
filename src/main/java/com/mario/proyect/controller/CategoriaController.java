@@ -1,6 +1,4 @@
-package com.mario.proyect.categoria;
-
-import java.util.Optional;
+package com.mario.proyect.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,79 +9,51 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mario.proyect.equipo.EquipoDAO;
-import com.mario.proyect.partido.PartidoDAO;
+import com.mario.proyect.entity.Categoria;
+import com.mario.proyect.service.CategoriaService;
 
 @Controller
 public class CategoriaController {
 
-    @Autowired
-    private CategoriaDAO categoriaDao;
-    @Autowired
-    private EquipoDAO equipoDao;
-    @Autowired
-    private PartidoDAO partidoDao;
-
-    private CategoriaHelper helper = new CategoriaHelper();
+    @Autowired 
+    CategoriaService categoriaService;
 
     @GetMapping("/categorias")
     public ModelAndView getCategorias() {
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("categoriaHTML/categorias");
-        model.addObject("categorias", categoriaDao.findAll());
+        return categoriaService.getCategorias();
 
-        return model;
     }
 
     @GetMapping("/categoria/{id}")
     public ModelAndView getCategoria(@PathVariable long id) {
 
-        ModelAndView model = new ModelAndView();
-
-        model.setViewName("categoriaHTML/categoria");
-        model.addObject("categoria", categoriaDao.findById(id).get());
-
-        return model;
+        return categoriaService.getCategoria(id);
+        
     }
 
     @GetMapping("/categoria/add")
     public ModelAndView addCategoria() {
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("categoriaHTML/categoriaForm");
-        model.addObject("categoriaNueva", new Categoria());
-
-        return model;
+        return categoriaService.addCategoria();
     }
 
     @GetMapping("/categoria/del/{id}")
     public ModelAndView deleteCategoria(@PathVariable long id) {
 
-        ModelAndView model = new ModelAndView();
-        model.setViewName("redirect:/categorias");
-
-        CategoriaHelper.deleteCategoria(id,categoriaDao);
-
-        return model;
+       return categoriaService.deleteCategoria(id);
     }
 
     @PostMapping("categoria/save")
     public ModelAndView saveCategoria(@ModelAttribute Categoria categoriaNueva, BindingResult bindingResult) {
 
-        return helper.helperSaveCategoria(categoriaNueva, bindingResult, categoriaDao, equipoDao, partidoDao);
+        return categoriaService.saveCategoria(categoriaNueva, bindingResult);
     }
 
     @GetMapping("categoria/edit/{id}")
     public ModelAndView editCategoria(@PathVariable long id) {
 
-        ModelAndView model = new ModelAndView();
-        Optional<Categoria> categoria = categoriaDao.findById(id);
-        if (categoria.isPresent()) {
-            model.addObject("categoriaNueva", categoria.get());
-        }
-        model.setViewName("categoriaHTML/categoriaForm");
-        return model;
+        return categoriaService.editCategoria(id);
     }
 
 }

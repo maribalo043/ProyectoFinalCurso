@@ -1,14 +1,14 @@
-package com.mario.proyect.partido;
+package com.mario.proyect.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.mario.proyect.categoria.Categoria;
-import com.mario.proyect.equipo.Equipo;
+import com.mario.proyect.entity.Equipo;
+import com.mario.proyect.entity.Partido;
+import com.mario.proyect.entity.PartidoKey;
 
 public interface PartidoDAO extends CrudRepository<Partido,PartidoKey>{
 

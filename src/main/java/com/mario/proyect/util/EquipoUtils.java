@@ -1,11 +1,11 @@
-package com.mario.proyect.equipo;
+package com.mario.proyect.util;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Optional;
 
-import com.mario.proyect.partido.Partido;
-import com.mario.proyect.partido.PartidoDAO;
+import com.mario.proyect.entity.Equipo;
+import com.mario.proyect.entity.Partido;
+import com.mario.proyect.repository.PartidoDAO;
 
 public class EquipoUtils {
     

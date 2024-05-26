@@ -1,4 +1,4 @@
-package com.mario.proyect.categoria;
+package com.mario.proyect.repository;
 
 import java.util.List;
 
@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.mario.proyect.equipo.Equipo;
+import com.mario.proyect.entity.Categoria;
+import com.mario.proyect.entity.Equipo;
 
 public interface CategoriaDAO extends CrudRepository<Categoria,Long>{
 

@@ -1,6 +1,4 @@
-package com.mario.proyect.partido;
-
-import com.mario.proyect.equipo.Equipo;
+package com.mario.proyect.entity;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;

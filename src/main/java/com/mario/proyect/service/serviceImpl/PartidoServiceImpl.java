@@ -1,22 +1,41 @@
-package com.mario.proyect.partido;
+package com.mario.proyect.service.serviceImpl;
+
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mario.proyect.categoria.CategoriaDAO;
-import com.mario.proyect.equipo.Equipo;
-import com.mario.proyect.equipo.EquipoDAO;
-import com.mario.proyect.equipo.EquipoHelper;
+import com.mario.proyect.entity.Equipo;
+import com.mario.proyect.entity.Partido;
+import com.mario.proyect.entity.PartidoKey;
+import com.mario.proyect.repository.EquipoDAO;
+import com.mario.proyect.repository.PartidoDAO;
+import com.mario.proyect.service.PartidoService;
 
-public class PartidoHelper {
+import jakarta.validation.Valid;
+
+@Service
+public class PartidoServiceImpl implements PartidoService{
 
     @Autowired
-    private EquipoHelper equipoHelper;
+    private PartidoDAO partidoDao;
+    @Autowired
+    private EquipoDAO equipoDao;
 
-    @SuppressWarnings("null")
-    protected ModelAndView helperViewPartido(long idLocal, long idVisitante, CategoriaDAO categoriaDao,
-            EquipoDAO equipoDao, PartidoDAO partidoDao) {
+    @Override
+    public ModelAndView getPartidos() {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("partidoHTML/partidos");
+        model.addObject("partidos", partidoDao.findAll());
+
+        return model;
+    }
+
+    @Override
+    public ModelAndView getPartido(long idLocal, long idVisitante) {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("partidoHTML/partido");
@@ -30,9 +49,35 @@ public class PartidoHelper {
         return model;
     }
 
-    @SuppressWarnings("null")
-    protected ModelAndView helperSavePartido(Partido partidoNuevo, BindingResult bindingResult,
-            CategoriaDAO categoriaDao, EquipoDAO equipoDao, PartidoDAO partidoDao) {
+    @Override
+    public ModelAndView deletePartido(long idLocal, long idVisitante) {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("redirect:/partidos");
+
+        PartidoKey partidoKey = formarPartidoKey(idLocal, idVisitante);
+
+        Optional<Partido> partidoOptional = partidoDao.findById(partidoKey);
+
+        if (partidoOptional.isPresent()) {
+            partidoDao.delete(partidoOptional.get());
+        }
+        return model;
+    }
+
+    @Override
+    public ModelAndView addPartido() {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("partidoHTML/partidoForm");
+        model.addObject("partidoNuevo", new Partido());
+        model.addObject("equipos", equipoDao.findAll());
+
+        return model;
+    }
+
+    @Override
+    public ModelAndView savePartido(@Valid Partido partidoNuevo, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
         if (bindingResult.hasErrors()) {
             model.setViewName("partidoForm");
@@ -67,7 +112,23 @@ public class PartidoHelper {
         return model;
     }
 
-    protected PartidoKey formarPartidoKey(long idLocal, long idVisitante) {
+    @Override
+    public ModelAndView editPartido(long idLocal, long idVisitante) {
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("partidoHTML/partidoForm");
+
+        Partido partido = new Partido();
+        PartidoKey key = formarPartidoKey(idLocal, idVisitante);
+        partido.setId(key);
+
+        model.addObject("partidoNuevo", partido);
+        model.addObject("equipos", equipoDao.findAll());
+
+        return model;
+    }
+
+    public PartidoKey formarPartidoKey(long idLocal, long idVisitante) {
 
         PartidoKey partidoKey = new PartidoKey();
         partidoKey.setIdEquipoLocal(idLocal);
@@ -76,7 +137,7 @@ public class PartidoHelper {
         return partidoKey;
     }
     
-    protected void procesarPartido(Partido partido,EquipoDAO equipoDao) {
+    private void procesarPartido(Partido partido,EquipoDAO equipoDao) {
         Equipo equipoLocal = partido.getEquipoLocal();
         Equipo equipoVisitante = partido.getEquipoVisitante();
 
@@ -108,4 +169,5 @@ public class PartidoHelper {
         equipoDao.save(equipoLocal);
         equipoDao.save(equipoVisitante);
     }
+
 }

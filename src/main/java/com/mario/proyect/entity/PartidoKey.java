@@ -1,4 +1,4 @@
-package com.mario.proyect.partido;
+package com.mario.proyect.entity;
 
 import java.util.Objects;
 

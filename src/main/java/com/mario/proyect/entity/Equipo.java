@@ -1,12 +1,10 @@
-package com.mario.proyect.equipo;
+package com.mario.proyect.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mario.proyect.categoria.Categoria;
-import com.mario.proyect.jugador.Jugador;
-import com.mario.proyect.partido.Partido;
-import com.mario.proyect.partido.PartidoDAO;
+import com.mario.proyect.repository.EquipoDAO;
+import com.mario.proyect.repository.PartidoDAO;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

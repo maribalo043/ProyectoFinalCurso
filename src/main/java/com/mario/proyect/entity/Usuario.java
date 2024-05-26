@@ -1,4 +1,4 @@
-package com.mario.proyect.usuario;
+package com.mario.proyect.entity;
 
 import java.util.ArrayList;
 
