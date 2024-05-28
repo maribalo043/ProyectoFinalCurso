@@ -1,11 +1,17 @@
 package com.mario.proyect.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "roles")
 public class Rol {
 
     @Id
@@ -14,6 +20,15 @@ public class Rol {
     
     private String nombre;
 
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Usuario> usuarios;
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
     public long getId() {
         return id;
     }

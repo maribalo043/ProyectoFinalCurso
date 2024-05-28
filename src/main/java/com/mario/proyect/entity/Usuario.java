@@ -10,6 +10,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,10 +23,21 @@ public class Usuario implements UserDetails{
 	private String usuario;
 	private String password;
 
-	
+	@ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
 	
 	public String getUsuario() {
 		return usuario;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	public Rol getRol() {
+		return rol;
+	}
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;

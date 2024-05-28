@@ -32,6 +32,26 @@ public class Partido {
     private int golesVisitante;
     
     private String pista;
+    private String hora;
+    private boolean finalizado;
+
+    
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public boolean isFinalizado() {
+        return finalizado;
+    }
+
+    public void setFinalizado(boolean finalizado) {
+        this.finalizado = finalizado;
+    }
 
     public PartidoKey getId() {
         return id;

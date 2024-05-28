@@ -143,7 +143,7 @@ public class PartidoServiceImpl implements PartidoService{
 
         int golesLocal = partido.getGolesLocal();
         int golesVisitante = partido.getGolesVisitante();
-
+        if(partido.isFinalizado()){
         // Actualizar goles
         equipoLocal.setGolesFavor(equipoLocal.getGolesFavor() + golesLocal);
         equipoLocal.setGolesContra(equipoLocal.getGolesContra() + golesVisitante);
@@ -169,5 +169,5 @@ public class PartidoServiceImpl implements PartidoService{
         equipoDao.save(equipoLocal);
         equipoDao.save(equipoVisitante);
     }
-
+    }
 }
