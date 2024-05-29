@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Equipo;
 import com.mario.proyect.entity.Partido;
 import com.mario.proyect.repository.CategoriaDAO;
 import com.mario.proyect.repository.EquipoDAO;
+import com.mario.proyect.repository.JugadorDAO;
 import com.mario.proyect.repository.PartidoDAO;
 
 
@@ -27,6 +29,9 @@ public class GeneralController {
 
     @Autowired
     private EquipoDAO equipoDao;
+
+    @Autowired
+    private JugadorDAO jugadorDao;
 
     @GetMapping("/torneo")
     public ModelAndView getTorneo() {
@@ -109,6 +114,26 @@ public class GeneralController {
     public ModelAndView getLogOut() {
     	ModelAndView model = new ModelAndView();
     	model.setViewName("index");
+        return model;
+    }
+
+    @GetMapping("/estadisticas")
+    public ModelAndView mostrarEstadisticas(@RequestParam(required = false, defaultValue = "18") int edadParametro,
+                                            @RequestParam(required = false) Long categoriaId) {
+        ModelAndView model = new ModelAndView("generalHTML/Estadisticas");
+
+        model.addObject("totalEquipos", equipoDao.countTotalEquipos());
+        model.addObject("totalPartidosEmpatados", partidoDao.countPartidosEmpatados());
+        model.addObject("partidosGanadosLocal", partidoDao.countPartidosGanadosLocal());
+        model.addObject("partidosGanadosVisitante", partidoDao.countPartidosGanadosVisitante());
+        model.addObject("jugadoresMenoresDeEdad", jugadorDao.countJugadoresMenoresDeEdad(edadParametro));
+        model.addObject("equiposPorCategoria", equipoDao.countEquiposPorCategoria(categoriaId));
+        model.addObject("categoriasConMasDeCincoEquipos", categoriaDao.countCategoriasConMasDeCincoEquipos());
+        model.addObject("edadParametro", edadParametro);
+
+        // Agregar las categorías para el formulario
+        model.addObject("categorias", categoriaDao.findAll());
+
         return model;
     }
     

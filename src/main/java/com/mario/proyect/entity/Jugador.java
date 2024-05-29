@@ -23,6 +23,7 @@ public class Jugador {
     private String numeroSeguro;
     private String tallaCamiseta;
     private boolean portero;
+	private int edad;
 
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_id", nullable = true)
@@ -65,6 +66,13 @@ public class Jugador {
 		this.equipo = equipo;
 	}
 	
+	public int getEdad() {
+		return edad;
+	}
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
 	@Override
 	public String toString() {
 		return "Jugador [dni=" + dni + ", nombre=" + nombre + "]";

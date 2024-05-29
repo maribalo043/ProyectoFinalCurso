@@ -1,5 +1,6 @@
 package com.mario.proyect.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,8 @@ import jakarta.validation.Valid;
 
 @Controller
 public class JugadorController {
-
+	
+	@Autowired
     private JugadorService jugadorService;
 
     @GetMapping(value = { "/jugadores", "/jugadores/{filtro}" })
@@ -23,13 +25,11 @@ public class JugadorController {
         return jugadorService.getJugadores(filtro);
     }
 
-    @SuppressWarnings("null")
     @GetMapping("/jugador/{dni}")
     public ModelAndView getJugador(@PathVariable String dni) {
         return jugadorService.getJugador(dni);
     }
 
-    @SuppressWarnings("null")
     @GetMapping("/jugador/del/{dni}")
     public ModelAndView deleteJugador(@PathVariable String dni) {
         return jugadorService.deleteJugador(dni);
@@ -46,7 +46,6 @@ public class JugadorController {
         return jugadorService.saveJugador(jugadorNuevo, bindingResult);
     }
 
-    @SuppressWarnings("null")
     @GetMapping("/jugador/edit/{dni}")
     public ModelAndView editJugador(@PathVariable String dni) {
         return jugadorService.editJugador(dni);

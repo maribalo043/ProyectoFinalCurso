@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Estadísticas</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="../static/img/EscudoPatinalon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap"
+    />
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/estilosMenuInferior.css" />
+  </head>
+  <body>
+    <header>
+      <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+    <div class="container mt-5">
+      <h1 class="text-center">Estadísticas</h1>
+
+      <!-- Formulario para seleccionar edad -->
+      <form class="form-inline my-4" th:action="@{/estadisticas}" method="get">
+        <label class="sr-only" for="edadParametro">Edad</label>
+        <input
+          type="number"
+          class="form-control mb-2 mr-sm-2"
+          id="edadParametro"
+          name="edadParametro"
+          placeholder="Edad"
+          min="0"
+        />
+
+        <button type="submit" class="btn btn-primary mb-2">
+          Ver Jugadores Menores de X Edad
+        </button>
+      </form>
+
+      <!-- Formulario para seleccionar categoría -->
+      <form class="form-inline my-4" th:action="@{/estadisticas}" method="get">
+        <label class="sr-only" for="categoriaId">Categoría</label>
+        <select
+          class="form-control mb-2 mr-sm-2"
+          id="categoriaId"
+          name="categoriaId"
+          required
+        >
+          <option value="" selected disabled>Selecciona una categoría</option>
+          <option
+            th:each="categoria : ${categorias}"
+            th:value="${categoria.id}"
+            th:text="${categoria.nombre}"
+          ></option>
+        </select>
+
+        <button type="submit" class="btn btn-primary mb-2">
+          Ver Equipos por Categoría
+        </button>
+      </form>
+
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header bg-primary text-white">Total de Equipos Inscritos</div>
+            <div class="card-body">
+              <h5 class="card-title text-black" th:text="${totalEquipos}">0</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header bg-primary text-white">Total de Partidos Empatados</div>
+            <div class="card-body">
+              <h5 class="card-title text-black" th:text="${totalPartidosEmpatados}">0</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header bg-primary text-white">Partidos Ganados por el Equipo Local</div>
+            <div class="card-body ">
+              <h5 class="card-title text-black" th:text="${partidosGanadosLocal}">0</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header bg-primary text-white">
+              Partidos Ganados por el Equipo Visitante
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-black" th:text="${partidosGanadosVisitante}">
+                0
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header bg-primary text-white">
+              Jugadores con menos de
+              <span th:text="${edadParametro}">0</span> años
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-black" th:text="${jugadoresMenoresDeEdad}">0</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header bg-primary text-white">Número de Equipos por Categoría</div>
+            <div class="card-body">
+              <h5 class="card-title text-black" th:text="${equiposPorCategoria}">0</h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card mb-3">
+            <div class="card-header bg-primary text-white">Categorías con más de 5 Equipos</div>
+            <div class="card-body">
+              <h5
+                class="card-title text-black"
+                th:text="${categoriasConMasDeCincoEquipos}"
+              >
+                0
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

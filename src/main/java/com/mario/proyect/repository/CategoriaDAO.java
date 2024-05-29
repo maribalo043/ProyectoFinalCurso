@@ -16,4 +16,10 @@ public interface CategoriaDAO extends CrudRepository<Categoria,Long>{
     
     @Query(value = "SELECT e.* FROM equipos e where e.categoria = :nombreCategoria",nativeQuery = true)
     List<Equipo> findEquiposByNombreCategoria(@Param("nombreCategoria") String nombreCategoria);
+
+    @Query("SELECT COUNT(c) FROM Categoria c WHERE (SELECT COUNT(e) FROM c.equipos e) > 5")
+    long countCategoriasConMasDeCincoEquipos();
+
+    @Query("SELECT c FROM Categoria c")
+    List<Categoria> findAllCategorias();
 }

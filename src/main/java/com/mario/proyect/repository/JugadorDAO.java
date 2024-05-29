@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import com.mario.proyect.entity.Jugador;
 
@@ -14,5 +15,8 @@ public interface JugadorDAO extends CrudRepository<Jugador,String>{
 
     @Query(value = "SELECT * FROM jugadores ORDER BY talla_Camiseta", nativeQuery = true)
     List<Jugador> findAllPorTallaCamiseta();
+
+    @Query("SELECT COUNT(j) FROM Jugador j WHERE j.edad < :edad")
+    long countJugadoresMenoresDeEdad(@Param("edad") int edad);
 
 }
