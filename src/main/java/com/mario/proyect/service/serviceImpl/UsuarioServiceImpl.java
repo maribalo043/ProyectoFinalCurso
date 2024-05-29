@@ -32,7 +32,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
         Usuario usuario = usuarioDao.findById(nombre).get();
         ModelAndView model = new ModelAndView();
-        model.setViewName("usuarioHTML/Usuario");
+        model.setViewName("usuarioHTML/usuario");
         model.addObject("usuario", usuario);
 
         return model;

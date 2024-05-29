@@ -17,16 +17,20 @@
     rel="stylesheet">
 </head>
 <body>
+  <header>
+		<div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+	</header>
+
   <div class="container"> 
     <div class="card">
       <div class="card-body">
-        <h2 class="card-title text-center">Detalle del Jugador</h2>
-        <span><strong>Username: </strong><span th:text="${jugador.dni}">DNI</span></span><br>
-        <span><strong>Password: </strong><span th:text="${jugador.nombre}">nombre</span></span><br>
-        <span><strong>Rol: </strong><span th:text="${jugador.equipo?.nombre}">Equipo </span></span><br>
+        <h2 class="card-title text-center">Detalle del Usuario</h2>
+        <span><strong>Username: </strong><span th:text="${usuario.usuario}">nombre</span></span><br>
+        <span><strong>Password: </strong><span th:text="${usuario.password}">contraseña</span></span><br>
+        <span><strong>Rol: </strong><span th:text="${usuario.rol?.nombre}">Equipo </span></span><br>
         <div class="mt-4 d-flex justify-content-between">
-          <span><a th:href="@{~/usuarios}" class="btn btn-secondary">Volver</a></span>
-          <span><a th:href="@{~/usuario/edit/{nombre}(nombre = ${usuario.nombre})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
+          <span><a th:href="@{~/usuarios}" class="btn btn-secondary">Atrás</a></span>
+          <span><a th:href="@{~/usuario/edit/{nombre}(nombre = ${usuario.usuario})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
         </div>
       </div>
     </div>

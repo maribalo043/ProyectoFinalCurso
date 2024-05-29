@@ -23,11 +23,11 @@
   </header>
   <div class="container">
     <h2 class="text-start mb-4">Lista de Jugadores
-      <a class="btn btn-success float-right m-2" th:if="${not #lists.isEmpty(jugadores)}"
+      <a class="btn btn-primary float-right m-2" th:if="${not #lists.isEmpty(jugadores)}"
         th:href="@{~/jugador/add}">Añadir Jugador</a>
-      <a class="btn btn-success float-right m-2" th:href="@{/jugadores/tallaCamiseta(tallaCamiseta=tallaCamiseta)}"
+      <a class="btn btn-primary float-right m-2" th:href="@{/jugadores/tallaCamiseta(tallaCamiseta=tallaCamiseta)}"
         th:if="${not #lists.isEmpty(jugadores)}">Filtrar por Talla Camiseta</a>
-      <a class="btn btn-success float-right m-2" th:href="@{/jugadores/equipo(equipo=equipo)}"
+      <a class="btn btn-primary float-right m-2" th:href="@{/jugadores/equipo(equipo=equipo)}"
         th:if="${not #lists.isEmpty(jugadores)}">Filtrar por Equipo</a>
     </h2>
     <div th:if="${#lists.isEmpty(jugadores)}" class="m-2">

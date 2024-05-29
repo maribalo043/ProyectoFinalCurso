@@ -46,7 +46,7 @@ public class UsuarioController {
         return usuarioService.saveUsuario(usuarioNuevo, bindingResult);
     }
 
-    @GetMapping("/usuario/edit/{dni}")
+    @GetMapping("/usuario/edit/{nombre}")
     public ModelAndView editUsuario(@PathVariable String nombre) {
         return usuarioService.editUsuario(nombre);
     }
