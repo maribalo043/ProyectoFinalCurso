@@ -17,7 +17,7 @@ import com.mario.proyect.service.PartidoService;
 import jakarta.validation.Valid;
 
 @Service
-public class PartidoServiceImpl implements PartidoService{
+public class PartidoServiceImpl implements PartidoService {
 
     @Autowired
     private PartidoDAO partidoDao;
@@ -100,7 +100,6 @@ public class PartidoServiceImpl implements PartidoService{
 
                 partidoDao.save(existente);
 
-                procesarPartido(partidoNuevo, equipoDao);
             }
         } else {
             PartidoKey partidoKey = new PartidoKey();
@@ -109,6 +108,7 @@ public class PartidoServiceImpl implements PartidoService{
             partidoNuevo.setId(partidoKey);
             partidoDao.save(partidoNuevo);
         }
+        this.procesarPartido(partidoNuevo);
         return model;
     }
 
@@ -136,38 +136,40 @@ public class PartidoServiceImpl implements PartidoService{
 
         return partidoKey;
     }
-    
-    private void procesarPartido(Partido partido,EquipoDAO equipoDao) {
+
+    private void procesarPartido(Partido partido) {
         Equipo equipoLocal = partido.getEquipoLocal();
         Equipo equipoVisitante = partido.getEquipoVisitante();
 
         int golesLocal = partido.getGolesLocal();
         int golesVisitante = partido.getGolesVisitante();
-        // if(partido.isFinalizado()){
-        // Actualizar goles
-        equipoLocal.setGolesFavor(equipoLocal.getGolesFavor() + golesLocal);
-        equipoLocal.setGolesContra(equipoLocal.getGolesContra() + golesVisitante);
-        equipoVisitante.setGolesFavor(equipoVisitante.getGolesFavor() + golesVisitante);
-        equipoVisitante.setGolesContra(equipoVisitante.getGolesContra() + golesLocal);
+        if (partido.isFinalizado()) {
+            // Actualizar goles
+            equipoLocal.setGolesFavor(equipoLocal.getGolesFavor() + golesLocal);
+            equipoLocal.setGolesContra(equipoLocal.getGolesContra() + golesVisitante);
+            equipoVisitante.setGolesFavor(equipoVisitante.getGolesFavor() + golesVisitante);
+            equipoVisitante.setGolesContra(equipoVisitante.getGolesContra() + golesLocal);
+            equipoLocal.setPartidosJugados(equipoLocal.getPartidosJugados() + 1);
+            equipoVisitante.setPartidosJugados(equipoVisitante.getPartidosJugados() + 1);
 
-        // Determinar el resultado y actualizar puntos y partidos
-        if (golesLocal > golesVisitante) {
-            equipoLocal.setPuntos(equipoLocal.getPuntos() + 3);
-            equipoLocal.setPartidosGanados(equipoLocal.getPartidosGanados() + 1);
-            equipoVisitante.setPartidosPerdidos(equipoVisitante.getPartidosPerdidos() + 1);
-        } else if (golesLocal < golesVisitante) {
-            equipoVisitante.setPuntos(equipoVisitante.getPuntos() + 3);
-            equipoVisitante.setPartidosGanados(equipoVisitante.getPartidosGanados() + 1);
-            equipoLocal.setPartidosPerdidos(equipoLocal.getPartidosPerdidos() + 1);
-        } else {
-            equipoLocal.setPuntos(equipoLocal.getPuntos() + 1);
-            equipoVisitante.setPuntos(equipoVisitante.getPuntos() + 1);
-            equipoLocal.setPartidosEmpatados(equipoLocal.getPartidosEmpatados() + 1);
-            equipoVisitante.setPartidosEmpatados(equipoVisitante.getPartidosEmpatados() + 1);
+            // Determinar el resultado y actualizar puntos y partidos
+            if (golesLocal > golesVisitante) {
+                equipoLocal.setPuntos(equipoLocal.getPuntos() + 3);
+                equipoLocal.setPartidosGanados(equipoLocal.getPartidosGanados() + 1);
+                equipoVisitante.setPartidosPerdidos(equipoVisitante.getPartidosPerdidos() + 1);
+            } else if (golesLocal < golesVisitante) {
+                equipoVisitante.setPuntos(equipoVisitante.getPuntos() + 3);
+                equipoVisitante.setPartidosGanados(equipoVisitante.getPartidosGanados() + 1);
+                equipoLocal.setPartidosPerdidos(equipoLocal.getPartidosPerdidos() + 1);
+            } else {
+                equipoLocal.setPuntos(equipoLocal.getPuntos() + 1);
+                equipoVisitante.setPuntos(equipoVisitante.getPuntos() + 1);
+                equipoLocal.setPartidosEmpatados(equipoLocal.getPartidosEmpatados() + 1);
+                equipoVisitante.setPartidosEmpatados(equipoVisitante.getPartidosEmpatados() + 1);
+            }
+
+            equipoDao.save(equipoLocal);
+            equipoDao.save(equipoVisitante);
         }
-
-        equipoDao.save(equipoLocal);
-        equipoDao.save(equipoVisitante);
-    // }
     }
 }
