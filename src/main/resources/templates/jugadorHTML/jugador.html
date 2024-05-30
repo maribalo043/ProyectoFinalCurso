@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <title>Tarjeta Jugador</title>
-  <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+  <link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-  <link rel="stylesheet" 
+  <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
   <!-- Cosas Barra de navegación -->
   <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
@@ -19,27 +20,35 @@
     .container {
       text-align: center;
     }
+
     .card {
       width: 35%;
       margin: 0 auto;
       margin-bottom: 20px;
     }
+
     .card-body {
-      text-align: left; /* Alinea el texto a la izquierda */
+      text-align: left;
     }
+
     .line {
       display: flex;
     }
+
     .table-container {
       flex: 0 0 70%;
       margin-right: 20px;
     }
+
     .form-container {
       flex: 1;
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+  </header>
   <div class="container">
     <div class="card">
       <div class="card-body">
@@ -52,7 +61,8 @@
         <span><strong>Portero: </strong><span th:text="${jugador.portero}">portero</span></span><br>
         <div class="mt-4 d-flex justify-content-between">
           <span><a th:href="@{~/jugadores}" class="btn btn-secondary">Volver</a></span>
-          <span><a th:href="@{~/jugador/edit/{dni}(dni = ${jugador.dni})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
+          <span><a th:href="@{~/jugador/edit/{dni}(dni = ${jugador.dni})}" class="btn btn-primary ml-2"
+              sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
         </div>
       </div>
     </div>
@@ -60,4 +70,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>

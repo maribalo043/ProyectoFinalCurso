@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-red fixed-top" th:fragment="menuSuperior">
-    <a class="navbar-brand" th:href="@{~/}">
-        <img src="../static/img/EscudoPatinalon.png" width="30" height="30" class="d-inline-block align-top imgNavBar" alt="Escudo">
+    <a class="navbar-brand" th:href="@{/}">
+        <img th:src="@{/static/img/EscudoPatinalon.png}" width="30" height="30" class="d-inline-block align-top imgNavBar" alt="Escudo">
         CD Patinalon
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -10,16 +10,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <div class="nav-item">
-                <a class="nav-link iconoNavegacion" th:href="@{~/}">Inicio</a>
+                <a class="nav-link iconoNavegacion" th:href="@{/}">Inicio</a>
             </div>
             <li class="nav-item">
-                <a class="nav-link iconoNavegacion" th:href="@{~/nuestrosEquipos}">Nuestros Equipos</a>
+                <a class="nav-link iconoNavegacion" th:href="@{/nuestrosEquipos}">Nuestros Equipos</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link iconoNavegacion" th:href="@{~/torneo}">3x3 Sara Roces</a>
+                <a class="nav-link iconoNavegacion" th:href="@{/torneo}">3x3 Sara Roces</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link iconoNavegacion" th:href="@{~/links}">Enlaces</a>
+                <a class="nav-link iconoNavegacion" th:href="@{/links}">Enlaces</a>
             </li>
             <li class="nav-item dropdown" id="dropdownMenu" sec:authorize="hasAuthority('ADMIN') || hasAuthority('AUTORIZADO')">
                 <a class="nav-link iconoNavegacion" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -27,12 +27,12 @@
                     Admin:
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="nav-link" th:href="@{/jugadores}">Jugadores</a>
-                    <a class="nav-link" th:href="@{/equipos}">Equipos</a>
-                    <a class="nav-link" th:href="@{/categorias}">Categorias</a>
-                    <a class="nav-link" th:href="@{/partidos}">Partidos</a>
-                    <a class="nav-link" th:href="@{/usuarios}" sec:authorize="hasAuthority('ADMIN')">Usuarios</a>
-                    <a class="nav-link" th:href="@{/estadisticas}">Estadisticas</a>
+                    <a class="nav-link navbar-light" th:href="@{/jugadores}">Jugadores</a>
+                    <a class="nav-link navbar-light" th:href="@{/equipos}">Equipos</a>
+                    <a class="nav-link navbar-light" th:href="@{/categorias}">Categorias</a>
+                    <a class="nav-link navbar-light" th:href="@{/partidos}">Partidos</a>
+                    <a class="nav-link navbar-light" th:href="@{/usuarios}" sec:authorize="hasAuthority('ADMIN')">Usuarios</a>
+                    <a class="nav-link navbar-light" th:href="@{/estadisticas}">Estadisticas</a>
                 </div> 
             </li>
         </ul>
