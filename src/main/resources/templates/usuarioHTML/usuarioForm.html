@@ -7,7 +7,7 @@
 </head>
 <body>
 <div class="container">
-    <h2 th:text="${#strings.equals(usuario.usuario, null) ? 'Crear Usuario' : 'Editar Usuario'}"></h2>
+    <h2>Formulario Usuario</h2>
     <form th:action="@{/usuario/save}" th:object="${usuario}" method="post" class="form-horizontal">
         <div class="form-group">
             <label for="usuario" class="col-sm-2 control-label">Usuario</label>
