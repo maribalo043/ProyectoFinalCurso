@@ -2,24 +2,25 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Detalles del Partido</title>
-	<link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
-	<!-- Cosas Barra de navegación -->
-	<link rel="stylesheet" href="../../static/css/estilosNavBar.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Partido</title>
+    <link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <header>
         <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
-      </header>
+    </header>
     <div class="card">
         <div class="card-body">
             <h2 class="card-title">Detalle del Partido</h2>
@@ -31,16 +32,18 @@
                 <span><strong>Pista:</strong><span th:text="${partido.pista}">pista</span></span><br>
                 <div class="mt-4">
                     <span><a th:href="@{~/partidos}" class="btn btn-secondary">Volver</a></span>
-                    <span sec:authorize="hasAuthority('ADMIN')"><a
+                    <span sec:authorize="hasAuthority('ADMIN')" th:if="${partido.finalizado == false}"><a
                             th:href="@{~/partido/edit/{idLocal}/{idVisitante}(idLocal=${partido.equipoLocal?.id}, idVisitante=${partido.equipoVisitante?.id})}"
                             class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
+
+                            <span th:if="${partido.finalizado == true}"><a class="btn btn-danger ml-2">Acta del partido Cerrada</a></span>
                 </div>
 
         </div>
     </div>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </body>
 

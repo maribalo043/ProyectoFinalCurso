@@ -58,7 +58,6 @@ public class Equipo {
 
     @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int partidosJugados;
-    
 
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Jugador> jugadores;
@@ -188,7 +187,7 @@ public class Equipo {
     }
     @Override
     public String toString() {
-        return "Equipo [id=" + id + ", nombre=" + nombre + "]";
+        return "Equipo [id=" + id + ", nombre=" + nombre + " ,email= " + emailContacto +" ,telefono= " + numeroTelefonoContacto +" ]";
     }
 
     public int getPartidosJugados() {

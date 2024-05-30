@@ -10,14 +10,17 @@
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
   <!-- Cosas Barra de navegación -->
-  <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../../static/css/estilosNavBar.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-    rel="stylesheet">
+    rel="stylesheet" />
 </head>
 
 <body>
+  <header>
+    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+  </header>
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
@@ -92,7 +95,17 @@
               <label class="form-check-label" for="porteroNo">No</label>
             </div>
           </div>
-          <input type="submit" class="btn btn-primary" value="Añadir Jugador" />
+          <div class="d-flex justify-content-between mb-3">
+            <div>
+              <a th:href="@{~/jugadores}" class="btn btn-primary" th:if="${jugadorNuevo.dni == null}">Ver Jugadores</a>
+              <a th:href="@{~/jugador/{dni}(dni = ${jugadorNuevo.dni})}" class="btn btn-primary"
+                th:if="${jugadorNuevo.dni != null}">Volver al detalle</a>
+            </div>
+            <div>
+              <input type="submit" class="btn btn-primary" th:if="${jugadorNuevo.dni == null}" value="Añadir Jugador" />
+              <input type="submit" class="btn btn-primary" th:if="${jugadorNuevo.dni != null}" value="Editar Jugador" />
+            </div>
+          </div>
         </form>
       </div>
     </div>

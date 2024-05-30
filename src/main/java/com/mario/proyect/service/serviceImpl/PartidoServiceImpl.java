@@ -81,34 +81,23 @@ public class PartidoServiceImpl implements PartidoService {
         ModelAndView model = new ModelAndView();
         if (bindingResult.hasErrors()) {
             model.setViewName("partidoForm");
-
             model.setViewName("partidoHTML/partidoForm");
             model.addObject("partidoNuevo", partidoNuevo);
             model.addObject("equipos", equipoDao.findAll());
 
             return model;
-
         }
         model.setViewName("redirect:/partidos");
 
-        if (partidoNuevo.getId() != null) {
-            Partido existente = partidoDao.findById(partidoNuevo.getId()).orElse(null);
-            if (existente != null) {
-                existente.setGolesLocal(partidoNuevo.getGolesLocal());
-                existente.setGolesVisitante(partidoNuevo.getGolesVisitante());
-                existente.setPista(partidoNuevo.getPista());
+        PartidoKey partidoKey = new PartidoKey();
+        partidoKey.setIdEquipoLocal(partidoNuevo.getEquipoLocal().getId());
+        partidoKey.setIdEquipoVisitante(partidoNuevo.getEquipoVisitante().getId());
+        partidoNuevo.setId(partidoKey);
 
-                partidoDao.save(existente);
+        partidoDao.save(partidoNuevo);
 
-            }
-        } else {
-            PartidoKey partidoKey = new PartidoKey();
-            partidoKey.setIdEquipoLocal(partidoNuevo.getEquipoLocal().getId());
-            partidoKey.setIdEquipoVisitante(partidoNuevo.getEquipoVisitante().getId());
-            partidoNuevo.setId(partidoKey);
-            partidoDao.save(partidoNuevo);
-        }
-        this.procesarPartido(partidoNuevo);
+        procesarPartido(partidoNuevo);
+
         return model;
     }
 
@@ -118,11 +107,10 @@ public class PartidoServiceImpl implements PartidoService {
         ModelAndView model = new ModelAndView();
         model.setViewName("partidoHTML/partidoForm");
 
-        Partido partido = new Partido();
         PartidoKey key = formarPartidoKey(idLocal, idVisitante);
-        partido.setId(key);
+        Optional<Partido> partido = partidoDao.findById(key);
 
-        model.addObject("partidoNuevo", partido);
+        model.addObject("partidoNuevo", partido.get());
         model.addObject("equipos", equipoDao.findAll());
 
         return model;
@@ -138,8 +126,11 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     private void procesarPartido(Partido partido) {
-        Equipo equipoLocal = partido.getEquipoLocal();
-        Equipo equipoVisitante = partido.getEquipoVisitante();
+        Equipo equipoLocal = equipoDao.findById(partido.getEquipoLocal().getId()).get();
+        Equipo equipoVisitante = equipoDao.findById(partido.getEquipoVisitante().getId()).get();
+
+        System.out.println(equipoLocal);
+        System.out.println(equipoVisitante);
 
         int golesLocal = partido.getGolesLocal();
         int golesVisitante = partido.getGolesVisitante();

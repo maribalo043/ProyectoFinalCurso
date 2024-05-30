@@ -2,18 +2,19 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Formulario Partido</title>
-	<link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-	<link rel="stylesheet"
-		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
-	<!-- Cosas Barra de navegación -->
-	<link rel="stylesheet" href="../../static/css/estilosNavBar.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Partido</title>
+  <link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+  <!-- Cosas Barra de navegación -->
+  <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -25,15 +26,14 @@
       <div class="col-md-6">
         <h2 class="text-center mb-4">Formulario del Partido</h2>
         <form th:action="@{~/partido/save}" method="post" th:object="${partidoNuevo}">
-          <div class="form-group"></div>
           <div class="form-group">
-            <label for="golesLocal">Resultado del partido:</label>
+            <label for="golesLocal">Goles Equipo Local:</label>
             <input type="number" class="form-control" id="golesLocal" placeholder="Ingrese los goles del equipo Local"
               required th:field="*{golesLocal}" />
             <p th:if="${#fields.hasErrors('golesLocal')}" th:errors="*{golesLocal}" class="btn btn-danger">Error</p>
           </div>
           <div class="form-group">
-            <label for="golesVisitante">Resultado del partido:</label>
+            <label for="golesVisitante">Goles Equipo Visitante:</label>
             <input type="number" class="form-control" id="golesVisitante"
               placeholder="Ingrese los goles del equipo Visitante" required th:field="*{golesVisitante}" />
             <p th:if="${#fields.hasErrors('golesVisitante')}" th:errors="*{golesVisitante}" class="btn btn-danger">Error
@@ -49,25 +49,58 @@
           <!-- Equipo Local -->
           <div class="form-group">
             <label for="equipoLocal">Equipo Local:</label>
-            <select class="form-control rounded bg-light" id="equipoLocal" th:field="*{equipoLocal}" required>
-              <option th:each="equipo : ${equipos}" th:text="${equipo.nombre}" th:value="${equipo.id}"></option>
+            <select class="form-control rounded bg-light" id="equipoLocal" th:field="*{equipoLocal.id}" required>
+              <option th:if="${partidoNuevo.id == null}" th:value="0">Equipo local</option>
+              <option th:if="${partidoNuevo.id != null}" th:selected="true" th:value="${partidoNuevo.equipoLocal.id}"
+                th:text="${partidoNuevo.equipoLocal.nombre}"></option>
+              <option th:if="${partidoNuevo.id == null}" th:each="equipo : ${equipos}" th:value="${equipo.id}"
+                th:text="${equipo.nombre}"></option>
             </select>
           </div>
 
           <!-- Equipo Visitante -->
           <div class="form-group">
             <label for="equipoVisitante">Equipo Visitante:</label>
-            <select class="form-control rounded bg-light" id="equipoVisitante" th:field="*{equipoVisitante}" required>
-              <option th:each="equipo : ${equipos}" th:text="${equipo.nombre}" th:value="${equipo.id}"></option>
+            <select class="form-control rounded bg-light" id="equipoVisitante" th:field="*{equipoVisitante.id}"
+              required>
+              <option th:if="${partidoNuevo.id == null}" th:value="0">Equipo visitante</option>
+              <option th:if="${partidoNuevo.id != null}" th:selected="true"
+                th:value="${partidoNuevo.equipoVisitante.id}" th:text="${partidoNuevo.equipoVisitante.nombre}"></option>
+              <option th:if="${partidoNuevo.id == null}" th:each="equipo : ${equipos}" th:value="${equipo.id}" th:text="${equipo.nombre}"></option>
             </select>
           </div>
 
-          <input type="submit" class="btn btn-primary" value="Añadir Partido" />
+          <!-- Hora del partido -->
+          <div class="form-group">
+            <label for="hora">Hora del partido:</label>
+            <input type="text" class="form-control" id="hora" th:field="*{hora}" required />
+          </div>
+
+          <!-- Finalizado -->
+          <div class="form-group">
+            <label for="finalizado">¿Partido finalizado?</label>
+            <select class="form-control" id="finalizado" th:field="*{finalizado}">
+              <option value="true" th:selected="${partidoNuevo.finalizado}">Sí</option>
+              <option value="false" th:selected="${!partidoNuevo.finalizado}" default>No</option>
+            </select>
+          </div>
+
+          <div class="d-flex justify-content-between mb-3">
+            <div>
+              <a th:href="@{~/partidos}" class="btn btn-primary" th:if="${partidoNuevo.id == null}">Ver Partidos</a>
+              <a th:href="@{~/partido/{idLocal}/{idVisitante}(idLocal=${partidoNuevo.equipoLocal.id}, idVisitante=${partidoNuevo.equipoVisitante.id})}"
+                class="btn btn-primary" th:if="${partidoNuevo.id != null}">Volver al detalle</a>
+            </div>
+            <div>
+              <input type="submit" class="btn btn-primary" th:if="${partidoNuevo.id == null}" value="Añadir Partido" />
+              <input type="submit" class="btn btn-primary" th:if="${partidoNuevo.id != null}" value="Editar Partido" />
+            </div>
+          </div>
         </form>
       </div>
     </div>
   </div>
-  <script>
+  <!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
       var equipoLocalSelect = document.getElementById('equipoLocal');
       var equipoVisitanteSelect = document.getElementById('equipoVisitante');
@@ -92,10 +125,10 @@
         }
       });
     }
-  </script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </script> -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>

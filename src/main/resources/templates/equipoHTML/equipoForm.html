@@ -112,7 +112,19 @@
           </p>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Añadir Equipo">
+        
+        <div class="d-flex justify-content-between mb-3">
+          <div>
+            <a th:href="@{~/equipos}" class="btn btn-primary" th:if="${equipoNuevo.id == 0}">Ver Equipos</a>
+            <a th:href="@{~/equipo/{id}(id = ${equipoNuevo.id})}" class="btn btn-primary"
+              th:if="${equipoNuevo.id != 0}">Volver al detalle</a>
+          </div>
+          <div>
+            <input type="submit" class="btn btn-primary" th:if="${equipoNuevo.id == 
+            0}" value="Añadir Equipo">
+            <input type="submit" class="btn btn-primary" th:if="${equipoNuevo.id != 0}" value="Editar Equipo" />
+          </div>
+        </div>
       </form>
     </div>
   </div>

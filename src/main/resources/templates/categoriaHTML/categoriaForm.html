@@ -2,46 +2,23 @@
 <html lang="es">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 	<title>Formulario de Creación de Categorias</title>
 	<link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
 	<link rel="stylesheet"
 		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
 	<!-- Cosas Barra de navegación -->
-	<link rel="stylesheet" href="../../static/css/estilosNavBar.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="../../static/css/estilosNavBar.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-		rel="stylesheet">
-	<!-- Estilos Barra inferior -->
-	<link rel="stylesheet" href="../../static/css/style.css">
-	<link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
-
-	<style>
-		body {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-		}
-
-		.footer {
-			position: fixed;
-			left: 0;
-			bottom: 0;
-			width: 100%;
-			background-color: #d41a1e;
-			text-align: center;
-			padding: 10px 0;
-		}
-	</style>
+		rel="stylesheet" />
 </head>
 
 <body>
-
 	<header>
 		<div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
 	</header>
@@ -54,18 +31,28 @@
 					<div class="form-group">
 						<label for="id" hidden>ID</label>
 						<input type="text" class="form-control" id="id" placeholder="ID" required th:field="*{id}"
-							readonly hidden>
+							readonly hidden />
 						<label for="nombreCategoria">Nombre de la Categoria:</label>
 						<input type="text" class="form-control" id="nombreEquipo"
-							placeholder="Ingrese el nombre de la categoria" required th:field="*{nombre}">
+							placeholder="Ingrese el nombre de la categoria" required th:field="*{nombre}" />
 					</div>
 
 					<div class="mb-3 form-check">
-						<input type="checkbox" class="form-check-input" id="activa" th:field="*{activa}">
+						<input type="checkbox" class="form-check-input" id="activa" th:field="*{activa}" />
 						<label class="form-check-label" for="activa">Activa</label>
 					</div>
 
-					<input type="submit" class="btn btn-primary" value="Añadir Equipo">
+					<div class="d-flex justify-content-between mb-3">
+						<div>
+						  <a th:href="@{~/categorias}" class="btn btn-primary" th:if="${categoriaNueva.id == 0}">Ver Categorias</a>
+						  <a th:href="@{~/categoria/{id}(id = ${categoriaNueva.id})}" class="btn btn-primary"
+							th:if="${categoriaNueva.id != 0}">Volver al detalle</a>
+						</div>
+						<div>
+						  <input type="submit" class="btn btn-primary" th:if="${categoriaNueva.id == 0}" value="Añadir Categoria">
+						  <input type="submit" class="btn btn-primary" th:if="${categoriaNueva.id != 0}" value="Editar Categoria" />
+						</div>
+					  </div>
 				</form>
 			</div>
 		</div>

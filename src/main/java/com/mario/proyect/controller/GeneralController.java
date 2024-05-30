@@ -1,5 +1,6 @@
 package com.mario.proyect.controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,8 @@ public class GeneralController {
         List<Partido> partidos = partidoDao.findPartidosByCategoria(cat);
         List<Equipo> equipos = equipoDao.findByCategoria_Nombre(cat);
 
+        ordenarEquipos(equipos);
+
         model.setViewName("/torneoHTML/PartidosCategoria");
         if(!partidos.isEmpty()) {
         	model.addObject("partidos", partidos);
@@ -101,6 +104,11 @@ public class GeneralController {
         
 
         return model;
+    }
+
+    private void ordenarEquipos(List<Equipo> equipos) {
+        equipos.sort(Comparator.comparing(Equipo::getPuntos)
+                .thenComparing(Equipo::getGolAverage).reversed());
     }
 
     @GetMapping("/login")
