@@ -3,11 +3,13 @@ package com.mario.proyect.service.serviceImpl;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Usuario;
+import com.mario.proyect.repository.RolDAO;
 import com.mario.proyect.repository.UsuarioDAO;
 import com.mario.proyect.service.UsuarioService;
 
@@ -16,6 +18,12 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     	@Autowired
 	    private UsuarioDAO usuarioDao;
+
+        @Autowired
+        private RolDAO rolDao;
+
+        @Autowired
+        private BCryptPasswordEncoder encriptador;
 
     @Override
     public ModelAndView getUsuarios() {
@@ -57,6 +65,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
         ModelAndView model = new ModelAndView();
         model.addObject("usuarioNuevo", new Usuario());
+        model.addObject("roles", rolDao.findAll());
         model.setViewName("usuarioHTML/usuarioForm");
 
         return model;
@@ -64,20 +73,17 @@ public class UsuarioServiceImpl implements UsuarioService{
 
     @Override
     public ModelAndView saveUsuario(Usuario usuarioNuevo, BindingResult bindingResult) {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView model = new ModelAndView();
 
         if (bindingResult.hasErrors()) {
-            modelAndView.setViewName("usuarioHTML/usuarioForm");
-            return modelAndView;
+            model.setViewName("usuarioHTML/usuarioForm");
+            return model;
         }
-
+        usuarioNuevo.setPassword(encriptador.encode(usuarioNuevo.getPassword()));
         usuarioDao.save(usuarioNuevo);
+        model.setViewName("redirect:/usuarios");
 
-        if (usuarioNuevo.getUsername() == null) {
-            modelAndView.setViewName("redirect:/usuarios");
-        }
-
-        return modelAndView;
+        return model;
     }
 
     @Override
@@ -89,6 +95,7 @@ public class UsuarioServiceImpl implements UsuarioService{
         if (jugOpt.isPresent()) {
             Usuario usuario = jugOpt.get();
             model.addObject("usuarioNuevo", usuario);
+            model.addObject("roles", rolDao.findAll());
             model.setViewName("usuarioHTML/usuarioForm");
         } else {
             model.setViewName("redirect:/usuarios");

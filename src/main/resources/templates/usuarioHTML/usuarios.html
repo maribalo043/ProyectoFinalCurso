@@ -26,12 +26,12 @@
 	<main class="content">
 		<div class="container mt-5">
 			<h2 class="text-start mb-4">Lista de Usuarios
-				<a class="btn btn-primary float-right m-2" th:href="@{~/categoria/add}"
+				<a class="btn btn-primary float-right m-2" th:href="@{~/usuario/add}"
 					th:if="${not #lists.isEmpty(usuarios)}">Añadir Usuario</a>
 			</h2>
 			<div th:if="${#lists.isEmpty(usuarios)}">
 				<h3>La tabla de Usuarios esta vacia, Añada usted al primer Usuario</h3>
-				<a class="btn btn-primary float-right m-2" th:href="@{~/categoria/add}">Añadir Usuario</a>
+				<a class="btn btn-primary float-right m-2" th:href="@{~/usuario/add}">Añadir Usuario</a>
 			</div>
 			<table class="table table-striped table-hover" th:if="${not #lists.isEmpty(usuarios)}">
 				<thead>

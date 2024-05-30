@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>Crear/Editar Usuario</title>
@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <h2>Formulario Usuario</h2>
-    <form th:action="@{/usuario/save}" th:object="${usuario}" method="post" class="form-horizontal">
+    <form th:action="@{/usuario/save}" th:object="${usuarioNuevo}" method="post" class="form-horizontal">
         <div class="form-group">
             <label for="usuario" class="col-sm-2 control-label">Usuario</label>
             <div class="col-sm-10">
@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="rol" class="col-sm-2 control-label">Rol</label>
             <div class="col-sm-10">
-                <select th:field="*{rol.id}" class="form-control" id="rol">
+                <select th:field="*{rol}" class="form-control" id="rol">
                     <option value="" selected disabled>Selecciona un rol</option>
                     <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.nombre}"></option>
                 </select>
