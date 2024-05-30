@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mario.proyect.entity.Usuario;
 import com.mario.proyect.service.UsuarioService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -49,5 +51,35 @@ public class UsuarioController {
     @GetMapping("/usuario/edit/{nombre}")
     public ModelAndView editUsuario(@PathVariable String nombre) {
         return usuarioService.editUsuario(nombre);
+    }
+
+    @GetMapping("/login")
+    public ModelAndView login() {
+        return usuarioService.login();
+    }
+
+    @PostMapping("/login")
+    public ModelAndView loginUser(@ModelAttribute("user") Usuario user, HttpServletRequest request) {
+        return usuarioService.loginUser(user,request);
+    }
+
+    @GetMapping("/register")
+    public ModelAndView register() {
+        return usuarioService.registrer();
+    }
+
+    @PostMapping("/register")
+    public ModelAndView registerUser(@ModelAttribute("user") Usuario user) {
+        return usuarioService.registrerUser(user);
+    }
+
+    @GetMapping("/logout")
+    public ModelAndView logout(HttpServletRequest request) {
+        return usuarioService.logout(request);
+    }
+
+    @GetMapping("/home")
+    public ModelAndView home(HttpServletRequest request) {
+        return usuarioService.home(request);
     }
 }

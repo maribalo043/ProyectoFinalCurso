@@ -13,26 +13,29 @@ import com.mario.proyect.repository.RolDAO;
 import com.mario.proyect.repository.UsuarioDAO;
 import com.mario.proyect.service.UsuarioService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 @Service
-public class UsuarioServiceImpl implements UsuarioService{
+public class UsuarioServiceImpl implements UsuarioService {
 
-    	@Autowired
-	    private UsuarioDAO usuarioDao;
+    @Autowired
+    private UsuarioDAO usuarioDao;
 
-        @Autowired
-        private RolDAO rolDao;
+    @Autowired
+    private RolDAO rolDao;
 
-        @Autowired
-        private BCryptPasswordEncoder encriptador;
+    @Autowired
+    private BCryptPasswordEncoder encriptador;
 
     @Override
     public ModelAndView getUsuarios() {
 
         ModelAndView model = new ModelAndView();
-		model.addObject("usuarios", usuarioDao.findAll());
-		model.setViewName("usuarioHTML/usuarios");
+        model.addObject("usuarios", usuarioDao.findAll());
+        model.setViewName("usuarioHTML/usuarios");
 
-		return model;
+        return model;
     }
 
     @Override
@@ -103,5 +106,101 @@ public class UsuarioServiceImpl implements UsuarioService{
 
         return model;
     }
-    
+
+    @Override
+    public Usuario findUserByUsuario(String usuario) {
+        return usuarioDao.findById(usuario).get();
+    }
+
+    @Override
+    public void saveUser(Usuario user) {
+        user.setPassword(encriptador.encode(user.getPassword()));
+        usuarioDao.save(user);
+    }
+
+    @Override
+    public ModelAndView login() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("generalHTML/login");
+        modelAndView.addObject("user", new Usuario());
+        return modelAndView;
+    }
+
+    @Override
+    public ModelAndView loginUser(Usuario user, HttpServletRequest request) {
+    ModelAndView modelAndView = new ModelAndView();
+    Optional<Usuario> existingUserOptional = usuarioDao.findById(user.getUsuario());
+    if (existingUserOptional.isPresent()) {
+        Usuario existingUser = existingUserOptional.get();
+        if (encriptador.matches(user.getPassword(), existingUser.getPassword())) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", existingUser);
+            modelAndView.setViewName("redirect:/home");
+        } else {
+            modelAndView.addObject("message", "Invalid username or password");
+            modelAndView.setViewName("generalHTML/login");
+        }
+    } else {
+        modelAndView.addObject("message", "User not found");
+        modelAndView.setViewName("generalHTML/login");
+    }
+
+    return modelAndView;
+}
+
+
+    @Override
+    public ModelAndView registrer() {
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("generalHTML/register");
+        modelAndView.addObject("user", new Usuario());
+        return modelAndView;
+    }
+
+    @Override
+    public ModelAndView registrerUser(Usuario user) {
+        ModelAndView modelAndView = new ModelAndView();
+
+        Optional<Usuario> usuarioOptional = usuarioDao.findById(user.getUsuario());
+        if (!usuarioOptional.isPresent()) { 
+            user.setRol(rolDao.findById((long) 1).get());
+            usuarioDao.save(user);
+        } else {
+            modelAndView.addObject("message", "El usuario ya existe");
+            modelAndView.setViewName("generalHTML/register");
+            return modelAndView;
+        }
+
+        modelAndView.addObject("message", "User has been registered successfully");
+        modelAndView.setViewName("generalHTML/login");
+        return modelAndView;
+    }
+
+    @Override
+    public ModelAndView logout(HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:/login");
+        return modelAndView;
+    }
+
+    @Override
+    public ModelAndView home(HttpServletRequest request) {
+
+        ModelAndView modelAndView = new ModelAndView();
+        HttpSession session = request.getSession(false);
+        if (session != null && session.getAttribute("user") != null) {
+            modelAndView.setViewName("index");
+        } else {
+            modelAndView.setViewName("redirect:/login");
+        }
+        return modelAndView;
+    }
+
 }

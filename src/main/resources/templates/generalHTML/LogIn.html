@@ -1,62 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Please Log In</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body:not(.logged-in) #login-code-container a,
-body.logged-in #login-code-container form {
-  display: none;
-}
+        body {
+            background-color: #f8f9fa;
+        }
 
-#container-login {
-  width: 100%;
-  height: 100%;
-}
+        .login-container {
+            margin-top: 100px;
+        }
 
-#user,
-#pass {
-  width: 100%;
-  height: 40%;
-}
+        .card {
+            width: 400px;
+            margin: 0 auto;
+        }
 
-label {
-  width: 30%;
-  font-size: 80%;
-}
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+        }
 
-input[type="text"],
-input[type="password"] {
-  width: 68%;
-  border-radius: 5px;
-  border: 1px blue solid;
-}
+        .card-body {
+            padding: 20px;
+        }
 
-#login-botton {
-  color: white;
-  background-color: blue;
-  border-radius: 3px;
-}
+        .form-group {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
-    <div id="container-login">
-        <form method="post" action="#" id="loginform" name="login-form">
-          <div id="user">
-            <label for="user_nick">Usuario o correo electrónico</label>
-            <input name="log" type="text" id="user_nick" />
-          </div>
-      
-          <div id="pass">
-            <label for="user_pass">Contraseña </label>
-            <input name="pwd" type="password" id="user_pass" />
-          </div>
-          <div id="login_botton">
-            <input type="submit" name="wp-submit" id="wp-submit" value="Acceder" />
-            <input type="hidden" name="redirect_to" value="/" />
-          </div>
-        </form>
-      </div> 
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 login-container">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Please Log In</h3>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <input type="text" name="username" class="form-control" placeholder="Username"/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control" placeholder="Password"/>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+                            <a th:href="@{~/register}">Registrate</a>
+                        </div>
+                        <div th:if="${param.error}" class="alert alert-danger">Invalid username and password.</div>
+                        <div th:if="${param.logout}" class="alert alert-success">You have been logged out.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

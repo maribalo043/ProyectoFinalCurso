@@ -111,20 +111,6 @@ public class GeneralController {
                 .thenComparing(Equipo::getGolAverage).reversed());
     }
 
-    @GetMapping("/login")
-    public ModelAndView getLogin() {
-    	ModelAndView model = new ModelAndView();
-    	model.setViewName("generalHTML/LogIn");
-        return model;
-    }
-    
-    @GetMapping("/logout")
-    public ModelAndView getLogOut() {
-    	ModelAndView model = new ModelAndView();
-    	model.setViewName("index");
-        return model;
-    }
-
     @GetMapping("/estadisticas")
     public ModelAndView mostrarEstadisticas(@RequestParam(required = false, defaultValue = "18") int edadParametro,
                                             @RequestParam(required = false) Long categoriaId) {

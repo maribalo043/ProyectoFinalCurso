@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Usuario;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 public interface UsuarioService {
@@ -22,4 +23,16 @@ public interface UsuarioService {
     ModelAndView saveUsuario(@ModelAttribute("usuarioNuevo") @Valid Usuario usuarioNuevo, BindingResult bindingResult);
 
     ModelAndView editUsuario(@PathVariable String dni);
+
+    /* Gestion de sesiones: */
+
+    Usuario findUserByUsuario(String usuario);
+    void saveUser(Usuario user);
+
+    ModelAndView login();
+    ModelAndView loginUser(Usuario user,HttpServletRequest request);
+    ModelAndView registrer();
+    ModelAndView registrerUser(Usuario user);
+    ModelAndView logout(HttpServletRequest request);
+    ModelAndView home(HttpServletRequest request);
 }
