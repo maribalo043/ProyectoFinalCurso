@@ -33,6 +33,7 @@
           <th>Local</th>
           <th>Resultado</th>
           <th>Visitante</th>
+          <th>Fecha y Hora</th>
           <th>Pista</th>
         </tr>
       </thead>
@@ -43,6 +44,7 @@
             <span th:text="${p.golesLocal}"></span>-<span th:text="${p.golesVisitante}"></span>
           </td>
           <td th:text="${p.equipoVisitante?.nombre}">Equipo 1</td>
+          <td th:text="${p.hora}">33:33</td>
           <td th:text="${p.pista}">Pista 1</td>
         </tr>
       </tbody>
@@ -61,6 +63,7 @@
           <th>PP</th>
           <th>GF</th>
           <th>GC</th>
+          <th>GA</th>
           <th>TP</th>
         </tr>
       </thead>
@@ -73,6 +76,7 @@
           <td th:text="${equipo.partidosPerdidos}"></td>
           <td th:text="${equipo.golesFavor}"></td>
           <td th:text="${equipo.golesContra}"></td>
+          <td th:text="${equipo.golesFavor - equipo.golesContra}"></td>
           <td th:text="${equipo.puntos}"></td>
       </tr>
       </tbody>
