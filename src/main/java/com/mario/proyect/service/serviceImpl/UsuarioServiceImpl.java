@@ -124,13 +124,14 @@ public class UsuarioServiceImpl implements UsuarioService {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("generalHTML/login");
         modelAndView.addObject("user", new Usuario());
+        System.out.println("Voy pa alla");
         return modelAndView;
     }
 
     @Override
     public ModelAndView loginUser(Usuario user, HttpServletRequest request) {
     ModelAndView modelAndView = new ModelAndView();
-    Optional<Usuario> existingUserOptional = usuarioDao.findById(user.getUsuario());
+    Optional<Usuario> existingUserOptional = usuarioDao.findById(user.getEmail());
     if (existingUserOptional.isPresent()) {
         Usuario existingUser = existingUserOptional.get();
         if (encriptador.matches(user.getPassword(), existingUser.getPassword())) {
@@ -166,6 +167,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Optional<Usuario> usuarioOptional = usuarioDao.findById(user.getUsuario());
         if (!usuarioOptional.isPresent()) { 
             user.setRol(rolDao.findById((long) 1).get());
+            user.setPassword(encriptador.encode(user.getPassword()));
             usuarioDao.save(user);
         } else {
             modelAndView.addObject("message", "El usuario ya existe");

@@ -18,12 +18,12 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 	private UsuarioDAO usuarioDao;
 	
     @Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-		Optional<Usuario> usuario = usuarioDao.findById(username);
+		Optional<Usuario> usuario = usuarioDao.findById(email);
 		if(usuario.isPresent()) {
 			return (UserDetails)usuario.get();
 		}
-		throw new UsernameNotFoundException(username);
+		throw new UsernameNotFoundException(email);
 	}
 }

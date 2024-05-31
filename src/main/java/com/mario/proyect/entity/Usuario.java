@@ -2,6 +2,7 @@ package com.mario.proyect.entity;
 
 import java.util.ArrayList;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import java.util.Collection;
@@ -19,8 +20,10 @@ import jakarta.persistence.Table;
 public class Usuario implements UserDetails{
     
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
+	@Column(name = "correo_electronico")
+	private String email;
 	private String usuario;
 	private String password;
 
@@ -49,7 +52,14 @@ public class Usuario implements UserDetails{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -95,6 +105,8 @@ public class Usuario implements UserDetails{
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Usuario [email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
+	}
 }

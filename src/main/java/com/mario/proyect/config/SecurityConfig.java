@@ -34,15 +34,14 @@ public class SecurityConfig {
 	@SuppressWarnings({ "deprecation", "removal" })
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-				.requestMatchers("/").permitAll()
-				.requestMatchers("/jugador/del/**", "/equipo/del/**", "/categoria/del/**", "/partido/del/**",
-						"/jugador/edit/**", "/equipo/edit/**", "/categoria/edit/**", "/partido/edit/**")
-				.hasAuthority("ADMIN")
-				.and()
-				.formLogin(form -> form
-				.loginPage("/login")
-				.permitAll());
+        http.authorizeRequests(requests -> requests
+                .requestMatchers("/").permitAll()
+                .requestMatchers("/jugador/del/**", "/equipo/del/**", "/categoria/del/**", "/partido/del/**",
+                        "/jugador/edit/**", "/equipo/edit/**", "/categoria/edit/**", "/partido/edit/**")
+                .hasAuthority("ADMIN"))
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .permitAll());
 		return http.build();
 	}
 
