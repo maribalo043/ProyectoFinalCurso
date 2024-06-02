@@ -5,13 +5,11 @@ html {
 
 .footer {
     background-color: #d41a1e;
-    color: black;
+    color: white; /* Cambiado el color del texto a blanco */
     padding: 2vh;
     margin-top: 2vh;
-    margin-bottom: 0;
     width: 100%;
-    height: 17vh;
-    width: 100vw;
+    height: auto; /* Cambiado de altura fija a altura automática */
 }
 
 .social-icons {
@@ -37,4 +35,32 @@ html {
     color: white;
     font-size: large;
     text-decoration: none;
+}
+iframe{
+    margin-bottom: 5%;
+}
+.informacion{
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    flex-direction: column;
+}
+
+/* Estilos para los párrafos de información en la parte izquierda */
+.col-md-6 p {
+    margin-bottom: 10px;
+}
+
+/* Estilos para el formulario de contacto en la parte derecha */
+.col-md-6 form {
+    margin-top: 20px;
+}
+
+.col-md-6 form .form-group {
+    margin-bottom: 15px;
+}
+
+.col-md-6 form .btn-primary:hover {
+    background-color: #159620; /* Cambiado el color de fondo del botón al pasar el mouse */
+    border-color: #ede510; /* Cambiado el color del borde del botón al pasar el mouse */
 }
