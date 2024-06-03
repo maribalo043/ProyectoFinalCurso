@@ -28,9 +28,18 @@ public interface PartidoDAO extends CrudRepository<Partido,PartidoKey>{
     @Query("SELECT COUNT(p) FROM Partido p WHERE p.golesLocal = p.golesVisitante")
     long countPartidosEmpatados();
 
+    @Query("SELECT p FROM Partido p WHERE p.golesLocal = p.golesVisitante")
+    List<Partido> selectPartidosEmpatados();
+
     @Query("SELECT COUNT(p) FROM Partido p WHERE p.golesLocal > p.golesVisitante")
     long countPartidosGanadosLocal();
 
+    @Query("SELECT p FROM Partido p WHERE p.golesLocal > p.golesVisitante")
+    List<Partido> selectPartidosGanadosLocal();
+
     @Query("SELECT COUNT(p) FROM Partido p WHERE p.golesVisitante > p.golesLocal")
     long countPartidosGanadosVisitante();
+
+    @Query("SELECT p FROM Partido p WHERE p.golesVisitante > p.golesLocal")
+    List<Partido> selectPartidosGanadosVisitante();
 }

@@ -124,7 +124,6 @@ public class UsuarioServiceImpl implements UsuarioService {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("generalHTML/login");
         modelAndView.addObject("user", new Usuario());
-        System.out.println("Voy pa alla");
         return modelAndView;
     }
 

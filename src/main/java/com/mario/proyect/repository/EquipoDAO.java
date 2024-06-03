@@ -21,4 +21,7 @@ public interface EquipoDAO extends CrudRepository<Equipo,Long>{
 
     @Query("SELECT COUNT(e) FROM Equipo e WHERE e.categoria.id = :categoriaId")
     long countEquiposPorCategoria(@Param("categoriaId") Long categoriaId);
+
+    @Query("SELECT e FROM Equipo e WHERE e.categoria.id = :categoriaId")
+    List<Equipo> selectEquiposPorCategoria(@Param("categoriaId") Long categoriaId);
 }

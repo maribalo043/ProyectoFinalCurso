@@ -66,10 +66,10 @@ public class Usuario implements UserDetails{
 
 		ArrayList<SimpleGrantedAuthority> permisos = new ArrayList<SimpleGrantedAuthority>();
 		SimpleGrantedAuthority permiso;
-		if(usuario.compareTo("mario")==0) {
+		if(this.getRol().getId()==1) {
 			permiso = new SimpleGrantedAuthority("ADMIN");
 		}
-		else if(usuario.compareTo("javi")==0) {
+		else if(this.getRol().getId()==2) {
 			permiso = new SimpleGrantedAuthority("AUTORIZADO");
 		}
 		else {

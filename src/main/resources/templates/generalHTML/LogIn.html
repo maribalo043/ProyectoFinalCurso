@@ -24,6 +24,10 @@
             background-color: #f8f9fa;
         }
 
+        .container{
+            margin-bottom: 15%;
+        }
+
         .login-container {
             margin-top: 100px;
         }
@@ -57,7 +61,7 @@
             <div class="col-md-6 offset-md-3 login-container">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">Please Log In</h3>
+                        <h3 class="text-center">INICIO DE SESIÓN</h3>
                     </div>
                     <div class="card-body">
                         <form th:action="@{/login}" method="post">
@@ -68,11 +72,11 @@
                                 <input type="password" name="password" class="form-control" placeholder="Password" />
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Log in</button>
-                                <a th:href="@{/register}" class="btn btn-link btn-block">Register</a>
+                                <button type="submit" class="btn btn-primary btn-block">Inicie sesión</button>
+                                <a th:href="@{/register}" class="btn btn-link btn-block">¿No tienes cuenta? Regístrese aquí</a>
                             </div>
-                            <div th:if="${param.error}" class="alert alert-danger">Invalid email and password.</div>
-                            <div th:if="${param.logout}" class="alert alert-success">You have been logged out.</div>
+                            <div th:if="${param.error}" class="alert alert-danger">Email o contraseña invalidos.</div>
+                            <div th:if="${param.logout}" class="alert alert-success">Has cerrado sesión.</div>
                         </form>
                     </div>
                 </div>

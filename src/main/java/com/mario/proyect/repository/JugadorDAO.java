@@ -19,4 +19,7 @@ public interface JugadorDAO extends CrudRepository<Jugador,String>{
     @Query("SELECT COUNT(j) FROM Jugador j WHERE j.edad < :edad")
     long countJugadoresMenoresDeEdad(@Param("edad") int edad);
 
+    @Query("SELECT j FROM Jugador j WHERE j.edad < :edad")
+    List<Jugador> selectJugadoresMenoresDeEdad(@Param("edad") int edad);
+
 }
