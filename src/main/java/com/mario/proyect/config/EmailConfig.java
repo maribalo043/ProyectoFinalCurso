@@ -12,7 +12,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 @Configuration
-/* Para que coja el email.properties y no coja por defeto el application.properties */
 @PropertySource("classpath:email.properties")
 public class EmailConfig {
 
@@ -22,26 +21,27 @@ public class EmailConfig {
     @Value("${email.password}")
     private String password;
 
-    private Properties getMailProperties(){
+    private Properties getMailProperties() {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable","true");
+        properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port","587");
+        properties.put("mail.smtp.port", "587");
         return properties;
     }
-    
+
     @Bean
-    public JavaMailSender javaMailSender(){
+    public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setJavaMailProperties(getMailProperties());
         mailSender.setUsername(email);
         mailSender.setPassword(password);
+        
         return mailSender;
     }
+
     @Bean
-    public ResourceLoader resourceLoader(){
+    public ResourceLoader resourceLoader() {
         return new DefaultResourceLoader();
     }
-
 }

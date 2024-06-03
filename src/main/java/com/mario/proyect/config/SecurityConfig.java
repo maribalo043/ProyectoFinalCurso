@@ -34,8 +34,8 @@ public class SecurityConfig {
 	@SuppressWarnings({ "deprecation", "removal" })
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeRequests(requests -> requests
-                .requestMatchers("/").permitAll()
+        http.csrf().disable().authorizeRequests(requests -> requests
+                .requestMatchers("/","/send").permitAll()
                 .requestMatchers("/jugador/del/**", "/equipo/del/**", "/categoria/del/**", "/partido/del/**",
                         "/jugador/edit/**", "/equipo/edit/**", "/categoria/edit/**", "/partido/edit/**")
                 .hasAuthority("ADMIN"))
