@@ -5,8 +5,8 @@
   <meta charset="UTF-8" />
   <title>Estadísticas</title>
   <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
   <!-- Cosas Barra de navegación -->
@@ -20,12 +20,6 @@
   <link rel="stylesheet" href="../static/css/estilosMenuInferior.css" />
   <!-- Estilos Estadisticas -->
   <link rel="stylesheet" href="../../static/css/estilosEstadisticas.css" />
-  <style>
-    .custom-modal-width {
-      width: auto;
-      max-width: 80%;
-    }
-  </style>
 </head>
 
 <body>
@@ -35,385 +29,326 @@
   <div class="container mt-5">
     <h1 class="text-center">Estadísticas</h1>
 
-    <!-- Formulario para seleccionar edad -->
-    <form class="form-inline my-4" th:action="@{/estadisticas}" method="get">
-      <label class="sr-only" for="edadParametro">Edad</label>
-      <input type="number" class="form-control mb-2 mr-sm-2" id="edadParametro" name="edadParametro" placeholder="Edad"
-        min="0" />
+    <div class="accordion" id="accordionExample">
+      <!-- Item del acordeón -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+            aria-expanded="false" aria-controls="collapseOne">
+            <h5>Total Equipos Inscritos</h5>
+          </button>
+        </h2>
+        <!-- Inicio Ventana Modal -->
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <h6>Numero Total de Equipos inscritos: <span class="card-title text-black"
+                th:text="${totalEquipos}">0</span><button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                exampleModal data-bs-target="#todosEquipos">
+                Ver equipos
+              </button></h6>
+            <!-- Modal -->
+            <div class="modal fade" id="todosEquipos" tabindex="-1" aria-labelledby="todosEquiposLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="todosEquiposLabel">Todos los equipos que están incritos en el torneo
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Nombre</th>
+                          <th>Categoria</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="equipo:${equipos}">
+                          <td th:text="${equipo.id}">1</td>
+                          <td th:text="${equipo.nombre}">Equipo 1</td>
+                          <td th:text="${equipo.categoria?.nombre}">Equipo 1</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer"></div>
+                </div>
+              </div>
+            </div>
 
-      <button type="submit" class="btn btn-primary mb-2">
-        Ver Jugadores Menores de X Edad
-      </button>
-    </form>
-
-    <!-- Formulario para seleccionar categoría -->
-    <form class="form-inline my-4" th:action="@{/estadisticas}" method="get">
-      <label class="sr-only" for="categoriaId">Categoría</label>
-      <select class="form-control mb-2 mr-sm-2" id="categoriaId" name="categoriaId" required>
-        <option value="" selected disabled>Selecciona una categoría</option>
-        <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
-      </select>
-
-      <button type="submit" class="btn btn-primary mb-2">
-        Ver Equipos por Categoría
-      </button>
-    </form>
-
-    <div class="row mt-4">
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header bg-primary text-white">Total de Equipos Inscritos <button type="button"
-              class="btn btn-warning botonModal" data-toggle="modal" data-target="#equiposInscritos">
-              VER
-            </button></div>
-          <div class="card-body">
-            <h5 class="card-title text-black" th:text="${totalEquipos}">0</h5>
+            <!-- Fin modal -->
           </div>
         </div>
       </div>
-      <!-- Modal -->
-      <div class="modal fade custom-modal-width" id="equiposInscritos" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Equipos Incritos: <span th:text="${totalEquipos}"></span>
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+      <!-- Item del acordeón -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <h5>Total Partidos Empatados</h5>
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <h6>Numero total de partidos empatados: <span th:text="${totalPartidosEmpatados}">0</span><button
+                type="button" class="btn btn-warning" data-bs-toggle="modal" exampleModal
+                data-bs-target="#partidosEmpatados">
+                Ver partidos
+              </button></h6>
+            <!-- Modal -->
+            <div class="modal fade" id="partidosEmpatados" tabindex="-1" aria-labelledby="partidosEmpatadosLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="partidosEmpatadosLabel">Todos los partidos que han sido empatados</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>Local</th>
+                          <th>Resultado</th>
+                          <th>Visitante</th>
+                          <th>Pista</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="p : ${partidosEmpatados}">
+                          <td th:text="${p.equipoLocal != null ? p.equipoLocal.nombre : 'Sin equipo local'}">Equipo 1
+                          </td>
+                          <td class="result"><span th:text="${p.golesLocal}"></span>-<span
+                              th:text="${p.golesVisitante}"></span></td>
+                          <td
+                            th:text="${p.equipoVisitante != null ? p.equipoVisitante.nombre : 'Sin equipo visitante'}">
+                            Equipo 1</td>
+                          <td th:text="${p.pista}">Pista 1</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fin modal -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Item del acordeón -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            <h5>Total Partidos Ganados por Local</h5>
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <h6>Numero total de partidos ganados por local: <span class="card-title text-black"
+                th:text="${partidosGanadosLocal}">0</span>
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" exampleModal
+                data-bs-target="#partidosGanadosLocal">
+                Ver partidos
               </button>
+            </h6>
+            <!-- Modal -->
+            <div class="modal fade" id="partidosGanadosLocal" tabindex="-1" aria-labelledby="partidosGanadosLocalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="partidosGanadosLocalLabel">Todos los partidos que han sido empatados
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>Local</th>
+                          <th>Resultado</th>
+                          <th>Visitante</th>
+                          <th>Pista</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="p : ${ganadosLocal}">
+                          <td th:text="${p.equipoLocal != null ? p.equipoLocal.nombre : 'Sin equipo local'}">Equipo 1
+                          </td>
+                          <td class="result"><span th:text="${p.golesLocal}"></span>-<span
+                              th:text="${p.golesVisitante}"></span></td>
+                          <td
+                            th:text="${p.equipoVisitante != null ? p.equipoVisitante.nombre : 'Sin equipo visitante'}">
+                            Equipo 1</td>
+                          <td th:text="${p.pista}">Pista 1</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer"></div>
+                </div>
+              </div>
             </div>
-            <div class="container mt-5">
-              <table class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="equipo:${equipos}">
-                    <td th:text="${equipo.id}">1</td>
-                    <td th:text="${equipo.nombre}">Equipo 1</td>
-                    <td th:text="${equipo.categoria?.nombre}">Equipo 1</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+
+            <!-- Fin modal -->
           </div>
         </div>
       </div>
 
-      <!-- SIGUIENTE APARTADO -->
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header bg-primary text-white">Total de Partidos Empatados <button type="button"
-              class="btn btn-warning botonModal" data-toggle="modal" data-target="#partidosEmpatados">
-              VER
-            </button></div>
-          <div class="card-body">
-            <h5 class="card-title text-black" th:text="${totalPartidosEmpatados}">0</h5>
+      <!-- Item del acordeón -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            <h5>Total Partidos Ganados por Visitante</h5>
+          </button>
+        </h2>
+        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <h6>Numero total de partidos ganados por visitante: <span class="card-title text-black"
+                th:text="${partidosGanadosVisitante}">0</span>
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" exampleModal
+                data-bs-target="#partidosGanadosVisitante">
+                Ver partidos
+              </button>
+            </h6>
+            <!-- Modal -->
+            <div class="modal fade" id="partidosGanadosVisitante" tabindex="-1"
+              aria-labelledby="partidosGanadosVisitante" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="partidosGanadosLocalLabel">Todos los partidos que han sido ganados por
+                      equipo visitante</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>Local</th>
+                          <th>Resultado</th>
+                          <th>Visitante</th>
+                          <th>Pista</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="p : ${ganadosVisitante}">
+                          <td th:text="${p.equipoLocal != null ? p.equipoLocal.nombre : 'Sin equipo local'}">Equipo 1
+                          </td>
+                          <td class="result"><span th:text="${p.golesLocal}"></span>-<span
+                              th:text="${p.golesVisitante}"></span></td>
+                          <td
+                            th:text="${p.equipoVisitante != null ? p.equipoVisitante.nombre : 'Sin equipo visitante'}">
+                            Equipo 1</td>
+                          <td th:text="${p.pista}">Pista 1</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fin modal -->
           </div>
         </div>
       </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="partidosEmpatados" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Partidos empatados: <span
-                  th:text="${totalPartidosEmpatados}"></span></h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+      <!-- Item del acordeón -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingFour">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+            <h5>Jugadores Menores de <span class="card-title text-black" th:text="${edadParametro}">0</span> Años</h5>
+          </button>
+        </h2>
+        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+          data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <form class="form-inline my-4" th:action="@{/estadisticas}" method="get">
+              <label class="sr-only" for="edadParametro">Edad</label>
+              <div class="inputForm">
+                <input type="number" class="form-control mb-2 mr-sm-2" id="edadParametro" name="edadParametro"
+                  placeholder="Edad" min="0" />
+                <button type="submit" class="btn btn-primary mb-2">
+                  Enviar
+                </button>
+              </div>
+            </form>
+            <h6>Jugadores menores de <span class="card-title text-black" th:text="${edadParametro}">0</span> años
+              <button type="button" class="btn btn-warning" data-bs-toggle="modal" exampleModal
+                data-bs-target="#jugadoresMenoresDeEdad">
+                Ver jugadores
               </button>
+            </h6>
+            <!-- Modal -->
+            <div class="modal fade" id="jugadoresMenoresDeEdad" tabindex="-1" aria-labelledby="jugadoresMenoresDeEdad"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="jugadoresMenoresDeEdadLabel">todos los jugadores menores de X edad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <table class="table table-hover table-striped">
+                      <thead>
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">DNI</th>
+                          <th scope="col">Nombre</th>
+                          <th scope="col">Edad</th>
+                          <th scope="col">Equipo</th>
+                          <th scope="col">Portero</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="jugador : ${jugadoresMenoresDeEdadE}">
+                          <td>#</td>
+                          <td th:text="${jugador.dni}">1234567A</td>
+                          <td th:text="${jugador.nombre}">Mario</td>
+                          <td th:text="${jugador.edad}">18</td>
+                          <td th:text="${jugador.equipo?.nombre}">Jaimitos</td>
+                          <td th:if="${jugador.portero==true}">SI</td>
+                          <td th:if="${jugador.portero!=true}">NO</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="modal-footer"></div>
+                </div>
+              </div>
             </div>
-            <div class="modal-body">
-              <table class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Local</th>
-                    <th>Resultado</th>
-                    <th>Visitante</th>
-                    <th>Pista</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="p : ${partidosEmpatados}">
-                    <td th:text="${p.equipoLocal != null ? p.equipoLocal.nombre : 'Sin equipo local'}">Equipo 1</td>
-                    <td class="result"><span th:text="${p.golesLocal}"></span>-<span
-                        th:text="${p.golesVisitante}"></span></td>
-                    <td th:text="${p.equipoVisitante != null ? p.equipoVisitante.nombre : 'Sin equipo visitante'}">
-                      Equipo 1</td>
-                    <td th:text="${p.pista}">Pista 1</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- SIGUIENTE APARTADO -->
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header bg-primary text-white">Partidos Ganados E.Local <button type="button"
-              class="btn btn-warning botonModal" data-toggle="modal" data-target="#partidosGanadosLocal">
-              VER
-            </button></div>
-          <div class="card-body ">
-            <h5 class="card-title text-black" th:text="${partidosGanadosLocal}">0</h5>
+            <!-- Fin modal -->
           </div>
         </div>
       </div>
-      <!-- Modal -->
-      <div class="modal fade" id="partidosGanadosLocal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Partidos ganados locales:</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Local</th>
-                    <th>Resultado</th>
-                    <th>Visitante</th>
-                    <th>Pista</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="p : ${ganadosLocal}">
-                    <td th:text="${p.equipoLocal != null ? p.equipoLocal.nombre : 'Sin equipo local'}">Equipo 1</td>
-                    <td class="result"><span th:text="${p.golesLocal}"></span>-<span
-                        th:text="${p.golesVisitante}"></span></td>
-                    <td th:text="${p.equipoVisitante != null ? p.equipoVisitante.nombre : 'Sin equipo visitante'}">
-                      Equipo 1</td>
-                    <td th:text="${p.pista}">Pista 1</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
-      <!-- SIGUIENTE APARTADO -->
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header bg-primary text-white">Partidos Ganados E.Visitante <button type="button"
-              class="btn btn-warning botonModal" data-toggle="modal" data-target="#partidosGanadosVisitante">
-              VER
-            </button></div>
-          <div class="card-body ">
-            <h5 class="card-title text-black" th:text="${partidosGanadosVisitante}">0</h5>
-          </div>
-        </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade" id="partidosGanadosVisitante" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Partidos ganados Visitantes:</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Local</th>
-                    <th>Resultado</th>
-                    <th>Visitante</th>
-                    <th>Pista</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="p : ${ganadosVisitante}">
-                    <td th:text="${p.equipoLocal != null ? p.equipoLocal.nombre : 'Sin equipo local'}">Equipo 1</td>
-                    <td class="result"><span th:text="${p.golesLocal}"></span>-<span
-                        th:text="${p.golesVisitante}"></span></td>
-                    <td th:text="${p.equipoVisitante != null ? p.equipoVisitante.nombre : 'Sin equipo visitante'}">
-                      Equipo 1</td>
-                    <td th:text="${p.pista}">Pista 1</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- SIGUIENTE APARTADO -->
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header bg-primary text-white">
-            Jugadores con menos de
-            <span th:text="${edadParametro}">0</span> años
-            <button type="button" class="btn btn-warning botonModal" data-toggle="modal"
-              data-target="#jugadoresMenores">
-              VER
-            </button>
-          </div>
-          <div class="card-body">
-            <h5 class="card-title text-black" th:text="${jugadoresMenoresDeEdad}">0</h5>
-          </div>
-        </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade" id="jugadoresMenores" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Jugadores con menos de <span
-                  th:text="${edadParametro}">0</span> años:</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table table-hover table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">DNI</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Edad</th>
-                    <th scope="col">Equipo</th>
-                    <th scope="col">Portero</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="jugador : ${jugadoresMenoresDeEdadE}">
-                    <td>#</td>
-                    <td th:text="${jugador.dni}">1234567A</td>
-                    <td th:text="${jugador.nombre}">Mario</td>
-                    <td th:text="${jugador.edad}">18</td>
-                    <td th:text="${jugador.equipo?.nombre}">Jaimitos</td>
-                    <td th:if="${jugador.portero==true}">SI</td>
-                    <td th:if="${jugador.portero!=true}">NO</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SIGUIENTE APARTADO -->
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header bg-primary text-white">Numero Equi. por Categoria<button type="button"
-              class="btn btn-warning botonModal" data-toggle="modal" data-target="#equiposCategoria">
-              VER</button></div>
-          <div class="card-body">
-            <h5 class="card-title text-black" th:text="${equiposPorCategoria}">0</h5>
-          </div>
-        </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade custom-modal-width" id="equiposCategoria" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Equipos Incritos: <span
-                  th:text="${equiposPorCategoria}"></span>
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="container mt-5">
-              <table class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Categoria</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="equipo:${equiposPorCategoriaE}">
-                    <td th:text="${equipo.id}">1</td>
-                    <td th:text="${equipo.nombre}">Equipo 1</td>
-                    <td th:text="${equipo.categoria?.nombre}">Equipo 1</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SIGUIENTE APARTADO -->
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <div class="card-header bg-primary text-white">Categorías con más de 5 Equipos <button type="button"
-              class="btn btn-warning botonModal" data-toggle="modal" data-target="#categoriaCinco">
-              VER</button></div>
-          <div class="card-body">
-            <h5 class="card-title text-black" th:text="${categoriasConMasDeCincoEquipos}">
-              0
-            </h5>
-          </div>
-        </div>
-      </div>
-      <!-- Modal -->
-      <div class="modal fade custom-modal-width" id="categoriaCinco" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Categorias con más de 5 equipos: <span
-                  th:text="${categoriasConMasDeCincoEquipos}"></span>
-              </h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="container mt-5">
-              <table class="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>¿Activa?</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr th:each="c:${categoriasConMasDeCincoEquiposE}">
-                    <td th:text="${c.id}">1</td>
-                    <td th:text="${c.nombre}">Categoria 1</td>
-                    <td th:text="${c.activa}">Activo</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
 </body>
 

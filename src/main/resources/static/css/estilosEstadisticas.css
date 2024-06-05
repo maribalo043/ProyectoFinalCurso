@@ -5,3 +5,27 @@ input, select {
 .botonModal{
     margin-left: 15px;
 }
+.custom-modal-width {
+    width: auto;
+    max-width: 80%;
+  }
+.navbar{
+    padding: 10px;
+}
+h6 .btn{
+    margin-left: 2ch;
+}
+.navbar-collapse{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.inputForm{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.inputForm button{
+    margin-left: 10px;
+}

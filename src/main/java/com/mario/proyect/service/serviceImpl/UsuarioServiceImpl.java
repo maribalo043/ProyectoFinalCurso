@@ -165,7 +165,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         Optional<Usuario> usuarioOptional = usuarioDao.findById(user.getUsuario());
         if (!usuarioOptional.isPresent()) { 
-            user.setRol(rolDao.findById((long) 1).get());
+            user.setRol(rolDao.findById((long) 3).get());
             user.setPassword(encriptador.encode(user.getPassword()));
             usuarioDao.save(user);
         } else {

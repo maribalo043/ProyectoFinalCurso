@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-red fixed-top" th:fragment="menuSuperior">
     <a class="navbar-brand" th:href="@{/}">
-        <img th:src="@{/static/img/EscudoPatinalon.png}" width="30" height="30" class="d-inline-block align-top imgNavBar" alt="Escudo">
-        CD Patinalon
+        <img th:src="@{/static/img/EscudoPatinalon.png}" width="30" height="30"
+            class="d-inline-block align-top imgNavBar" alt="Escudo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,8 +21,9 @@
             <li class="nav-item">
                 <a class="nav-link iconoNavegacion" th:href="@{/links}">Enlaces</a>
             </li>
-            <li class="nav-item dropdown" id="dropdownMenu" sec:authorize="hasAuthority('ADMIN') || hasAuthority('AUTORIZADO')">
-                <a class="nav-link iconoNavegacion" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            <li class="nav-item dropdown" id="dropdownMenu"
+                sec:authorize="hasAuthority('ADMIN') || hasAuthority('AUTORIZADO')">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Admin:
                 </a>
@@ -31,9 +32,10 @@
                     <a class="nav-link navbar-light" th:href="@{/equipos}">Equipos</a>
                     <a class="nav-link navbar-light" th:href="@{/categorias}">Categorias</a>
                     <a class="nav-link navbar-light" th:href="@{/partidos}">Partidos</a>
-                    <a class="nav-link navbar-light" th:href="@{/usuarios}" sec:authorize="hasAuthority('ADMIN')">Usuarios</a>
+                    <a class="nav-link navbar-light" th:href="@{/usuarios}"
+                        sec:authorize="hasAuthority('ADMIN')">Usuarios</a>
                     <a class="nav-link navbar-light" th:href="@{/estadisticas}">Estadisticas</a>
-                </div> 
+                </div>
             </li>
         </ul>
         <ul class="navbar-nav">

@@ -20,7 +20,7 @@ main.container{
 
 .titulo{
     color: white;
-    font-size: 7.5vh;
+    font-size: 5vh;
 }
 
 .listaBotones {
@@ -32,42 +32,14 @@ main.container{
 
 .listaBotones .btn {
     position: relative;
-    padding-left: 40px;
     font-size: xx-large;
 }
 
 .listaBotones .btn {
     position: relative;
-    padding-left: 30px;
-    font-size: xx-large;
+    font-size: 20px;
     margin-bottom: 1vw;
-}
-
-.listaBotones .btn::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: black;
-    margin-right: 10px;
-    margin-left: 10px;
-}
-
-.listaBotones .btn:nth-child(1),
-.listaBotones .btn:nth-child(2) {
-    background-color: rgb(242, 61, 61);
-    border: 5px solid black;
-    border-radius: 50px;
-}
-
-.listaBotones .btn:nth-child(3) {
-    background-color: rgb(60, 146, 246);
-    border: 5px solid black;
-    border-radius: 50px;
+    border-radius: 2.5px;
 }
 
 .footer {
