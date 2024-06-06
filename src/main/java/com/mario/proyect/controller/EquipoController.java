@@ -42,13 +42,12 @@ public class EquipoController {
     }
 
     @PostMapping("/equipo/save")
-    public ModelAndView saveEquipo(@ModelAttribute @Valid Equipo equipo, BindingResult bindingResult) {
+    public ModelAndView saveEquipo(@ModelAttribute("equipoNuevo") @Valid Equipo equipo, BindingResult bindingResult) {
         return equipoService.saveEquipo(equipo, bindingResult);
     }
 
     @GetMapping("equipo/edit/{id}")
     public ModelAndView editEquipo(@PathVariable long id) {
-
         return equipoService.editEquipo(id);
     }
 
@@ -58,7 +57,7 @@ public class EquipoController {
     }
 
     @PostMapping("/equipoTorneo/save")
-    public ModelAndView saveEquipoTorneo(@ModelAttribute @Valid Equipo equipo, BindingResult bindingResult) {
+    public ModelAndView saveEquipoTorneo(@ModelAttribute("equipoNuevo") @Valid Equipo equipo, BindingResult bindingResult) {
         return equipoService.saveEquipoTorneo(equipo, bindingResult);
     }
 

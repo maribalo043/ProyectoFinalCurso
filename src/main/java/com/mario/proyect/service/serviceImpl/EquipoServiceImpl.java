@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Equipo;
@@ -15,13 +16,17 @@ import com.mario.proyect.repository.EquipoDAO;
 import com.mario.proyect.repository.PartidoDAO;
 import com.mario.proyect.service.EquipoService;
 
+import jakarta.validation.Valid;
+
 @Service
 public class EquipoServiceImpl implements EquipoService {
 
     @Autowired
     private EquipoDAO equipoDao;
+    
     @Autowired
     private CategoriaDAO categoriaDao;
+    
     @Autowired
     private PartidoDAO partidoDao;
 
@@ -29,10 +34,8 @@ public class EquipoServiceImpl implements EquipoService {
     public ModelAndView getEquipos(String filtro) {
         ModelAndView model = new ModelAndView();
         model.setViewName("equipoHTML/equipos");
-        if (filtro != null) {
-            if (filtro.equals("categorias")) {
-                model.addObject("equipos", equipoDao.findAllByCategoria());
-            }
+        if (filtro != null && filtro.equals("categorias")) {
+            model.addObject("equipos", equipoDao.findAllByCategoria());
         } else {
             model.addObject("equipos", equipoDao.findAll());
         }
@@ -42,10 +45,12 @@ public class EquipoServiceImpl implements EquipoService {
     @Override
     public ModelAndView getEquipo(long id) {
         ModelAndView model = new ModelAndView();
-        Equipo equipo = equipoDao.findById(id).get();
-        if (equipoDao.findById(id).isPresent()) {
-            model.addObject("equipo", equipoDao.findById(id).get());
-            model.addObject("partidos", partidoDao.obtenerPartidosPorEquipo(id));
+        Optional<Equipo> equipoOptional = equipoDao.findById(id);
+        if (equipoOptional.isPresent()) {
+            Equipo equipo = equipoOptional.get();
+            List<Partido> partidosAsociados = partidoDao.findByEquipoLocalOrEquipoVisitante(equipo, equipo);
+            model.addObject("equipo", equipo);
+            model.addObject("partidos", partidosAsociados);
             model.addObject("partidoNuevo", new Partido());
             model.addObject("equipos", equipo.obtenerEquiposNoEnlazadosConId(equipoDao, partidoDao));
             model.setViewName("equipoHTML/equipo");
@@ -58,58 +63,46 @@ public class EquipoServiceImpl implements EquipoService {
     @Override
     public ModelAndView deleteEquipo(long id) {
         ModelAndView model = new ModelAndView();
-
         Optional<Equipo> equipoOptional = equipoDao.findById(id);
-
         if (equipoOptional.isPresent()) {
             Equipo equipo = equipoOptional.get();
-
             List<Partido> partidosAsociados = partidoDao.findByEquipoLocalOrEquipoVisitante(equipo, equipo);
             partidoDao.deleteAll(partidosAsociados);
-
             equipoDao.deleteById(id);
         }
-
         model.setViewName("redirect:/equipos");
         return model;
     }
 
     @Override
     public ModelAndView addEquipo() {
-
         ModelAndView model = new ModelAndView();
         model.addObject("equipoNuevo", new Equipo());
         model.addObject("categorias", categoriaDao.categoriasActive());
         model.setViewName("equipoHTML/equipoForm");
-
         return model;
     }
 
     @Override
-    public ModelAndView saveEquipo(Equipo equipo, BindingResult bindingResult) {
+    public ModelAndView saveEquipo(@Valid @ModelAttribute Equipo equipo, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
-
         if (bindingResult.hasErrors()) {
             model.addObject("equipoNuevo", equipo);
             model.addObject("categorias", categoriaDao.categoriasActive());
             model.setViewName("equipoHTML/equipoForm");
             return model;
         }
-
         model.setViewName("redirect:/equipos");
         equipoDao.save(equipo);
-
-        model.addObject("equipos", equipoDao.findAll());
         return model;
     }
 
     @Override
     public ModelAndView editEquipo(long id) {
-        
         ModelAndView model = new ModelAndView();
-        Optional<Equipo> equipo = equipoDao.findById(id);
-        if (equipo.isPresent()) {
-            model.addObject("equipoNuevo", equipo.get());
+        Optional<Equipo> equipoOptional = equipoDao.findById(id);
+        if (equipoOptional.isPresent()) {
+            model.addObject("equipoNuevo", equipoOptional.get());
             model.addObject("categorias", categoriaDao.categoriasActive());
         }
         model.setViewName("equipoHTML/equipoForm");
@@ -118,20 +111,16 @@ public class EquipoServiceImpl implements EquipoService {
 
     @Override
     public ModelAndView addEquipoTorneo() {
-
         ModelAndView model = new ModelAndView();
         model.addObject("equipoNuevo", new Equipo());
         model.addObject("categorias", categoriaDao.categoriasActive());
         model.setViewName("torneoHTML/inscripcionEquipo");
-
         return model;
-
     }
 
     @Override
     public ModelAndView saveEquipoTorneo(Equipo equipo, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
-
         if (bindingResult.hasErrors()) {
             model.addObject("equipoNuevo", equipo);
             model.addObject("categorias", categoriaDao.categoriasActive());
@@ -140,7 +129,6 @@ public class EquipoServiceImpl implements EquipoService {
         }
         equipoDao.save(equipo);
         model.setViewName("redirect:/equipo/jugador/" + equipo.getId());
-        
         return model;
     }
 

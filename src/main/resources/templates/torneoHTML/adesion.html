@@ -14,18 +14,32 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-		rel="stylesheet">
+		rel="stylesheet">.
+	<!-- Estilos Barra inferior -->
+	<link rel="stylesheet" href="../../static/css/style.css">
+	<link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
 </head>
+
 <body>
-	<header>
+	<header class="mb-5">
 		<div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
 	</header>
 
-	<div class="card" style="width: 18rem;">
-		<h1>El equipo ha sido añadido correctamente</h1>
-		<h3>Le hemos enviado un correo con mas información al mail del equipo</h3>
-        <a th:href="@{~/}">Volver al inicio</a>
+	<div class="container mt-5 mb-5">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card">
+					<div class="card-body justify-content-center">
+						<h1 class="card-title">El equipo ha sido añadido correctamente</h1>
+						<h3 class="card-text">Le hemos enviado un correo con más información al mail del equipo</h3>
+						<a th:href="@{~/}" class="btn btn-primary">Volver al inicio</a>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+
+	<footer th:replace="~{MenuInferior :: menuInferior}" class="footer mt-5"></footer>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

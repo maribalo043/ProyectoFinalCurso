@@ -132,8 +132,7 @@ public class JugadorServiceImpl implements JugadorService{
 
         if (bindingResult.hasErrors()) {
             model.addObject("jugadorNuevo", jugadorNuevo);
-            model.addObject("equipos", equipoDao.findAll());
-            model.addObject("equipo", jugadorNuevo.getEquipo().getId());
+            model.addObject("equipo", jugadorNuevo.getEquipo());
             model.setViewName("torneoHTML/inscripcionJugadores");
             return model;
         }

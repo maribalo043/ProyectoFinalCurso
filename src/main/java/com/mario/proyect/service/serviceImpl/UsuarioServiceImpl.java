@@ -174,7 +174,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             return modelAndView;
         }
 
-        modelAndView.addObject("message", "User has been registered successfully");
+        modelAndView.addObject("message", "El usuario se ha registrado correctamente");
         modelAndView.setViewName("generalHTML/login");
         return modelAndView;
     }

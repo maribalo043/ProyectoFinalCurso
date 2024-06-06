@@ -1,130 +1,78 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Formulario de Equipos</title>
-  <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
-  <!-- Cosas Barra de navegación -->
-  <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-    rel="stylesheet">
-  <!-- Estilos Barra inferior -->
-  <link rel="stylesheet" href="../../static/css/style.css">
-  <link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Formulario de Equipos</title>
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
 </head>
 <body>
-  <header>
-    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
-  </header>
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-        <h2>¡Bienvenid@ al Torneo 3x3 Sara Roces!</h2>
-        <h3 class="text-center mb-4">Formulario de Equipo</h3>
-        <form th:action="@{~/equipoTorneo/save}" method="post" th:object="${equipoNuevo}">
-        <div class="form-group">
-          <label for="id" hidden>ID</label>
-          <input type="text" class="form-control" id="id" placeholder="ID" required th:field="*{id}" readonly hidden>
+    <header>
+        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2>¡Bienvenid@ al Torneo 3x3 Sara Roces!</h2>
+                <h3 class="text-center mb-4">Formulario de Equipo</h3>
+                <form th:action="@{/equipoTorneo/save}" method="post" th:object="${equipoNuevo}">
+                    <div class="form-group">
+                        <label for="id" hidden>ID</label>
+                        <input type="text" class="form-control" id="id" placeholder="ID" th:field="*{id}" readonly hidden>
 
-          <label for="nombreEquipo">Nombre del Equipo:</label>
-          <input type="text" class="form-control" id="nombreEquipo" placeholder="Ingrese el nombre del equipo" required th:field="*{nombre}">
-          <p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="btn btn-danger">
-              Error en el nombre del equipo
-          </p>
-        </div>
+                        <label for="nombreEquipo">Nombre del Equipo:</label>
+                        <input type="text" class="form-control" id="nombreEquipo" placeholder="Ingrese el nombre del equipo" th:field="*{nombre}">
+                        <div th:if="${#fields.hasErrors('nombre')}" class="text-danger" th:errors="*{nombre}">Error en el nombre del equipo</div>
+                    </div>
 
-        <div class="form-group">
-          <label for="emailContacto">Dirección de Correo Electrónico:</label>
-          <input type="email" class="form-control" id="emailContacto" placeholder="Ingrese el email de contacto" required th:field="*{emailContacto}">
-          <p th:if="${#fields.hasErrors('emailContacto')}" th:errors="*{emailContacto}" class="btn btn-danger">
-              Error en el correo electrónico
-          </p>
-        </div>
+                    <div class="form-group">
+                        <label for="emailContacto">Dirección de Correo Electrónico:</label>
+                        <input type="email" class="form-control" id="emailContacto" placeholder="Ingrese el email de contacto" th:field="*{emailContacto}">
+                        <div th:if="${#fields.hasErrors('emailContacto')}" class="text-danger" th:errors="*{emailContacto}">Error en el correo electrónico</div>
+                    </div>
 
-        <div class="form-group">
-          <label for="numeroTelefonoContacto">Número de Teléfono:</label>
-          <input type="text" class="form-control" id="numeroTelefonoContacto" placeholder="Ingrese el número de teléfono" required th:field="*{numeroTelefonoContacto}">
-          <p th:if="${#fields.hasErrors('numeroTelefonoContacto')}" th:errors="*{numeroTelefonoContacto}" class="btn btn-danger">
-              Error en el número de teléfono
-          </p>
-        </div>
+                    <div class="form-group">
+                        <label for="numeroTelefonoContacto">Número de Teléfono:</label>
+                        <input type="text" class="form-control" id="numeroTelefonoContacto" placeholder="Ingrese el número de teléfono" th:field="*{numeroTelefonoContacto}">
+                        <div th:if="${#fields.hasErrors('numeroTelefonoContacto')}" class="text-danger" th:errors="*{numeroTelefonoContacto}">Error en el número de teléfono</div>
+                    </div>
 
-        <div class="form-group" hidden>
-          <label for="puntos">Puntos:</label>
-          <input type="number" class="form-control" id="puntos" placeholder="Ingrese la cantidad de puntos" required th:field="*{puntos}" value="0">
-          <p th:if="${#fields.hasErrors('puntos')}" th:errors="*{puntos}" class="btn btn-danger">
-              Error en la cantidad de puntos
-          </p>
-        </div>
+                    <!-- Campos ocultos -->
+                    <input type="hidden" th:field="*{puntos}" value="0">
+                    <input type="hidden" th:field="*{golesFavor}" value="0">
+                    <input type="hidden" th:field="*{golesContra}" value="0">
+                    <input type="hidden" th:field="*{partidosGanados}" value="0">
+                    <input type="hidden" th:field="*{partidosPerdidos}" value="0">
+                    <input type="hidden" th:field="*{partidosEmpatados}" value="0">
 
-        <div class="form-group" hidden>
-          <label for="golesFavor">Goles a Favor:</label>
-          <input type="number" class="form-control" id="golesFavor" placeholder="Ingrese la cantidad de goles a favor" required th:field="*{golesFavor}" value="0">
-          <p th:if="${#fields.hasErrors('golesFavor')}" th:errors="*{golesFavor}" class="btn btn-danger">
-              Error en la cantidad de goles a favor
-          </p>
-        </div>
+                    <div class="form-group">
+                        <label for="categoria">Categoría:</label>
+                        <select class="form-control" id="categoria" th:field="*{categoria}" required>
+                            <option th:each="categoriaItem : ${categorias}" th:value="${categoriaItem.id}" th:text="${categoriaItem.nombre}"></option>
+                        </select>
+                        <div th:if="${#fields.hasErrors('categoria')}" class="text-danger" th:errors="*{categoria}">Error en la categoría</div>
+                    </div>
 
-        <div class="form-group" hidden>
-          <label for="golesContra">Goles en Contra:</label>
-          <input type="number" class="form-control" id="golesContra" placeholder="Ingrese la cantidad de goles en contra" required th:field="*{golesContra}" value="0">
-          <p th:if="${#fields.hasErrors('golesContra')}" th:errors="*{golesContra}" class="btn btn-danger">
-              Error en la cantidad de goles en contra
-          </p>
+                    <div class="infoTorneo">
+                        <h3 class="btn btn-danger">Importante</h3>
+                        <p>Al inscribir un equipo con jugadores al torneo, aceptas nuestra política de privacidad y el manual de usuario del torneo. ¡Muchas gracias!</p>
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Añadir Equipo">
+                </form>
+            </div>
         </div>
-
-        <div class="form-group" hidden>
-          <label for="partidosGanados">Partidos Ganados:</label>
-          <input type="number" class="form-control" id="partidosGanados" placeholder="Ingrese la cantidad de partidos ganados" required th:field="*{partidosGanados}" value="0">
-          <p th:if="${#fields.hasErrors('partidosGanados')}" th:errors="*{partidosGanados}" class="btn btn-danger">
-              Error en la cantidad de partidos ganados
-          </p>
-        </div>
-
-        <div class="form-group" hidden>
-          <label for="partidosPerdidos">Partidos Perdidos:</label>
-          <input type="number" class="form-control" id="partidosPerdidos" placeholder="Ingrese la cantidad de partidos perdidos" required th:field="*{partidosPerdidos}" value="0">
-          <p th:if="${#fields.hasErrors('partidosPerdidos')}" th:errors="*{partidosPerdidos}" class="btn btn-danger">
-              Error en la cantidad de partidos perdidos
-          </p>
-        </div>
-
-        <div class="form-group" hidden>
-          <label for="partidosEmpatados">Partidos Empatados:</label>
-          <input type="number" class="form-control" id="partidosEmpatados" placeholder="Ingrese la cantidad de partidos empatados" required th:field="*{partidosEmpatados}" value="0">
-          <p th:if="${#fields.hasErrors('partidosEmpatados')}" th:errors="*{partidosEmpatados}" class="btn btn-danger">
-              Error en la cantidad de partidos empatados
-          </p>
-        </div>
-
-        <div class="form-group">
-          <label for="categoria">Categoría:</label>
-          <select class="form-control" id="categoria" th:field="*{categoria}" required>
-              <option th:each="categoriaItem : ${categorias}" th:value="${categoriaItem.id}" th:text="${categoriaItem.nombre}"></option>
-          </select>
-          <p th:if="${#fields.hasErrors('categoria')}" th:errors="*{categoria}" class="btn btn-danger">
-              Error en la categoría
-          </p>
-        </div>
-        <div class="infoTorneo">
-          <h3 class="btn btn-danger">Importante</h3>
-          <p>Al incribir aun equipo con jugadores al torneo, aceptas nuestra politica de privacidad, manual de usuario del torneo, muchas gracias</p>
-        </div>
-        <input type="submit" class="btn btn-primary" value="Añadir Equipo">
-      </form>
     </div>
-  </div>
-</div>
     <footer th:replace="~{MenuInferior :: menuInferior}" class="footer"></footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
 </body>
 </html>
