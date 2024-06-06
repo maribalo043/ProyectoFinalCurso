@@ -49,10 +49,10 @@
 						<td th:text="${c.password}">1</td>
 						<td th:text="${c.rol.nombre}">rol 1</td>
 						<td><a class="circular-button edit-button text-decoration-none" title="Edita"
-								th:href="@{~/usuario/{nombre}(nombre=${c.usuario})}">👁️</a></td>
+								th:href="@{~/usuario/{nombre}(nombre=${c.email})}">👁️</a></td>
 						<td sec:authorize="hasAuthority('ADMIN')"><a
 								class="circular-button delete-button text-decoration-none" title="Eliminar"
-								th:href="@{~/usuario/del/{nombre}(nombre=${c.usuario})}"
+								th:href="@{~/usuario/del/{nombre}(nombre=${c.email})}"
 								sec:authorize="hasAuthority('ADMIN')">❌</a>
 						</td>
 					</tr>

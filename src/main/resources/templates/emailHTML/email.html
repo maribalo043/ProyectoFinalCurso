@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Correo Electrónico</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+            color: #333;
+        }
+        .titulo {
+            color: red;
+            font-weight: bold;
+        }
+        .equipo-info, .jugadores-info {
+            margin-top: 2rem;
+        }
+        .jugadores-info .card {
+            border: 1px solid #ddd;
+        }
+        .jugadores-info .card-body {
+            padding: 1rem;
+        }
+        .jugadores-info .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .jugadores-info .card-text {
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Título con imagen -->
+        <div class="row align-items-center mt-4">
+            <div class="col-md-8">
+                <h1 class="titulo">Inscripción en el Torneo 3x3 Sara Roces</h1>
+            </div>
+        </div>
+        <!-- Información del equipo -->
+        <div class="equipo-info">
+            <h2>Datos del Equipo</h2>
+            <p>Nombre: <span th:text="${equipo?.nombre}"></span></p>
+            <p>Email de Contacto: <span th:text="${equipo?.emailContacto}"></span></p>
+            <p>Teléfono de Contacto: <span th:text="${equipo?.numeroTelefonoContacto}"></span></p>
+            <p>Categoría: <span th:text="${equipo?.categoria.nombre}"></span></p>
+        </div>
+
+        <!-- Información de los jugadores -->
+        <div class="jugadores-info">
+            <h2>Jugadores</h2>
+            <div class="row" th:each="jugador : ${equipo?.jugadores}">
+                <div class="col-md-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${jugador?.nombre}"></h5>
+                            <p class="card-text">DNI: <span th:text="${jugador?.dni}"></span></p>
+                            <p class="card-text">Número de Seguro: <span th:text="${jugador?.numeroSeguro}"></span></p>
+                            <p class="card-text">Talla de Camiseta: <span th:text="${jugador?.tallaCamiseta}"></span></p>
+                            <p class="card-text">Portero: <span th:text="${jugador?.portero ? 'Sí' : 'No'}"></span></p>
+                            <p class="card-text">Edad: <span th:text="${jugador?.edad}"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

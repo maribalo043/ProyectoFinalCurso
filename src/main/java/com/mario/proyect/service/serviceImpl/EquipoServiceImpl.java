@@ -135,7 +135,7 @@ public class EquipoServiceImpl implements EquipoService {
         if (bindingResult.hasErrors()) {
             model.addObject("equipoNuevo", equipo);
             model.addObject("categorias", categoriaDao.categoriasActive());
-            model.setViewName("equipoHTML/equipoForm");
+            model.setViewName("torneoHTML/inscripcionEquipo");
             return model;
         }
         equipoDao.save(equipo);

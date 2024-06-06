@@ -4,12 +4,12 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mario.proyect.dto.MensajeDto;
 import com.mario.proyect.entity.Equipo;
 import com.mario.proyect.entity.Partido;
 import com.mario.proyect.repository.CategoriaDAO;
@@ -35,6 +35,14 @@ public class GeneralServiceImpl implements GeneralService{
     @Autowired
     private JugadorDAO jugadorDao;
 
+
+    public ModelAndView getIndex() {
+    	ModelAndView model = new ModelAndView();
+    	model.setViewName("index");
+        model.addObject("mensaje",new MensajeDto());
+        return model;
+    }
+
     public ModelAndView getTorneo() {
     	ModelAndView model = new ModelAndView();
     	model.setViewName("generalHTML/Torneo");
@@ -44,19 +52,21 @@ public class GeneralServiceImpl implements GeneralService{
     public ModelAndView getEquipos() {
     	ModelAndView model = new ModelAndView();
     	model.setViewName("generalHTML/NuestrosEquipos");
+        model.addObject("mensaje",new MensajeDto());
         return model;
     }
     
     public ModelAndView getLinks() {
     	ModelAndView model = new ModelAndView();
     	model.setViewName("generalHTML/Links");
+        model.addObject("mensaje",new MensajeDto());
         return model;
     }
 
     public ModelAndView getCategorias() {
         ModelAndView model = new ModelAndView();
         model.setViewName("/torneoHTML/SeleccionCategoria");
-
+        model.addObject("mensaje",new MensajeDto());
         model.addObject("categorias", categoriaDao.categoriasActive());
         return model;
     }
@@ -68,7 +78,7 @@ public class GeneralServiceImpl implements GeneralService{
         List<Equipo> equipos = equipoDao.findByCategoria_Nombre(cat);
 
         ordenarEquipos(equipos);
-
+        model.addObject("mensaje",new MensajeDto());
         model.setViewName("/torneoHTML/PartidosCategoria");
         if(!partidos.isEmpty()) {
         	model.addObject("partidos", partidos);
@@ -108,6 +118,15 @@ public class GeneralServiceImpl implements GeneralService{
 
         // Agregar las categorías para el formulario
         model.addObject("categorias", categoriaDao.findAll());
+
+        return model;
+    }
+
+    @Override
+    public ModelAndView envioDatosFormContacto() {
+        ModelAndView model = new ModelAndView();
+
+        MensajeDto mensaje = new MensajeDto();
 
         return model;
     }

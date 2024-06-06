@@ -30,7 +30,7 @@
         <span><strong>Rol: </strong><span th:text="${usuario.rol?.nombre}">Equipo </span></span><br>
         <div class="mt-4 d-flex justify-content-between">
           <span><a th:href="@{~/usuarios}" class="btn btn-secondary">Atrás</a></span>
-          <span><a th:href="@{~/usuario/edit/{nombre}(nombre = ${usuario.usuario})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
+          <span><a th:href="@{~/usuario/edit/{nombre}(nombre = ${usuario.email})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
         </div>
       </div>
     </div>

@@ -1,15 +1,16 @@
 package com.mario.proyect.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.mario.proyect.dto.EmailDto;
+import com.mario.proyect.dto.MensajeDto;
 import com.mario.proyect.service.EmailService;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import jakarta.mail.MessagingException;
 
 @RestController
 public class EmailController {
@@ -17,14 +18,31 @@ public class EmailController {
     @Autowired
     EmailService emailService;
 
-    @PostMapping("/enviar")
-    public ResponseEntity<String> enviarCorreo(@RequestBody EmailDto email) {
+    @GetMapping("/enviar")
+    public ModelAndView enviarCorreo(@RequestParam("id") Long id) throws MessagingException  {
         try {
-            emailService.sendMail(email);
-            return new ResponseEntity<>("Correo enviado exitosamente.", HttpStatus.OK);
+            emailService.sendMailInscripcion(id);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error al enviar el correo: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new MessagingException();
+        }
+        return new ModelAndView("redirect:/inscrito");
+    }
+
+    @PostMapping("/mailForm")
+    public ModelAndView enviarCorreoContactanos(@RequestParam String nombre, @RequestParam String correo, @RequestParam String mensaje) {
+        try {
+            MensajeDto mensajeDto = new MensajeDto();
+            mensajeDto.setNombre(nombre);
+            mensajeDto.setCorreo(correo);
+            mensajeDto.setMensaje(mensaje);
+            
+            emailService.sendMailContacto(mensajeDto);
+            
+            ModelAndView model = new ModelAndView();
+            model.setViewName("redirect:/");
+            return model;
+        } catch (Exception e) {
+            throw new RuntimeException("Error al enviar el correo de contacto: " + e.getMessage(), e);
         }
     }
-} 
-
+}

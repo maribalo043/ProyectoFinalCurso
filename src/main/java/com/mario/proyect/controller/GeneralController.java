@@ -15,6 +15,11 @@ public class GeneralController {
     @Autowired
     private GeneralService servicio;
 
+    @GetMapping("/")
+    public ModelAndView getIndex() {
+        return servicio.getIndex();
+    }
+
     @GetMapping("/torneo")
     public ModelAndView getTorneo() {
         return servicio.getTorneo();
@@ -44,5 +49,16 @@ public class GeneralController {
     public ModelAndView mostrarEstadisticas(@RequestParam(required = false, defaultValue = "18") int edadParametro, @RequestParam(required = false) Long categoriaId) {
         return servicio.mostrarEstadisticas(edadParametro, categoriaId);
     }
+    @GetMapping("/formContacto")
+    public ModelAndView envioDatosFormContacto() {
+        return servicio.envioDatosFormContacto();
+    }
+    @GetMapping("/inscrito")
+    public ModelAndView inscrito() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("torneoHTML/adesion");
+        return model;
+    }
+    
     
 }

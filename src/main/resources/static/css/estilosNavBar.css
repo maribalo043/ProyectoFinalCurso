@@ -7,7 +7,9 @@ a{
 .iconoNavegacion{
     font-size: 16px;
 }
-
+.dropdown-user{
+    margin-right: 1vh;
+}
 body {
     padding-top: 56px;
 }

@@ -117,7 +117,8 @@ public class JugadorServiceImpl implements JugadorService{
         model.addObject("equipo", equipoModificado.get());
         model.addObject("equipoItem", equipoDao.findAll());
         if (equipoModificado.get().getJugadores().size() == 4) {
-            model.setViewName("torneoHTML/adesion");
+            model.addObject("id", equipoModificado.get().getId());
+            model.setViewName("redirect:/enviar");
         } else {
             model.setViewName("torneoHTML/inscripcionJugadores");
         }
@@ -132,7 +133,8 @@ public class JugadorServiceImpl implements JugadorService{
         if (bindingResult.hasErrors()) {
             model.addObject("jugadorNuevo", jugadorNuevo);
             model.addObject("equipos", equipoDao.findAll());
-            model.setViewName("jugadorHTML/jugadoresForm");
+            model.addObject("equipo", jugadorNuevo.getEquipo().getId());
+            model.setViewName("torneoHTML/inscripcionJugadores");
             return model;
         }
         jugadorNuevo.setEquipo(jugadorNuevo.getEquipo());

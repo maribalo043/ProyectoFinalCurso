@@ -75,7 +75,7 @@
             <select class="form-control rounded bg-light" id="equipo" th:field="*{equipo}">
               <option th:text="${equipo.nombre}" th:value="${equipo.id}"></option>
             </select>
-            <p th:if="${#fields.hasErrors('equipo')}" th:errors="*{equipo}" class="btn btn-danger">
+            <p th:if="${#fields.hasErrors('equipo')}" th:errors="*{equipo.id}" class="btn btn-danger">
               Error
             </p>
           </div>

@@ -2,7 +2,7 @@
     <a class="navbar-brand" th:href="@{/}">
         <img th:src="@{/static/img/EscudoPatinalon.png}" width="30" height="30"
             class="d-inline-block align-top imgNavBar" alt="Escudo">
-    </a>
+    </a> 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
             </li>
             <li class="nav-item dropdown" id="dropdownMenu"
                 sec:authorize="hasAuthority('ADMIN') || hasAuthority('AUTORIZADO')">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link iconoNavegacion" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     Admin:
                 </a>
@@ -42,11 +42,16 @@
             <li sec:authorize="!isAuthenticated()">
                 <a class="btn btn-warning" th:href="@{/login}">Iniciar Sesión / Registrarse</a>
             </li>
-            <li sec:authorize="isAuthenticated()">
-                <span class="btn btn-success">¡Hola, <span th:text="${#authentication.name}"></span>!</span>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                <a th:href="@{/logout}" class="btn btn-info">Cerrar Sesión</a>
+            <li class="nav-item dropdown" id="dropdownMenu"></li>
+                <a class="nav-link btn btn-warning" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false" sec:authorize="isAuthenticated()">
+                    <span>¡Hola, <span th:text="${#authentication.name}"></span>!</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-user" aria-labelledby="navbarDropdown">
+                    <a class="nav-link navbar-light" th:href="@{/jugadores}">Cambio de contraseña</a>
+                    <a class="nav-link navbar-light" th:href="@{/categorias}">Ver info</a>
+                    <a class="nav-link navbar-light" th:href="@{/logout}">Cerrar Sesion</a>
+                </div>
             </li>
         </ul>
     </div>
