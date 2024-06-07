@@ -2,32 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <title>Please Log In</title>
+    <title>Inicio de sesión</title>
     <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
-    
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    
+
     <!-- Google Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!-- Icono del ojo de la contraseña -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../static/css/estilosNavBar.css">
     <link rel="stylesheet" href="../static/css/style.css" />
     <link rel="stylesheet" href="../static/css/estilosMenuInferior.css" />
 
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .container{
+        .container {
             margin-bottom: 15%;
         }
-
+        .card-header{
+            background-color: bisque;
+        }
         .login-container {
             margin-top: 100px;
         }
@@ -36,12 +38,6 @@
             width: 400px;
             margin: 0 auto;
         }
-
-        .card-header {
-            background-color: #007bff;
-            color: #fff;
-        }
-
         .card-body {
             padding: 20px;
         }
@@ -68,12 +64,25 @@
                             <div class="form-group">
                                 <input type="email" name="username" class="form-control" placeholder="Email" />
                             </div>
-                            <div class="form-group">
-                                <input type="password" name="password" class="form-control" placeholder="Password" />
+                            <div class="form-group password-container">
+                                <label for="password">Contraseña:</label>
+                                <div class="input-group">
+                                    <input type="password" name="password" id="password" class="form-control"
+                                        placeholder="Contraseña" required />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text toggle-password"
+                                            onclick="togglePasswordVisibility()">
+                                            <i id="toggleIcon" class="fa fa-eye"></i>
+                                            <script src="../../static/js/mostrarContraseña.js"></script>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">Inicie sesión</button>
-                                <a th:href="@{/register}" class="btn btn-link btn-block">¿No tienes cuenta? Regístrese aquí</a>
+                                <button type="submit" class="btn btn-warning btn-block">Inicie sesión</button>
+                                <a th:href="@{/register}" class="btn btn-link btn-block">¿No tienes cuenta? Regístrese
+                                    aquí</a>
                             </div>
                             <div th:if="${param.error}" class="alert alert-danger">Email o contraseña invalidos.</div>
                             <div th:if="${param.logout}" class="alert alert-success">Has cerrado sesión.</div>
@@ -84,7 +93,7 @@
         </div>
     </div>
     <footer th:replace="~{MenuInferior :: menuInferior}" class="footer"></footer>
-    
+
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>

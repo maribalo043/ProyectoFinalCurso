@@ -15,6 +15,8 @@ import com.mario.proyect.service.UsuarioService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UsuarioController {
@@ -82,4 +84,9 @@ public class UsuarioController {
     public ModelAndView home(HttpServletRequest request) {
         return usuarioService.home(request);
     }
+    @GetMapping("/cambioContrasenia")
+    public ModelAndView cambioContrasenia() {
+        return usuarioService.cambioContrasenia();
+    }
+    
 }

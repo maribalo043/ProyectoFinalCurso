@@ -2,7 +2,10 @@ package com.mario.proyect.service.serviceImpl;
 
 import java.util.Optional;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -163,7 +166,8 @@ public class UsuarioServiceImpl implements UsuarioService {
     public ModelAndView registrerUser(Usuario user) {
         ModelAndView modelAndView = new ModelAndView();
 
-        Optional<Usuario> usuarioOptional = usuarioDao.findById(user.getUsuario());
+        Optional<Usuario> usuarioOptional = usuarioDao.findById(user.getEmail());
+
         if (!usuarioOptional.isPresent()) { 
             user.setRol(rolDao.findById((long) 3).get());
             user.setPassword(encriptador.encode(user.getPassword()));
@@ -203,5 +207,25 @@ public class UsuarioServiceImpl implements UsuarioService {
         }
         return modelAndView;
     }
+
+    @Override
+    public ModelAndView cambioContrasenia() {
+        // Obtener el usuario autenticado
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario username = null;
+
+        //Comprueba que el usuario autenticado no sea null
+        if (authentication != null) {
+            username = (Usuario) authentication.getPrincipal();
+        }
+        ModelAndView model = new ModelAndView();
+        // Llamar al método del EmailService
+        if (username != null) {
+            model.setViewName("generalHTML/cambioContrasenia");
+            return model;
+        }
+        throw new IllegalArgumentException("El usuario no existe o no esta bien las credenciales");
+    }
+    
 
 }

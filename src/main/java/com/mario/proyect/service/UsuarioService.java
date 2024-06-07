@@ -30,9 +30,16 @@ public interface UsuarioService {
     void saveUser(Usuario user);
 
     ModelAndView login();
+
     ModelAndView loginUser(Usuario user,HttpServletRequest request);
+
     ModelAndView registrer();
+
     ModelAndView registrerUser(Usuario user);
+
     ModelAndView logout(HttpServletRequest request);
+
     ModelAndView home(HttpServletRequest request);
+
+    ModelAndView cambioContrasenia();
 }

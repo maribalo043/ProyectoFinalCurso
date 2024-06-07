@@ -39,6 +39,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- Dependencias necesarias para mandar mails -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -48,6 +49,7 @@
     		<artifactId>ognl</artifactId>
     		<version>3.2.21</version>
 		</dependency>
+        <!-- Dependencias para seguridad y validaciones -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
