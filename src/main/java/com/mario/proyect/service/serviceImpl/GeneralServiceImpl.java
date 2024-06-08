@@ -1,7 +1,11 @@
 package com.mario.proyect.service.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,22 +15,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.dto.MensajeDto;
 import com.mario.proyect.entity.Equipo;
+import com.mario.proyect.entity.Jugador;
 import com.mario.proyect.entity.Partido;
+import com.mario.proyect.entity.PartidoKey;
 import com.mario.proyect.repository.CategoriaDAO;
 import com.mario.proyect.repository.EquipoDAO;
 import com.mario.proyect.repository.JugadorDAO;
 import com.mario.proyect.repository.PartidoDAO;
 import com.mario.proyect.service.GeneralService;
 
-
-
 @Service
-public class GeneralServiceImpl implements GeneralService{
+public class GeneralServiceImpl implements GeneralService {
 
-    @Autowired 
+    @Autowired
     private CategoriaDAO categoriaDao;
 
-    @Autowired 
+    @Autowired
     private PartidoDAO partidoDao;
 
     @Autowired
@@ -35,68 +39,73 @@ public class GeneralServiceImpl implements GeneralService{
     @Autowired
     private JugadorDAO jugadorDao;
 
-
     public ModelAndView getIndex() {
-    	ModelAndView model = new ModelAndView();
-    	model.setViewName("index");
-        model.addObject("mensaje",new MensajeDto());
+        ModelAndView model = new ModelAndView();
+        model.setViewName("index");
+        model.addObject("mensaje", new MensajeDto());
         return model;
     }
 
     public ModelAndView getTorneo() {
-    	ModelAndView model = new ModelAndView();
-    	model.setViewName("generalHTML/Torneo");
+        ModelAndView model = new ModelAndView();
+        model.setViewName("generalHTML/Torneo");
         return model;
     }
-    
+
     public ModelAndView getEquipos() {
-    	ModelAndView model = new ModelAndView();
-    	model.setViewName("generalHTML/NuestrosEquipos");
-        model.addObject("mensaje",new MensajeDto());
+        ModelAndView model = new ModelAndView();
+        model.setViewName("generalHTML/NuestrosEquipos");
+        model.addObject("mensaje", new MensajeDto());
         return model;
     }
-    
+
     public ModelAndView getLinks() {
-    	ModelAndView model = new ModelAndView();
-    	model.setViewName("generalHTML/Links");
-        model.addObject("mensaje",new MensajeDto());
+        ModelAndView model = new ModelAndView();
+        model.setViewName("generalHTML/Links");
+        model.addObject("mensaje", new MensajeDto());
         return model;
     }
 
     public ModelAndView getCategorias() {
         ModelAndView model = new ModelAndView();
         model.setViewName("/torneoHTML/SeleccionCategoria");
-        model.addObject("mensaje",new MensajeDto());
+        model.addObject("mensaje", new MensajeDto());
         model.addObject("categorias", categoriaDao.categoriasActive());
         return model;
     }
 
-    
     public ModelAndView getPartidosCategoria(@PathVariable String cat) {
         ModelAndView model = new ModelAndView();
         List<Partido> partidos = partidoDao.findPartidosByCategoria(cat);
+        this.ordenarPartidosPorHora(partidos);
         List<Equipo> equipos = equipoDao.findByCategoria_Nombre(cat);
 
         ordenarEquipos(equipos);
-        model.addObject("mensaje",new MensajeDto());
+        model.addObject("mensaje", new MensajeDto());
         model.setViewName("/torneoHTML/PartidosCategoria");
-        if(!partidos.isEmpty()) {
-        	model.addObject("partidos", partidos);
+        if (!partidos.isEmpty()) {
+            model.addObject("partidos", partidos);
         }
-        if(!equipos.isEmpty()) {
-        	model.addObject("equiposCategoria", equipos);
+        if (!equipos.isEmpty()) {
+            model.addObject("equiposCategoria", equipos);
         }
-        
 
         return model;
     }
 
+    /* ordena los partidos por puntos y sino por golAverage */
     private void ordenarEquipos(List<Equipo> equipos) {
         equipos.sort(Comparator.comparing(Equipo::getPuntos)
                 .thenComparing(Equipo::getGolAverage).reversed());
     }
 
-    public ModelAndView mostrarEstadisticas(@RequestParam(required = false, defaultValue = "18") int edadParametro, @RequestParam(required = false) Long categoriaId) {
+    // Definición del método para ordenar partidos por hora
+    private void ordenarPartidosPorHora(List<Partido> partidos) {
+        partidos.sort(Comparator.comparing(Partido::getHora));
+    }
+
+    public ModelAndView mostrarEstadisticas(@RequestParam(required = false, defaultValue = "18") int edadParametro,
+            @RequestParam(required = false) Long categoriaId) {
         ModelAndView model = new ModelAndView("generalHTML/Estadisticas");
         /* Cuenta de todos los atributos */
         model.addObject("totalEquipos", equipoDao.countTotalEquipos());
@@ -130,5 +139,5 @@ public class GeneralServiceImpl implements GeneralService{
 
         return model;
     }
-    
+
 }

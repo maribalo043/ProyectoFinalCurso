@@ -15,13 +15,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
-    <style>
-        .card {
-            width: 30%;
-            margin: 0 auto;
-            margin-top: 50px;
-        }
-    </style>
+    <!-- Estilos personalizados de la tarjeta -->
+    <link rel="stylesheet" href="../../static/css/estilosVistaPartido.css">
 </head>
 
 <body>
@@ -32,8 +27,8 @@
         <div class="card-body">
             <h2 class="card-title">Detalle del Partido</h2>
             <span><strong>Equipo Local:</strong><span th:text="${partido.equipoLocal?.nombre}"></span></span><br>
-            <span><strong>Resultado:</strong>LOCAL<span th:text="${partido.golesLocal}"></span>-<span
-                    th:text="${partido.golesVisitante}"></span>VISITANTE<br>
+            <span><strong>Resultado:</strong>LOCAL <span th:text="${partido.golesLocal}"></span>-<span
+                    th:text="${partido.golesVisitante}"></span>VISITANTE <br>
                 <span><strong>Equipo Visitante:</strong><span
                         th:text="${partido.equipoVisitante?.nombre}"></span></span><br>
                 <span><strong>Pista:</strong><span th:text="${partido.pista}">pista</span></span><br>
@@ -43,14 +38,62 @@
                             th:href="@{~/partido/edit/{idLocal}/{idVisitante}(idLocal=${partido.equipoLocal?.id}, idVisitante=${partido.equipoVisitante?.id})}"
                             class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
 
-                    <span th:if="${partido.finalizado == true}"><a class="btn btn-danger ml-2">Acta del partido Cerrada</a></span>
+                    <span th:if="${partido.finalizado == true}"><a class="btn btn-danger ml-2">Acta del partido
+                            Cerrada</a></span>
                 </div>
+        </div>
+    </div>
+    <div class="equipos ">
+        <div class="col-md-6">
+            <h5>Equipo Local: <span th:text="${partido.equipoLocal?.nombre}"></h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Portero</th>
+                        <th>Goles</th>
+                        <th th:if="${!partido.finalizado}">Add gol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="jugador : ${equipoLocal}">
+                        <td th:text="${jugador.nombre}"></td>
+                        <td th:text="${jugador.portero} ? 'Sí' : 'No'"></td>
+                        <td th:text="${jugador.goles}"></td>
+                        <td th:if="${!partido.finalizado}">
+                            <a class="btn btn-primary" th:href="@{~/addGol/{idJu}/{idLo}/{idVi}(idJu=${jugador.dni},idLo=${partido.equipoLocal?.id},idVi=${partido.equipoVisitante?.id})}">+1</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h5>Equipo Visitante: <span th:text="${partido.equipoVisitante?.nombre}"></span></h5>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Portero</th>
+                        <th>Goles</th>
+                        <th th:if="${!partido.finalizado}">Add gol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="jugador : ${equipoVisitante}">
+                        <td th:text="${jugador.nombre}"></td>
+                        <td th:text="${jugador.portero} ? 'Sí' : 'No'"></td>
+                        <td th:text="${jugador.goles}"></td>
+                        <td th:if="${!partido.finalizado}">
+                            <a class="btn btn-primary" th:href="@{~/addGol/{idJu}/{idLo}/{idVi}(idJu=${jugador.dni},idLo=${partido.equipoLocal?.id},idVi=${partido.equipoVisitante?.id})}">+1</a>ç
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

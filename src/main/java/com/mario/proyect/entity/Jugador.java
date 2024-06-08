@@ -17,13 +17,14 @@ public class Jugador {
 	@Id
     @Pattern(regexp = "\\d{8}[A-Z]", message = "Dale formato de DNI, 8 números y 1 letra mayúscula")
     private String dni;
-	@Size(min = 5, max = 100, message = "Debe tener entre 5 y 100 caracteres")
+	@Size(min = 2, max = 100, message = "Debe tener entre 2 y 100 caracteres")
     private String nombre;
 	@Min(value = 10,message="El numero de seguro minimo tiene 10 números")
     private String numeroSeguro;
     private String tallaCamiseta;
     private boolean portero;
 	private int edad;
+	private int goles;
 
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_id", nullable = true)
@@ -73,9 +74,15 @@ public class Jugador {
 		this.edad = edad;
 	}
 
+	public int getGoles() {
+		return goles;
+	}
+	public void setGoles(int goles) {
+		this.goles = goles;
+	}
+
 	@Override
 	public String toString() {
-		return "Jugador [dni=" + dni + ", nombre=" + nombre + "]";
+		return "Jugador [dni=" + dni + ", nombre=" + nombre +", goles:"+ goles + "]";
 	}
-	
 }

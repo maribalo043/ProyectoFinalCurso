@@ -1,5 +1,6 @@
 package com.mario.proyect.service.serviceImpl;
 
+import java.util.Comparator;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Equipo;
+import com.mario.proyect.entity.Jugador;
 import com.mario.proyect.entity.Partido;
 import com.mario.proyect.entity.PartidoKey;
 import com.mario.proyect.repository.EquipoDAO;
@@ -44,7 +46,7 @@ public class PartidoServiceImpl implements PartidoService {
         PartidoKey partidoKey = formarPartidoKey(idLocal, idVisitante);
 
         partido = partidoDao.findById(partidoKey).get();
-
+        
         model.addObject("partido", partido);
         return model;
     }
@@ -87,7 +89,7 @@ public class PartidoServiceImpl implements PartidoService {
 
             return model;
         }
-        model.setViewName("redirect:/partidos");
+        model.setViewName("redirect:/torneo/categoria/Torneo%20Patinalon");
 
         PartidoKey partidoKey = new PartidoKey();
         partidoKey.setIdEquipoLocal(partidoNuevo.getEquipoLocal().getId());

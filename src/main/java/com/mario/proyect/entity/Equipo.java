@@ -36,7 +36,7 @@ public class Equipo {
     private String emailContacto;
 
     @Digits(integer = 9, fraction = 0, message = "Número de teléfono debe contener 9 dígitos")
-    private String numeroTelefonoContacto;
+    private int numeroTelefonoContacto;
 
     @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int puntos;
@@ -90,11 +90,11 @@ public class Equipo {
         this.emailContacto = emailContacto;
     }
 
-    public String getNumeroTelefonoContacto() {
+    public int getNumeroTelefonoContacto() {
         return numeroTelefonoContacto;
     }
 
-    public void setNumeroTelefonoContacto(String numeroTelefonoContacto) {
+    public void setNumeroTelefonoContacto(int numeroTelefonoContacto) {
         this.numeroTelefonoContacto = numeroTelefonoContacto;
     }
 

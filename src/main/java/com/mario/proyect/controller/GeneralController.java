@@ -59,6 +59,12 @@ public class GeneralController {
         model.setViewName("torneoHTML/adesion");
         return model;
     }
+
+    @GetMapping("/addGol/{idJu}/{idLo}/{idVi}")
+    public ModelAndView getMethodName(@PathVariable String idJu, @PathVariable long idLo, @PathVariable long idVi) {
+        return servicio.addGol(idJu,idLo,idVi);
+    }
+    
     
     
 }

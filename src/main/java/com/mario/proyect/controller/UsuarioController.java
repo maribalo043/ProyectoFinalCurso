@@ -13,10 +13,7 @@ import com.mario.proyect.entity.Usuario;
 import com.mario.proyect.service.UsuarioService;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class UsuarioController {

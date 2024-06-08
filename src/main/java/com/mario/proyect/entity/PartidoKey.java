@@ -9,6 +9,7 @@ public class PartidoKey {
 
     private long idEquipoLocal;
     private long idEquipoVisitante;
+
 	public long getIdEquipoLocal() {
 		return idEquipoLocal;
 	}

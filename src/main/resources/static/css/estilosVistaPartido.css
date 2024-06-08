@@ -1,0 +1,23 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.equipos{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 2vh;
+    width: 80%;
+}
+.equipos .col-md-6{
+    width: 25%;
+}
+.card{
+    width: 30%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
