@@ -9,14 +9,39 @@
 <body>
     <div class="container">
         <h2>Cambio de Contraseña</h2>
-        <form th:action="@{~/guardarModificacionUser}" method="post" id="passwordChangeForm" th:object="${user}">
+        
+        <form th:action="@{/guardarModificacionUser}" method="post" id="passwordChangeForm" th:object="${user}">
             <div class="form-group">
                 <label for="password">Nueva Contraseña:</label>
-                <input type="password" class="form-control" id="password" name="password" required th:field="*{password}">
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" name="password" required th:field="*{password}">
+                    <div class="input-group-append">
+                        <span class="input-group-text toggle-password"
+                            onclick="togglePasswordVisibility()">
+                            <i id="toggleIcon" class="fa fa-eye"></i>
+                            <script src="../../static/js/mostrarContraseña.js"></script>
+                        </span>
+                    </div>
+                </div>
+                <div th:if="${#fields.hasErrors('password')}" class="alert alert-danger" role="alert">
+                    <span th:errors="*{password}">La contraseña es inválida.</span>
+                </div>
             </div>
             <div class="form-group">
                 <label for="confirmPassword">Repetir Contraseña:</label>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required/>
+                    <div class="input-group-append">
+                        <span class="input-group-text toggle-password"
+                            onclick="togglePasswordVisibility()">
+                            <i id="toggleIcon" class="fa fa-eye"></i>
+                            <script src="../../static/js/mostrarContraseña.js"></script>
+                        </span>
+                    </div>
+                </div>
+                <div id="confirmPasswordError" class="alert alert-danger" role="alert" style="display: none;">
+                    Las contraseñas no coinciden.
+                </div>
             </div>
             <button type="submit" class="btn btn-primary" id="submitButton" disabled>Cambiar Contraseña</button>
         </form>
@@ -27,6 +52,7 @@
         const passwordField = document.getElementById('password');
         const confirmPasswordField = document.getElementById('confirmPassword');
         const submitButton = document.getElementById('submitButton');
+        const confirmPasswordError = document.getElementById('confirmPasswordError');
 
         // Función para verificar si las contraseñas coinciden y habilitar o deshabilitar el botón de enviar
         function checkPasswords() {
@@ -35,8 +61,14 @@
 
             if (password === confirmPassword && password.length > 0) {
                 submitButton.disabled = false;
+                confirmPasswordError.style.display = 'none';
             } else {
                 submitButton.disabled = true;
+                if (confirmPassword.length > 0) {
+                    confirmPasswordError.style.display = 'block';
+                } else {
+                    confirmPasswordError.style.display = 'none';
+                }
             }
         }
 

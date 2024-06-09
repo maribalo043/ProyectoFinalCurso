@@ -35,7 +35,7 @@ public interface UsuarioService {
 
     ModelAndView registrer();
 
-    ModelAndView registrerUser(Usuario user);
+    ModelAndView registrerUser(Usuario user, BindingResult bindingResult);
 
     ModelAndView logout(HttpServletRequest request);
 
@@ -45,5 +45,5 @@ public interface UsuarioService {
 
     ModelAndView formCambioContrasenia();
 
-    ModelAndView guardarCambioContrasenia(Usuario user,HttpServletRequest request);
+    ModelAndView guardarCambioContrasenia(Usuario user,BindingResult bindingResult,HttpServletRequest request);
 }

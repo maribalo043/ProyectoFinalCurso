@@ -70,8 +70,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/register")
-    public ModelAndView registerUser(@ModelAttribute("user") Usuario user) {
-        return usuarioService.registrerUser(user);
+    public ModelAndView registerUser(@ModelAttribute("user") @Valid Usuario user, BindingResult bindingResult) {
+        return usuarioService.registrerUser(user,bindingResult);
     }
 
     @GetMapping("/logout")
@@ -93,8 +93,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/guardarModificacionUser")
-    public ModelAndView guardarCambioContrasenia(@ModelAttribute Usuario user,HttpServletRequest request) {
-        return usuarioService.guardarCambioContrasenia(user,request);
+    public ModelAndView guardarCambioContrasenia(@ModelAttribute @Valid Usuario user, BindingResult bindingResult ,HttpServletRequest request) {
+        return usuarioService.guardarCambioContrasenia(user,bindingResult,request);
     }
     
 }

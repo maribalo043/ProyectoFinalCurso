@@ -17,6 +17,7 @@ import com.mario.proyect.service.UsuarioService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Service
 public class UsuarioServiceImpl implements UsuarioService {
@@ -162,25 +163,30 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public ModelAndView registrerUser(Usuario user) {
-        ModelAndView modelAndView = new ModelAndView();
+public ModelAndView registrerUser(@Valid Usuario user, BindingResult bindingResult) {
+    ModelAndView modelAndView = new ModelAndView();
 
-        Optional<Usuario> usuarioOptional = usuarioDao.findById(user.getEmail());
-
-        if (!usuarioOptional.isPresent()) { 
-            user.setRol(rolDao.findById((long) 3).get());
-            user.setPassword(encriptador.encode(user.getPassword()));
-            usuarioDao.save(user);
-        } else {
-            modelAndView.addObject("message", "El usuario ya existe");
-            modelAndView.setViewName("generalHTML/register");
-            return modelAndView;
-        }
-
-        modelAndView.addObject("message", "El usuario se ha registrado correctamente");
-        modelAndView.setViewName("generalHTML/login");
+    if (bindingResult.hasErrors()) {
+        modelAndView.setViewName("generalHTML/register");
+        modelAndView.addObject("user", user);
         return modelAndView;
     }
+
+    Optional<Usuario> usuarioOptional = usuarioDao.findById(user.getEmail());
+
+    if (!usuarioOptional.isPresent()) { 
+        user.setRol(rolDao.findById((long) 3).get());
+        user.setPassword(encriptador.encode(user.getPassword()));
+        usuarioDao.save(user);
+        modelAndView.addObject("message", "El usuario se ha registrado correctamente");
+        modelAndView.setViewName("generalHTML/login");
+    } else {
+        modelAndView.addObject("message", "El usuario ya existe");
+        modelAndView.addObject("user", user);
+        modelAndView.setViewName("generalHTML/register");
+    }
+    return modelAndView;
+}
 
     @Override
     public ModelAndView logout(HttpServletRequest request) {
@@ -238,24 +244,30 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public ModelAndView guardarCambioContrasenia(Usuario user,HttpServletRequest request) {
-        ModelAndView model = new ModelAndView();
+public ModelAndView guardarCambioContrasenia(@Valid Usuario user, BindingResult bindingResult, HttpServletRequest request) {
+    ModelAndView model = new ModelAndView();
 
-        model.setViewName("redirect:/");
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Usuario username = (Usuario) authentication.getPrincipal();
-
-        username.setPassword(encriptador.encode(user.getPassword()));
-
-        usuarioDao.save(username);
-
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+    if (bindingResult.hasErrors()) {
+        model.setViewName("usuarioHTML/formCambioContrasenia");
+        model.addObject("user", user);
         return model;
     }
+
+    model.setViewName("redirect:/");
+
+    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+    Usuario username = (Usuario) authentication.getPrincipal();
+
+    username.setPassword(encriptador.encode(user.getPassword()));
+
+    usuarioDao.save(username);
+
+    HttpSession session = request.getSession(false);
+    if (session != null) {
+        session.invalidate();
+    }
+    return model;
+}
     
 
 }
