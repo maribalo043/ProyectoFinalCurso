@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "usuarios")
@@ -25,6 +26,10 @@ public class Usuario implements UserDetails{
 	@Column(name = "correo_electronico")
 	private String email;
 	private String usuario;
+	@Pattern(
+        regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{1,}$",
+        message = "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial."
+    )
 	private String password;
 
 	@ManyToOne

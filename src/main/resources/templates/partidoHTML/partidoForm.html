@@ -29,13 +29,13 @@
             <label for="golesLocal">Goles Equipo Local:</label>
             <input type="number" class="form-control" id="golesLocal" placeholder="Ingrese los goles del equipo Local"
               required th:field="*{golesLocal}" />
-            <p th:if="${#fields.hasErrors('golesLocal')}" th:errors="*{golesLocal}" class="btn btn-danger">Error</p>
+            <p th:if="${#fields.hasErrors('golesLocal')}" th:errors="*{golesLocal}" class="text-danger">Error</p>
           </div>
           <div class="form-group">
             <label for="golesVisitante">Goles Equipo Visitante:</label>
             <input type="number" class="form-control" id="golesVisitante"
               placeholder="Ingrese los goles del equipo Visitante" required th:field="*{golesVisitante}" />
-            <p th:if="${#fields.hasErrors('golesVisitante')}" th:errors="*{golesVisitante}" class="btn btn-danger">Error</p>
+            <p th:if="${#fields.hasErrors('golesVisitante')}" th:errors="*{golesVisitante}" class="text-danger">Error</p>
           </div>
           <div class="form-group">
             <label for="pista">Pista:</label>
@@ -81,13 +81,13 @@
           </div>
           <div class="d-flex justify-content-between mb-3">
             <div>
-              <a th:href="@{/partidos}" class="btn btn-primary" th:if="${partidoNuevo.id == null}">Ver Partidos</a>
+              <a th:href="@{/partidos}" class="btn btn-warning" th:if="${partidoNuevo.id == null}">Ver Partidos</a>
               <a th:href="@{/partido/{idLocal}/{idVisitante}(idLocal=${partidoNuevo.equipoLocal.id}, idVisitante=${partidoNuevo.equipoVisitante.id})}"
-                class="btn btn-primary" th:if="${partidoNuevo.id != null}">Volver al detalle</a>
+                class="btn btn-warning" th:if="${partidoNuevo.id != null}">Volver al detalle</a>
             </div>
             <div>
-              <input type="submit" class="btn btn-primary" th:if="${partidoNuevo.id == null}" value="Añadir Partido" />
-              <input type="submit" class="btn btn-primary" th:if="${partidoNuevo.id != null}" value="Editar Partido" />
+              <input type="submit" class="btn btn-warning" th:if="${partidoNuevo.id == null}" value="Añadir Partido" />
+              <input type="submit" class="btn btn-warning" th:if="${partidoNuevo.id != null}" value="Editar Partido" />
             </div>
           </div>
         </form>

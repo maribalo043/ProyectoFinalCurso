@@ -16,34 +16,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet">
-  <style>
-    .container {
-      text-align: center;
-    }
-
-    .card {
-      width: 35%;
-      margin: 0 auto;
-      margin-bottom: 20px;
-    }
-
-    .card-body {
-      text-align: left;
-    }
-
-    .line {
-      display: flex;
-    }
-
-    .table-container {
-      flex: 0 0 70%;
-      margin-right: 20px;
-    }
-
-    .form-container {
-      flex: 1;
-    }
-  </style>
+  <!-- Estilo Tarjeta Estilos -->
+  <link rel="stylesheet" href="../../static/css/estilosTarjetasDetalle.css">
 </head>
 <body>
   <header>
@@ -60,8 +34,8 @@
         <span><strong>Talla Camiseta: </strong><span th:text="${jugador.tallaCamiseta}">Camiseta </span></span><br>
         <span><strong>Portero: </strong><span th:text="${jugador.portero}">portero</span></span><br>
         <div class="mt-4 d-flex justify-content-between">
-          <span><a th:href="@{~/jugadores}" class="btn btn-secondary">Volver</a></span>
-          <span><a th:href="@{~/jugador/edit/{dni}(dni = ${jugador.dni})}" class="btn btn-primary ml-2"
+          <span><a th:href="@{~/jugadores}" class="btn btn-warning">Volver</a></span>
+          <span><a th:href="@{~/jugador/edit/{dni}(dni = ${jugador.dni})}" class="btn btn-warning ml-2"
               sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
         </div>
       </div>

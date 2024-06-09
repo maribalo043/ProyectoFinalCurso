@@ -45,4 +45,13 @@ public class EmailController {
             throw new RuntimeException("Error al enviar el correo de contacto: " + e.getMessage(), e);
         }
     }
+    @GetMapping("/cambioContraseniaUsuario")
+    public ModelAndView enviarCambioContrasenia() throws MessagingException  {
+        try {
+            emailService.sendCambioContrasenia();
+        } catch (Exception e) {
+            throw new MessagingException();
+        }
+        return new ModelAndView("generalHTML/cambioContrasenia");
+    }
 }

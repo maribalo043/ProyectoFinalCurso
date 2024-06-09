@@ -5,7 +5,6 @@ import java.util.Optional;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -219,12 +218,43 @@ public class UsuarioServiceImpl implements UsuarioService {
             username = (Usuario) authentication.getPrincipal();
         }
         ModelAndView model = new ModelAndView();
-        // Llamar al método del EmailService
         if (username != null) {
-            model.setViewName("generalHTML/cambioContrasenia");
+            model.setViewName("redirect:/cambioContraseniaUsuario");
             return model;
         }
         throw new IllegalArgumentException("El usuario no existe o no esta bien las credenciales");
+    }
+
+
+    
+    @Override
+    public ModelAndView formCambioContrasenia() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("usuarioHTML/formCambioContrasenia");
+
+        model.addObject("user", new Usuario());
+
+        return model;
+    }
+
+    @Override
+    public ModelAndView guardarCambioContrasenia(Usuario user,HttpServletRequest request) {
+        ModelAndView model = new ModelAndView();
+
+        model.setViewName("redirect:/");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario username = (Usuario) authentication.getPrincipal();
+
+        username.setPassword(encriptador.encode(user.getPassword()));
+
+        usuarioDao.save(username);
+
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        return model;
     }
     
 

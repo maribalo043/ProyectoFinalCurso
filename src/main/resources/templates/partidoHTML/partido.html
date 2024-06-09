@@ -43,54 +43,6 @@
                 </div>
         </div>
     </div>
-    <div class="equipos ">
-        <div class="col-md-6">
-            <h5>Equipo Local: <span th:text="${partido.equipoLocal?.nombre}"></h5>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Portero</th>
-                        <th>Goles</th>
-                        <th th:if="${!partido.finalizado}">Add gol</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="jugador : ${equipoLocal}">
-                        <td th:text="${jugador.nombre}"></td>
-                        <td th:text="${jugador.portero} ? 'Sí' : 'No'"></td>
-                        <td th:text="${jugador.goles}"></td>
-                        <td th:if="${!partido.finalizado}">
-                            <a class="btn btn-primary" th:href="@{~/addGol/{idJu}/{idLo}/{idVi}(idJu=${jugador.dni},idLo=${partido.equipoLocal?.id},idVi=${partido.equipoVisitante?.id})}">+1</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-6">
-            <h5>Equipo Visitante: <span th:text="${partido.equipoVisitante?.nombre}"></span></h5>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Portero</th>
-                        <th>Goles</th>
-                        <th th:if="${!partido.finalizado}">Add gol</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="jugador : ${equipoVisitante}">
-                        <td th:text="${jugador.nombre}"></td>
-                        <td th:text="${jugador.portero} ? 'Sí' : 'No'"></td>
-                        <td th:text="${jugador.goles}"></td>
-                        <td th:if="${!partido.finalizado}">
-                            <a class="btn btn-primary" th:href="@{~/addGol/{idJu}/{idLo}/{idVi}(idJu=${jugador.dni},idLo=${partido.equipoLocal?.id},idVi=${partido.equipoVisitante?.id})}">+1</a>ç
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

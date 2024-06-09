@@ -2,6 +2,7 @@ package com.mario.proyect.entity;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,8 @@ public class Categoria {
 	
     private String nombre;
     private boolean activa;
+	@Column(name = "url_img")
+	private String urlImg;
 
 	@OneToMany(mappedBy = "categoria",cascade = CascadeType.ALL)
     private List<Equipo> equipos;
@@ -47,11 +50,17 @@ public class Categoria {
 	public void setEquipos(List<Equipo> equipos) {
 		this.equipos = equipos;
 	}
-	
-	
+
+	public String getUrlImg() {
+		return urlImg;
+	}
+	public void setUrlImg(String urlImg) {
+		this.urlImg = urlImg;
+	}
 	
 	@Override
 	public String toString() {
 		return "Categoria [id=" + id + ", nombre=" + nombre + "]";
 	}
+
 }

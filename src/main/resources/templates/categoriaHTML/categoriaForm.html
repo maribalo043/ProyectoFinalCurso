@@ -44,13 +44,13 @@
 
 					<div class="d-flex justify-content-between mb-3">
 						<div>
-						  <a th:href="@{~/categorias}" class="btn btn-primary" th:if="${categoriaNueva.id == 0}">Ver Categorias</a>
-						  <a th:href="@{~/categoria/{id}(id = ${categoriaNueva.id})}" class="btn btn-primary"
+						  <a th:href="@{~/categorias}" class="btn btn-warning" th:if="${categoriaNueva.id == 0}">Ver Categorias</a>
+						  <a th:href="@{~/categoria/{id}(id = ${categoriaNueva.id})}" class="btn btn-warning"
 							th:if="${categoriaNueva.id != 0}">Volver al detalle</a>
 						</div>
 						<div>
-						  <input type="submit" class="btn btn-primary" th:if="${categoriaNueva.id == 0}" value="Añadir Categoria">
-						  <input type="submit" class="btn btn-primary" th:if="${categoriaNueva.id != 0}" value="Editar Categoria" />
+						  <input type="submit" class="btn btn-warning" th:if="${categoriaNueva.id == 0}" value="Añadir Categoria">
+						  <input type="submit" class="btn btn-warning" th:if="${categoriaNueva.id != 0}" value="Editar Categoria" />
 						</div>
 					  </div>
 				</form>

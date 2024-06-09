@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,34 +19,10 @@
   <!-- Estilos Barra inferior -->
   <link rel="stylesheet" href="../static/css/style.css">
   <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
-  <style>
-    body {
-        margin-top: 20px;
-        overflow-x: hidden;
-    }
-    .container {
-      text-align: center;
-    }
-    .card {
-      width: 35%;
-      margin: 0 auto;
-      margin-bottom: 20px;
-    }
-    .card-body {
-      text-align: left;
-    }
-    .line {
-      display: flex;
-    }
-    .table-container {
-      flex: 0 0 70%;
-      margin-right: 20px;
-    }
-    .form-container {
-      flex: 1;
-    }
-  </style>
+  <!-- Estilo Tarjeta Estilos -->
+   <link rel="stylesheet" href="../../static/css/estilosTarjetasDetalle.css">
 </head>
+
 <body>
   <header>
     <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
@@ -57,10 +34,12 @@
         <span><strong>ID:</strong><span th:text="${equipo.id}">id</span></span><br>
         <span><strong>Nombre:</strong><span th:text="${equipo.nombre}">equipo</span></span><br>
         <span><strong>Email de Contacto:</strong><span th:text="${equipo.emailContacto}">email</span></span><br>
-        <span><strong>Número de Teléfono:</strong><span th:text="${equipo.numeroTelefonoContacto}">telefono</span></span><br>
+        <span><strong>Número de Teléfono:</strong><span
+            th:text="${equipo.numeroTelefonoContacto}">telefono</span></span><br>
         <div class="mt-4 d-flex justify-content-between">
-          <span><a th:href="@{~/equipos}" class="btn btn-secondary">Volver</a></span>
-          <span><a th:href="@{~/equipo/edit/{id}(id = ${equipo.id})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
+          <span><a th:href="@{~/equipos}" class="btn btn-warning">Volver</a></span>
+          <span><a th:href="@{~/equipo/edit/{id}(id = ${equipo.id})}" class="btn btn-warning ml-2"
+              sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
         </div>
       </div>
     </div>
@@ -80,102 +59,64 @@
           </thead>
           <tbody>
             <tr th:each="p:${partidos}">
-                <td th:text="${p.equipoLocal?.nombre}">Equipo 1</td>
-                <td class="result"><span th:text="${p.golesLocal}"></span>-<span th:text="${p.golesVisitante}"></span></td>
-                <td th:text="${p.equipoVisitante?.nombre}">Equipo 1</td>
-                <td th:text="${p.pista}">Pista 1</td>
-                <td>
-                    <a class="circular-button edit-button text-decoration-none" title="Edita" th:href="@{~/partido/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}">👁️</a>
-                </td>
-                <td>
-                    <a class="circular-button delete-button text-decoration-none" th:href="@{~/partido/del/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}" title="Eliminar" sec:authorize="hasAuthority('ADMIN')">❌</a>
-                </td>
+              <td th:text="${p.equipoLocal?.nombre}">Equipo 1</td>
+              <td class="result"><span th:text="${p.golesLocal}"></span>-<span th:text="${p.golesVisitante}"></span>
+              </td>
+              <td th:text="${p.equipoVisitante?.nombre}">Equipo 1</td>
+              <td th:text="${p.pista}">Pista 1</td>
+              <td>
+                <a class="circular-button edit-button text-decoration-none" title="Edita"
+                  th:href="@{~/partido/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}">👁️</a>
+              </td>
+              <td>
+                <a class="circular-button delete-button text-decoration-none"
+                  th:href="@{~/partido/del/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}"
+                  title="Eliminar" sec:authorize="hasAuthority('ADMIN')">❌</a>
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="form-container">
-        <form
-            sec:authorize="hasAuthority('ADMIN')"
-            th:action="@{~/partido/save}"
-            method="post"
-            th:object="${partidoNuevo}"
-          >
-            <div class="form-group"></div>
-            <div class="form-group">
-              <label for="golesLocal">Resultado del partido:</label>
-              <input
-                type="number"
-                class="form-control"
-                id="golesLocal"
-                placeholder="Ingrese los goles del equipo Local"
-                required
-                th:field="*{golesLocal}"
-              />
-            </div>
-            <div class="form-group">
-              <label for="golesVisitante">Resultado del partido:</label>
-              <input
-                type="number"
-                class="form-control"
-                id="golesVisitante"
-                placeholder="Ingrese los goles del equipo Visitante"
-                required
-                th:field="*{golesVisitante}"
-              />
-            </div>
-            <div class="form-group">
-              <label for="pista">Pista:</label>
-              <select
-                class="form-control rounded bg-light"
-                id="pista"
-                th:field="*{pista}"
-                required
-              >
-                <option value="Sara Roces">Sara Roces</option>
-                <option value="Marta Piquero">Marta Piquero</option>
-              </select>
-            </div>
-            <!-- Equipo Local -->
-            <div class="form-group">
-              <label for="equipoLocal">Equipo Local:</label>
-              <select
-                class="form-control rounded bg-light"
-                id="equipoLocal"
-                th:field="*{equipoLocal}"
-                required
-              >
-                <option
-                  th:text="${equipo.nombre}"
-                  th:value="${equipo.id}"
-                ></option>
-              </select>
-            </div>
+        <form sec:authorize="hasAuthority('ADMIN')" th:action="@{~/partido/save}" method="post"
+          th:object="${partidoNuevo}">
+          <div class="form-group"></div>
+          <div class="form-group">
+            <label for="golesLocal">Resultado del partido:</label>
+            <input type="number" class="form-control" id="golesLocal" placeholder="Ingrese los goles del equipo Local"
+              required th:field="*{golesLocal}" />
+          </div>
+          <div class="form-group">
+            <label for="golesVisitante">Resultado del partido:</label>
+            <input type="number" class="form-control" id="golesVisitante"
+              placeholder="Ingrese los goles del equipo Visitante" required th:field="*{golesVisitante}" />
+          </div>
+          <div class="form-group">
+            <label for="pista">Pista:</label>
+            <select class="form-control rounded bg-light" id="pista" th:field="*{pista}" required>
+              <option value="Sara Roces">Sara Roces</option>
+              <option value="Marta Piquero">Marta Piquero</option>
+            </select>
+          </div>
+          <!-- Equipo Local -->
+          <div class="form-group">
+            <label for="equipoLocal">Equipo Local:</label>
+            <select class="form-control rounded bg-light" id="equipoLocal" th:field="*{equipoLocal}" required>
+              <option th:text="${equipo.nombre}" th:value="${equipo.id}"></option>
+            </select>
+          </div>
 
-            <!-- Equipo Visitante -->
-            <div class="form-group">
-              <label for="equipoVisitante">Equipo Visitante:</label>
-              <select
-                class="form-control rounded bg-light"
-                id="equipoVisitante"
-                th:field="*{equipoVisitante}"
-                required
-              >
-                <option
-                  th:each="e : ${equipos}"
-                  th:text="${e.nombre}"
-                  th:value="${e.id}"
-                ></option>
-              </select>
-            </div>
+          <!-- Equipo Visitante -->
+          <div class="form-group">
+            <label for="equipoVisitante">Equipo Visitante:</label>
+            <select class="form-control rounded bg-light" id="equipoVisitante" th:field="*{equipoVisitante}" required>
+              <option th:each="e : ${equipos}" th:text="${e.nombre}" th:value="${e.id}"></option>
+            </select>
+          </div>
 
-            <input
-              type="submit"
-              class="btn btn-primary"
-              value="Añadir Partido"
-            />
-          </form>
+          <input type="submit" class="btn btn-warning" value="Añadir Partido" />
+        </form>
       </div>
     </div>
   </div>
@@ -184,4 +125,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -26,14 +26,14 @@
   </header>
   <div class="container mt-5">
     <h2 class="text-start mb-4">Lista de Equipos
-      <a class="btn btn-primary float-right m-2" th:href="@{~/equipo/add}" th:if="${not #lists.isEmpty(equipos)}">Añadir
+      <a class="btn btn-warning float-right m-2" th:href="@{~/equipo/add}" th:if="${not #lists.isEmpty(equipos)}">Añadir
         Equipo</a>
-      <a class="btn btn-primary float-right m-2" th:href="@{~/equipos/{filtro}(filtro = categorias)}"
+      <a class="btn btn-warning float-right m-2" th:href="@{~/equipos/{filtro}(filtro = categorias)}"
         th:if="${not #lists.isEmpty(equipos)}">Filtrar por Categoría</a>
     </h2>
     <div th:if="${#lists.isEmpty(equipos)}">
       <h3>La tabla de Equipos esta vacía</h3>
-      <a class="btn btn-primary float-right m-2" th:href="@{~/equipo/add}" th:if="${#lists.isEmpty(equipos)}">Añadir
+      <a class="btn btn-warning float-right m-2" th:href="@{~/equipo/add}" th:if="${#lists.isEmpty(equipos)}">Añadir
         Equipo</a>
     </div>
     <table class="table table-striped table-hover" th:if="${not#lists.isEmpty(equipos)}">

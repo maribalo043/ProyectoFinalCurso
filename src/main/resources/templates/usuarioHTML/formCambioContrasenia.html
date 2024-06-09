@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio de Contraseña</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cambio de Contraseña</h2>
+        <form th:action="@{~/guardarModificacionUser}" method="post" id="passwordChangeForm" th:object="${user}">
+            <div class="form-group">
+                <label for="password">Nueva Contraseña:</label>
+                <input type="password" class="form-control" id="password" name="password" required th:field="*{password}">
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Repetir Contraseña:</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitButton" disabled>Cambiar Contraseña</button>
+        </form>
+    </div>
+
+    <script>
+        // Obtener referencias a los campos de contraseña y al botón de enviar
+        const passwordField = document.getElementById('password');
+        const confirmPasswordField = document.getElementById('confirmPassword');
+        const submitButton = document.getElementById('submitButton');
+
+        // Función para verificar si las contraseñas coinciden y habilitar o deshabilitar el botón de enviar
+        function checkPasswords() {
+            const password = passwordField.value;
+            const confirmPassword = confirmPasswordField.value;
+
+            if (password === confirmPassword && password.length > 0) {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        }
+
+        // Agregar eventos de escucha para cambios en los campos de contraseña
+        passwordField.addEventListener('input', checkPasswords);
+        confirmPasswordField.addEventListener('input', checkPasswords);
+    </script>
+</body>
+</html>

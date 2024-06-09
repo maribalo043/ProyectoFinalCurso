@@ -42,4 +42,8 @@ public interface UsuarioService {
     ModelAndView home(HttpServletRequest request);
 
     ModelAndView cambioContrasenia();
+
+    ModelAndView formCambioContrasenia();
+
+    ModelAndView guardarCambioContrasenia(Usuario user,HttpServletRequest request);
 }

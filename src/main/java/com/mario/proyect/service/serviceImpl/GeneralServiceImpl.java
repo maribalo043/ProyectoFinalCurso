@@ -1,11 +1,7 @@
 package com.mario.proyect.service.serviceImpl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,9 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.dto.MensajeDto;
 import com.mario.proyect.entity.Equipo;
-import com.mario.proyect.entity.Jugador;
 import com.mario.proyect.entity.Partido;
-import com.mario.proyect.entity.PartidoKey;
 import com.mario.proyect.repository.CategoriaDAO;
 import com.mario.proyect.repository.EquipoDAO;
 import com.mario.proyect.repository.JugadorDAO;

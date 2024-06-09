@@ -16,9 +16,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -35,8 +35,8 @@ public class Equipo {
     @Email(message = "Debe tener el formato de una dirección de correo electrónico. EJ: ejemplo@email.com")
     private String emailContacto;
 
-    @Digits(integer = 9, fraction = 0, message = "Número de teléfono debe contener 9 dígitos")
-    private int numeroTelefonoContacto;
+    @Pattern(regexp = "^\\d{9}$", message = "Número de teléfono debe contener exactamente 9 dígitos y tienen que ser numeros")
+    private String numeroTelefonoContacto;
 
     @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int puntos;
@@ -90,11 +90,11 @@ public class Equipo {
         this.emailContacto = emailContacto;
     }
 
-    public int getNumeroTelefonoContacto() {
+    public String getNumeroTelefonoContacto() {
         return numeroTelefonoContacto;
     }
 
-    public void setNumeroTelefonoContacto(int numeroTelefonoContacto) {
+    public void setNumeroTelefonoContacto(String numeroTelefonoContacto) {
         this.numeroTelefonoContacto = numeroTelefonoContacto;
     }
 

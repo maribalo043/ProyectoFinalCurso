@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restablecer Contraseña</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Instrucciones para Restablecer tu Contraseña</h2>
+        <p>Estimado/a <span th:text="${usuario.usuario}">[Nombre del Usuario]</span>,</p>
+        <p>Recientemente recibimos una solicitud para restablecer la contraseña de tu cuenta en <strong>la página del Patinalon</strong>. Si realizaste esta solicitud, por favor sigue las instrucciones a continuación. Si no solicitaste un cambio de contraseña, puedes ignorar este correo de forma segura.</p>
+        <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
+        <p><a href="http://localhost:9090/formularioCambioContraseña" class="btn">Restablecer Contraseña</a></p>
+        <p>Si tienes alguna pregunta o necesitas asistencia adicional, no dudes en contactarnos respondiendo a este correo .</p>
+        <p>Gracias por confiar en nosotros.</p>
+        <p>Saludos cordiales,</p>
+        <p>Mario<br>CD Patinalon<br>Correo: patinalonweb2009@gmail.com</p>
+        <hr>
+        <p><small>Este correo fue enviado a <span th:text="${usuario.email}"></span> porque solicitaste restablecer tu contraseña en <strong>la página del Patinalon</strong>. Si no realizaste esta solicitud, por favor ignora este mensaje.</small></p>
+    </div>
+</body>
+</html>

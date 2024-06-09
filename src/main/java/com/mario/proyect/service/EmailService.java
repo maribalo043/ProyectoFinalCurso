@@ -6,8 +6,10 @@ import jakarta.mail.MessagingException;
 
 public interface EmailService {
 
-    public void sendMailInscripcion(long id) throws MessagingException;
+    void sendMailInscripcion(long id) throws MessagingException;
 
-    public void sendMailContacto(MensajeDto mensaje);
+    void sendMailContacto(MensajeDto mensaje);
+    
+    void sendCambioContrasenia();
     
 }

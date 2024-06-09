@@ -1,35 +1,37 @@
+/* Elimina el margen por defecto del body */
 body {
     margin: 0;
 }
 
+/* Oculta el scrollbar */
 ::-webkit-scrollbar {
     width: 0;
-  }
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
 }
-.row{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.contenedorBotones {
+.container{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 100%;
+}
+.contenedorBotones{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 5vh;
 }
 
-.categoria-button {
-    margin: 1vh;
-    width: 50vh;
-    height: 50px;
-    background-color: red;
+.categoria-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #e1e1e1;
+    margin: 2vh;
+}
+
+.categoria-button img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
 }

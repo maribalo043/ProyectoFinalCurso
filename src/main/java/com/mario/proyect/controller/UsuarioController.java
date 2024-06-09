@@ -14,6 +14,8 @@ import com.mario.proyect.service.UsuarioService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UsuarioController {
@@ -84,6 +86,15 @@ public class UsuarioController {
     @GetMapping("/cambioContrasenia")
     public ModelAndView cambioContrasenia() {
         return usuarioService.cambioContrasenia();
+    }
+    @GetMapping("/formularioCambioContraseña")
+    public ModelAndView formularioCambioContrasenia() {
+        return usuarioService.formCambioContrasenia();
+    }
+
+    @PostMapping("/guardarModificacionUser")
+    public ModelAndView guardarCambioContrasenia(@ModelAttribute Usuario user,HttpServletRequest request) {
+        return usuarioService.guardarCambioContrasenia(user,request);
     }
     
 }

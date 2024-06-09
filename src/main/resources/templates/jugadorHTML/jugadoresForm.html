@@ -33,7 +33,7 @@
             <!-- Segundo input: se muestra cuando el dni es nulo o hay errores -->
             <input th:if="${jugadorNuevo.dni == null or #fields.hasErrors('dni')}" type="text" class="form-control"
               id="dni" placeholder="Ingrese el DNI" th:field="*{dni}" />
-            <p th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="btn btn-danger">
+            <p th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}" class="text-danger">
               Error en el DNI
             </p>
           </div>
@@ -42,7 +42,7 @@
           <div class="form-group">
             <label for="nombre">Nombre y apellidos del Jugador:</label>
             <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" th:field="*{nombre}" />
-            <p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="btn btn-danger">
+            <p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" class="text-danger">
               Error en el nombre
             </p>
           </div>
@@ -52,7 +52,7 @@
             <label for="numeroSeguro">Número de Seguro:</label>
             <input type="text" class="form-control" id="numeroSeguro" placeholder="Ingrese el número de seguro"
               size="20" th:field="*{numeroSeguro}" />
-            <p th:if="${#fields.hasErrors('numeroSeguro')}" th:errors="*{numeroSeguro}" class="btn btn-danger">
+            <p th:if="${#fields.hasErrors('numeroSeguro')}" th:errors="*{numeroSeguro}" class="text-danger">
               Error en el número de seguro
             </p>
           </div>
@@ -76,7 +76,7 @@
               <option value="">No Asignado</option>
               <option th:each="equipo : ${equipos}" th:text="${equipo.nombre}" th:value="${equipo.id}"></option>
             </select>
-            <p th:if="${#fields.hasErrors('equipo')}" th:errors="*{equipo}" class="btn btn-danger">
+            <p th:if="${#fields.hasErrors('equipo')}" th:errors="*{equipo}" class="text-danger">
               Error
             </p>
           </div>
@@ -96,13 +96,13 @@
           </div>
           <div class="d-flex justify-content-between mb-3">
             <div>
-              <a th:href="@{~/jugadores}" class="btn btn-primary" th:if="${jugadorNuevo.dni == null}">Ver Jugadores</a>
-              <a th:href="@{~/jugador/{dni}(dni = ${jugadorNuevo.dni})}" class="btn btn-primary"
+              <a th:href="@{~/jugadores}" class="btn btn-warning" th:if="${jugadorNuevo.dni == null}">Ver Jugadores</a>
+              <a th:href="@{~/jugador/{dni}(dni = ${jugadorNuevo.dni})}" class="btn btn-warning"
                 th:if="${jugadorNuevo.dni != null}">Volver al detalle</a>
             </div>
             <div>
-              <input type="submit" class="btn btn-primary" th:if="${jugadorNuevo.dni == null}" value="Añadir Jugador" />
-              <input type="submit" class="btn btn-primary" th:if="${jugadorNuevo.dni != null}" value="Editar Jugador" />
+              <input type="submit" class="btn btn-warning" th:if="${jugadorNuevo.dni == null}" value="Añadir Jugador" />
+              <input type="submit" class="btn btn-warning" th:if="${jugadorNuevo.dni != null}" value="Editar Jugador" />
             </div>
           </div>
         </form>

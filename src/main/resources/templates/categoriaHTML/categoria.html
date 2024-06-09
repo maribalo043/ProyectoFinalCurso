@@ -36,8 +36,8 @@
 			<span><strong>Nombre:</strong><span th:text="${categoria.nombre}">equipo</span></span><br>
 			<span><strong>Activa:</strong><span th:text="${categoria.activa}">email</span></span><br>
 			<div class="mt-4">
-				<span><a th:href="@{~/categorias}" class="btn btn-secondary">Volver</a></span>
-				<span><a class="btn btn-primary ml-2" th:href="@{~/categoria/edit/{id}(id=${categoria.id})}"
+				<span><a th:href="@{~/categorias}" class="btn btn-warning">Volver</a></span>
+				<span><a class="btn btn-warning ml-2" th:href="@{~/categoria/edit/{id}(id=${categoria.id})}"
 						sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
 			</div>
 		</div>

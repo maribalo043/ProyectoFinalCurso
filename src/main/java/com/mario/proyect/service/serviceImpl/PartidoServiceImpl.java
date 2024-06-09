@@ -1,6 +1,5 @@
 package com.mario.proyect.service.serviceImpl;
 
-import java.util.Comparator;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Equipo;
-import com.mario.proyect.entity.Jugador;
 import com.mario.proyect.entity.Partido;
 import com.mario.proyect.entity.PartidoKey;
 import com.mario.proyect.repository.EquipoDAO;
