@@ -50,7 +50,7 @@ public class EmailController {
         try {
             emailService.sendCambioContrasenia();
         } catch (Exception e) {
-            throw new MessagingException();
+            throw new MessagingException(e.getMessage());
         }
         return new ModelAndView("generalHTML/cambioContrasenia");
     }

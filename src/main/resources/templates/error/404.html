@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+	<!-- Cosas Barra de navegación -->
+	<link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+		rel="stylesheet">.
+	<!-- Estilos Barra inferior -->
+	<link rel="stylesheet" href="../../static/css/style.css">
+	<link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
+    <!-- Link css errores -->
+    <link rel="stylesheet" href="../../static/css/estilosErrores.css">
+</head>
+<body>
+    <header class="mb-5">
+		<div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+	</header>
+    <div class="container d-flex align-items-start vh-100">
+        <div class="row w-100">
+            <div class="col-md-6 d-flex justify-content-center align-items-center">
+                <img src="../../static/img/imagenDinoError.png" class="img-fluid" alt="Error Image">
+            </div>
+            <div class="col-md-6 d-flex flex-column justify-content-center align-items-start">
+                <h1 class="display-4">Error 404</h1>
+                <p class="lead">La página que estás buscando no existe.</p>
+                <a href="/" class="btn btn-warning">Volver a la página principal</a>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="~{MenuInferior :: menuInferior}" class="footer mt-5"></footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
