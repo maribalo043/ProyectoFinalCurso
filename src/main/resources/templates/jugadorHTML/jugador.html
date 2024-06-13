@@ -27,15 +27,17 @@
     <div class="card">
       <div class="card-body">
         <h2 class="card-title text-center">Detalle del Jugador</h2>
+        <span><strong>Id: </strong><span th:text="${jugador.id}">id</span></span><br>
         <span><strong>DNI: </strong><span th:text="${jugador.dni}">DNI</span></span><br>
         <span><strong>Nombre: </strong><span th:text="${jugador.nombre}">nombre</span></span><br>
+        <span><strong>Edad: </strong><span th:text="${jugador.edad}">edad</span></span><br>
         <span><strong>Equipo: </strong><span th:text="${jugador.equipo?.nombre}">Equipo </span></span><br>
         <span><strong>Número de Seguro: </strong><span th:text="${jugador.numeroSeguro}">Seguro </span></span><br>
         <span><strong>Talla Camiseta: </strong><span th:text="${jugador.tallaCamiseta}">Camiseta </span></span><br>
         <span><strong>Portero: </strong><span th:text="${jugador.portero}">portero</span></span><br>
         <div class="mt-4 d-flex justify-content-between">
           <span><a th:href="@{~/jugadores}" class="btn btn-warning">Volver</a></span>
-          <span><a th:href="@{~/jugador/edit/{dni}(dni = ${jugador.dni})}" class="btn btn-warning ml-2"
+          <span><a th:href="@{~/jugador/edit/{id}(id = ${jugador.id})}" class="btn btn-warning ml-2"
               sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
         </div>
       </div>

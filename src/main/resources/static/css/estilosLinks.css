@@ -38,7 +38,7 @@ body {
     overflow-wrap: break-word;
 }
 .contenido-tarjeta .btn-warning {
-    transition: transform 1s, background-color 1s, color 1s;
+    transition: transform 0.5s, background-color 1s, color 1s;
 }
 .contenido-tarjeta .btn-warning:hover {
     transform: scale(1.2);

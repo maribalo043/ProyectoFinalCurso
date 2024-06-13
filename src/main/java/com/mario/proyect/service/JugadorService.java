@@ -9,15 +9,15 @@ public interface JugadorService {
 
     ModelAndView getJugadores(String filtro);
 
-    ModelAndView getJugador(String dni);
+    ModelAndView getJugador(long id);
 
-    ModelAndView deleteJugador(String dni);
+    ModelAndView deleteJugador(long id);
     
     ModelAndView addJugador();
 
     ModelAndView saveJugador(Jugador jugadorNuevo,BindingResult bindingResult);
 
-    ModelAndView editJugador(String dni);
+    ModelAndView editJugador(long id);
 
     ModelAndView postJugadorEquipo(long id);
 

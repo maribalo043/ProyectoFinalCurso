@@ -41,9 +41,9 @@ public class JugadorServiceImpl implements JugadorService{
     }
 
     @Override
-    public ModelAndView getJugador(String dni) {
+    public ModelAndView getJugador(long id) {
 
-        Jugador jugador = jugadorDao.findById(dni).get();
+        Jugador jugador = jugadorDao.findById(id).get();
         ModelAndView model = new ModelAndView();
         model.setViewName("jugadorHTML/Jugador");
         model.addObject("jugador", jugador);
@@ -52,15 +52,20 @@ public class JugadorServiceImpl implements JugadorService{
     }
 
     @Override
-    public ModelAndView deleteJugador(String dni) {
+    public ModelAndView deleteJugador(long id) {
 
         ModelAndView model = new ModelAndView();
-        Optional<Jugador> jugador = jugadorDao.findById(dni);
+        Optional<Jugador> jugador = jugadorDao.findById(id);
+        
+        /*Primero desvinculo el equipos del jugador y lo guardo para que lo tenga en cuenta en BBDD
+         *luego ya lo elimino, sino no funciona.*/
         if (jugador.isPresent()) {
-            jugadorDao.deleteById(dni);
+            jugador.get().setEquipo(null);
+            jugadorDao.save(jugador.get());
+            jugadorDao.delete(jugador.get());
         }
-        model.setViewName("redirect:/jugadores");
 
+        model.setViewName("redirect:/jugadores");
         return model;
     }
     @Override
@@ -92,10 +97,10 @@ public class JugadorServiceImpl implements JugadorService{
         return model;
     }
     @Override
-    public ModelAndView editJugador(String dni) {
+    public ModelAndView editJugador(long id) {
 
         ModelAndView model = new ModelAndView();
-        Optional<Jugador> jugOpt = jugadorDao.findById(dni);
+        Optional<Jugador> jugOpt = jugadorDao.findById(id);
 
         if (jugOpt.isPresent()) {
             Jugador jugador = jugOpt.get();

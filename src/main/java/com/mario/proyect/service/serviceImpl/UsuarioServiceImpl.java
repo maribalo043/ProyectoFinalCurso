@@ -253,7 +253,7 @@ public ModelAndView guardarCambioContrasenia(@Valid Usuario user, BindingResult 
         return model;
     }
 
-    model.setViewName("redirect:/");
+    model.setViewName("redirect:/emailConfirmacion");
 
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     Usuario username = (Usuario) authentication.getPrincipal();
@@ -266,6 +266,7 @@ public ModelAndView guardarCambioContrasenia(@Valid Usuario user, BindingResult 
     if (session != null) {
         session.invalidate();
     }
+    model.addObject("usuario", username);
     return model;
 }
     

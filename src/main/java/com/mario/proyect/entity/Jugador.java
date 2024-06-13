@@ -2,6 +2,8 @@ package com.mario.proyect.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -15,6 +17,9 @@ import jakarta.validation.constraints.Size;
 public class Jugador {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
     @Pattern(regexp = "\\d{8}[A-Z]", message = "Dale formato de DNI, 8 números y 1 letra mayúscula")
     private String dni;
 	@Size(min = 2, max = 100, message = "Debe tener entre 2 y 100 caracteres")
@@ -23,8 +28,8 @@ public class Jugador {
     private String numeroSeguro;
     private String tallaCamiseta;
     private boolean portero;
+	@Min(value = 0,message="La edad tiene que ser superior a 0 años")
 	private int edad;
-	private int goles;
 
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "equipo_id", nullable = true)
@@ -63,6 +68,7 @@ public class Jugador {
    	public Equipo getEquipo() {
 		return equipo;
 	}
+	
 	public void setEquipo(Equipo equipo) {
 		this.equipo = equipo;
 	}
@@ -74,15 +80,14 @@ public class Jugador {
 		this.edad = edad;
 	}
 
-	public int getGoles() {
-		return goles;
-	}
-	public void setGoles(int goles) {
-		this.goles = goles;
-	}
-
 	@Override
 	public String toString() {
-		return "Jugador [dni=" + dni + ", nombre=" + nombre +", goles:"+ goles + "]";
+		return "Jugador [dni=" + dni + ", nombre=" + nombre + "]";
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 }

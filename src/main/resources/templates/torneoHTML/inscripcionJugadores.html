@@ -15,24 +15,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet">
-    <!-- Estilos Barra inferior -->
+  <!-- Estilos Barra inferior -->
   <link rel="stylesheet" href="../../static/css/style.css">
   <link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
 </head>
+
 <body>
   <header class="mb-5">
-		<div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
-	</header>
+    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+  </header>
   <div class="container mt-5">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h2 class="text-center mb-4">Formulario de Jugadores</h2>
         <form th:action="@{~/jugadorTorneo/save}" method="post" th:object="${jugadorNuevo}">
+
+          <label for="id" hidden>ID</label>
+          <input type="text" class="form-control" id="id" placeholder="ID" required th:field="*{id}" readonly hidden>
+
           <!-- Campo 'dni' -->
           <div class="form-group">
             <label for="dni">DNI:</label>
             <input th:if="${jugadorNuevo.dni != null and !#fields.hasErrors('dni')}" type="text" class="form-control"
               id="dni" placeholder="Ingrese el DNI" th:field="*{dni}" readonly />
+
             <!-- Segundo input: se muestra cuando el dni es nulo o hay errores -->
             <input th:if="${jugadorNuevo.dni == null or #fields.hasErrors('dni')}" type="text" class="form-control"
               id="dni" placeholder="Ingrese el DNI" th:field="*{dni}" />
@@ -59,6 +65,17 @@
               Error en el número de seguro
             </p>
           </div>
+
+          <!-- Campo 'edad' -->
+          <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" class="form-control" id="edad" placeholder="Ingrese la edad del jugador" size="20"
+              th:field="*{edad}" />
+            <p th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}" class="text-danger">
+              Error en la edad
+            </p>
+          </div>
+
           <div class="form-group">
             <label for="tallaCamiseta">Talla de Camiseta:</label>
             <select class="form-control" id="tallaCamiseta" th:field="*{tallaCamiseta}">

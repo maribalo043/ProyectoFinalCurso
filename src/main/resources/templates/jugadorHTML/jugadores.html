@@ -24,21 +24,20 @@
   <div class="container">
     <h2 class="text-start mb-4">Lista de Jugadores
       <a class="btn btn-warning float-right m-2" th:if="${not #lists.isEmpty(jugadores)}"
-        th:href="@{~/jugador/add}">Añadir Jugador</a>
+        th:href="@{/jugador/add}">Añadir Jugador</a>
       <a class="btn btn-warning float-right m-2" th:href="@{/jugadores/tallaCamiseta(tallaCamiseta=tallaCamiseta)}"
         th:if="${not #lists.isEmpty(jugadores)}">Filtrar por Talla Camiseta</a>
       <a class="btn btn-warning float-right m-2" th:href="@{/jugadores/equipo(equipo=equipo)}"
         th:if="${not #lists.isEmpty(jugadores)}">Filtrar por Equipo</a>
     </h2>
     <div th:if="${#lists.isEmpty(jugadores)}" class="m-2">
-      <h3>La tabla de Jugadores esta vacía</h3>
-      <a class="btn btn-warning float-right m-2" th:href="@{~/jugador/add}" th:if="${#lists.isEmpty(jugadores)}">Añadir
-        Jugador</a>
+      <h3>La tabla de Jugadores está vacía</h3>
+      <a class="btn btn-warning float-right m-2" th:href="@{/jugador/add}" th:if="${#lists.isEmpty(jugadores)}">Añadir Jugador</a>
     </div>
-    <table class="table table-hover table-striped" th:if="${not#lists.isEmpty(jugadores)}">
+    <table class="table table-hover table-striped" th:if="${not #lists.isEmpty(jugadores)}">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col">id</th>
           <th scope="col">DNI</th>
           <th scope="col">Nombre</th>
           <th scope="col">Equipo</th>
@@ -51,19 +50,18 @@
       </thead>
       <tbody>
         <tr th:each="jugador : ${jugadores}">
-          <td>#</td>
+          <td th:text="${jugador.id}">id</td>
           <td th:text="${jugador.dni}">1234567A</td>
           <td th:text="${jugador.nombre}">Mario</td>
           <td th:text="${jugador.equipo?.nombre}">Jaimitos</td>
           <td th:text="${jugador.numeroSeguro}">1234</td>
           <td th:text="${jugador.tallaCamiseta}">XL</td>
-          <td th:if="${jugador.portero==true}">SI</td>
-          <td th:if="${jugador.portero!=true}">NO</td>
+          <td th:text="${jugador.portero ? 'SI' : 'NO'}"></td>
           <td><a class="circular-button edit-button text-decoration-none" title="Edita"
-              th:href="@{~/jugador/{dni}(dni = ${jugador.dni})}">👁️</a></td>
+              th:href="@{/jugador/{id}(id=${jugador.id})}">👁️</a></td>
           <td sec:authorize="hasAuthority('ADMIN')"><a sec:authorize="hasAuthority('ADMIN')"
               class="circular-button delete-button text-decoration-none" title="Eliminar"
-              th:href="@{~/jugador/del/{dni}(dni=${jugador.dni})}">❌</a></td>
+              th:href="@{/jugador/del/{id}(id=${jugador.id})}">❌</a></td>
         </tr>
       </tbody>
     </table>

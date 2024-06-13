@@ -24,7 +24,8 @@
         <div class="form-group">
             <label for="email">Correo Electrónico:</label>
             <div class="col-sm-10">
-                <input type="email" th:field="*{email}" class="form-control" placeholder="Email" required>
+                <input th:if="${usuarioNuevo.email != null and !#fields.hasErrors('email')}" type="email" th:field="*{email}" class="form-control" placeholder="Email" readonly>
+                <input th:if="${usuarioNuevo.email == null or #fields.hasErrors('email')}" type="email" th:field="*{email}" class="form-control" placeholder="Email" required>
             </div>
             
         </div>

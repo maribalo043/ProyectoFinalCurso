@@ -51,18 +51,15 @@ public class EmailServiceImpl implements EmailService {
         helper.setTo(equipo.get().getEmailContacto());
         helper.setSubject("Inscripción Torneo 3x3");
         Context context = new Context();
-        System.out.println(equipo.get());
         if (equipo.isPresent()) {
             context.setVariable("equipo", equipo.get());
         } else {
             throw new RuntimeException("Equipo no encontrado");
         }
-        System.out.println(equipo.get());
         String contenidoHtml = templateEngine.process("emailHTML/email", context);
 
         helper.setText(contenidoHtml, true);
         javaMailSender.send(message);
-        System.out.println(equipo.get());
     } catch (Exception e) {
         throw new RuntimeException("Error al enviar el correo: " + e.getMessage(), e);
     }
@@ -76,8 +73,9 @@ public void sendMailContacto(MensajeDto mensaje) {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        helper.setFrom(email);
+        helper.setFrom(mensaje.getCorreo());
         helper.setTo(email);
+        helper.setCc(email);
 
         helper.setSubject("Contacto Usuario");
 
@@ -90,24 +88,6 @@ public void sendMailContacto(MensajeDto mensaje) {
         helper.setText(contenidoHtml, true);
         javaMailSender.send(message);
 
-        /* Envio de correo al usuario---------------------------------------------------------------------------*/
-        
-        MimeMessage message2 = javaMailSender.createMimeMessage();
-        MimeMessageHelper helper2 = new MimeMessageHelper(message2, true, "UTF-8");
-
-        helper.setFrom(email);
-        helper.setTo(mensaje.getCorreo());
-
-        helper.setSubject("Formulario de contacto");
-
-        // Procesar la plantilla Thymeleaf
-        Context context2 = new Context();
-        context.setVariable("mensaje", mensaje);
-
-        String contenidoHtml2 = templateEngine.process("emailHTML/emailContacto", context2);
-
-        helper2.setText(contenidoHtml2, true);
-        javaMailSender.send(message2);
     } catch (Exception e) {
         throw new RuntimeException("Error al enviar el correo: " + e.getMessage(), e);
     }
@@ -140,6 +120,12 @@ public void sendCambioContrasenia() {
     } catch (Exception e) {
         throw new RuntimeException("Error al enviar el correo: " + e.getMessage(), e);
     }
+}
+
+@Override
+public void sendCorreoConfirmacion() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'sendCorreoConfirmacion'");
 }
 
 }

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.mario.proyect.entity.Jugador;
 
-public interface JugadorDAO extends CrudRepository<Jugador,String>{
+public interface JugadorDAO extends CrudRepository<Jugador,Long>{
     
     @Query(value = "SELECT * FROM jugadores ORDER BY equipo_id", nativeQuery = true)
     List<Jugador> findAllPorEquipo();

@@ -1,12 +1,12 @@
 package com.mario.proyect.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Jugador;
@@ -14,7 +14,7 @@ import com.mario.proyect.service.JugadorService;
 
 import jakarta.validation.Valid;
 
-@RestController
+@Controller
 public class JugadorController {
 	
 	@Autowired
@@ -25,14 +25,14 @@ public class JugadorController {
         return jugadorService.getJugadores(filtro);
     }
 
-    @GetMapping("/jugador/{dni}")
-    public ModelAndView getJugador(@PathVariable String dni) {
-        return jugadorService.getJugador(dni);
+    @GetMapping("/jugador/{id}")
+    public ModelAndView getJugador(@PathVariable long id) {
+        return jugadorService.getJugador(id);
     }
 
-    @GetMapping("/jugador/del/{dni}")
-    public ModelAndView deleteJugador(@PathVariable String dni) {
-        return jugadorService.deleteJugador(dni);
+    @GetMapping("/jugador/del/{id}")
+    public ModelAndView deleteJugador(@PathVariable long id) {
+        return jugadorService.deleteJugador(id);
     }
 
     @GetMapping("/jugador/add")
@@ -46,9 +46,9 @@ public class JugadorController {
         return jugadorService.saveJugador(jugadorNuevo, bindingResult);
     }
 
-    @GetMapping("/jugador/edit/{dni}")
-    public ModelAndView editJugador(@PathVariable String dni) {
-        return jugadorService.editJugador(dni);
+    @GetMapping("/jugador/edit/{id}")
+    public ModelAndView editJugador(@PathVariable long id) {
+        return jugadorService.editJugador(id);
     }
 
     @GetMapping("/equipo/jugador/{id}")

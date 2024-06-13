@@ -11,5 +11,7 @@ public interface EmailService {
     void sendMailContacto(MensajeDto mensaje);
     
     void sendCambioContrasenia();
+
+    void sendCorreoConfirmacion();
     
 }
