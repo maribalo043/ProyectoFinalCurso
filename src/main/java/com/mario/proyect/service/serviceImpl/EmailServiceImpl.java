@@ -73,8 +73,8 @@ public void sendMailContacto(MensajeDto mensaje) {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        helper.setFrom(mensaje.getCorreo());
-        helper.setTo(email);
+        helper.setFrom(email);
+        helper.setTo(mensaje.getCorreo());
         helper.setCc(email);
 
         helper.setSubject("Contacto Usuario");

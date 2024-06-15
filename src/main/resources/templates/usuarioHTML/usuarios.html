@@ -18,6 +18,12 @@
 	<!-- Estilos Barra inferior -->
 	<link rel="stylesheet" href="../static/css/style.css">
 	<link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
+	<style>
+		.error-message {
+			color: red;
+			font-size: 1.2em;
+		}
+	</style>
 </head>
 <body>
 	<header>
@@ -29,6 +35,7 @@
 				<a class="btn btn-primary float-right m-2" th:href="@{~/usuario/add}"
 					th:if="${not #lists.isEmpty(usuarios)}">Añadir Usuario</a>
 			</h2>
+			<div th:if="${error != null}" class="error-message" th:text="${error}">Mensaje de error</div>
 			<div th:if="${#lists.isEmpty(usuarios)}">
 				<h3>La tabla de Usuarios esta vacia, Añada usted al primer Usuario</h3>
 				<a class="btn btn-primary float-right m-2" th:href="@{~/usuario/add}">Añadir Usuario</a>
@@ -36,6 +43,7 @@
 			<table class="table table-striped table-hover" th:if="${not #lists.isEmpty(usuarios)}">
 				<thead>
 					<tr>
+						<th>Contraseña</th>
 						<th>Nombre</th>
 						<th>Contraseña</th>
 						<th>Rol</th>
@@ -45,9 +53,10 @@
 				</thead>
 				<tbody>
 					<tr th:each="c:${usuarios}">
-                        <td th:text="${c.usuario}">rol 1</td>
-						<td th:text="${c.password}">1</td>
-						<td th:text="${c.rol.nombre}">rol 1</td>
+						<td th:text="${c.email}">ejemplo@gmail.com</td>
+                        <td th:text="${c.usuario}">Ampeter77</td>
+						<td th:text="${c.password}">25dvsdv5sg8)%%/</td>
+						<td th:text="${c.rol?.nombre}">rol 1</td>
 						<td><a class="circular-button edit-button text-decoration-none" title="Edita"
 								th:href="@{~/usuario/{nombre}(nombre=${c.email})}">👁️</a></td>
 						<td sec:authorize="hasAuthority('ADMIN')"><a

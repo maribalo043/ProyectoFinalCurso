@@ -1,28 +1,25 @@
 package com.mario.proyect.service;
 
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Usuario;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 
 public interface UsuarioService {
 
-    ModelAndView getUsuarios();
+    ModelAndView getUsuarios(boolean hayError);
 
-    ModelAndView getUsuario(@PathVariable String dni);
+    ModelAndView getUsuario(String dni, boolean hayError);
 
-    ModelAndView deleteUsuario(@PathVariable String nombre);
+    ModelAndView deleteUsuario(String nombre);
 
     ModelAndView addUsuario();
     
-    ModelAndView saveUsuario(@ModelAttribute("usuarioNuevo") @Valid Usuario usuarioNuevo, BindingResult bindingResult);
+    ModelAndView saveUsuario(Usuario usuarioNuevo, BindingResult bindingResult,HttpServletRequest requestS);
 
-    ModelAndView editUsuario(@PathVariable String dni);
+    ModelAndView editUsuario(String dni, HttpServletRequest request);
 
     /* Gestion de sesiones: */
 

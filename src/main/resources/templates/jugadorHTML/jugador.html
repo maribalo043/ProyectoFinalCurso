@@ -40,6 +40,9 @@
           <span><a th:href="@{~/jugador/edit/{id}(id = ${jugador.id})}" class="btn btn-warning ml-2"
               sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
         </div>
+        <p th:if="${error != null}" th:text="${error}" class="text-danger">
+          Error en el nombre
+        </p>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

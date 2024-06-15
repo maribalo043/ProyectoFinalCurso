@@ -15,6 +15,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet">
+    <style>
+      .error-message {
+          color: red;
+          font-size: 1.2em;
+      }
+  </style>
 </head>
 <body>
   <header>
@@ -28,6 +34,7 @@
         <span><strong>Username: </strong><span th:text="${usuario.usuario}">nombre</span></span><br>
         <span><strong>Password: </strong><span th:text="${usuario.password}">contraseña</span></span><br>
         <span><strong>Rol: </strong><span th:text="${usuario.rol?.nombre}">Equipo </span></span><br>
+        <div th:if="${error != null}" class="error-message" th:text="${error}">Mensaje de error</div>
         <div class="mt-4 d-flex justify-content-between">
           <span><a th:href="@{~/usuarios}" class="btn btn-secondary">Atrás</a></span>
           <span><a th:href="@{~/usuario/edit/{nombre}(nombre = ${usuario.email})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>

@@ -26,11 +26,9 @@ public class Usuario implements UserDetails{
 	@Column(name = "correo_electronico")
 	private String email;
 	private String usuario;
-	@Pattern(
-        regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{1,}$",
-        message = "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial."
-    )
 	private String password;
+	@Column(name = "email_antiguo")
+	private String emailAntiguo;
 
 	@ManyToOne
     @JoinColumn(name = "rol_id")
@@ -64,6 +62,13 @@ public class Usuario implements UserDetails{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getEmailAntiguo() {
+		return emailAntiguo;
+	}
+	public void setEmailAntiguo(String emailAntiguo) {
+		this.emailAntiguo = emailAntiguo;
 	}
 	
 	@Override
@@ -112,6 +117,6 @@ public class Usuario implements UserDetails{
 	}
 	@Override
 	public String toString() {
-		return "Usuario [email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
+		return "Usuario [email=" + email + ", usuario=" + usuario + ", password=" + password + " / "+ rol.getNombre() +"]";
 	}
 }

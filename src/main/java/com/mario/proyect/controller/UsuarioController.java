@@ -23,14 +23,14 @@ public class UsuarioController {
     @Autowired
 	private UsuarioService usuarioService;
 
-	@GetMapping("/usuarios")
-	public ModelAndView getUsuarios() {
-		return usuarioService.getUsuarios();
+	@GetMapping(value = {"/usuarios/{hayError}","/usuarios"})
+	public ModelAndView getUsuarios(@PathVariable(required = false) boolean hayError) {
+		return usuarioService.getUsuarios(hayError);
 	}
 
-    @GetMapping("/usuario/{nombre}")
-    public ModelAndView getUsuario(@PathVariable String nombre) {
-        return usuarioService.getUsuario(nombre);
+    @GetMapping(value = {"/usuario/{nombre}/{hayError}","/usuario/{nombre}"})
+    public ModelAndView getUsuario(@PathVariable String nombre, @PathVariable(required = false) boolean hayError) {
+        return usuarioService.getUsuario(nombre, hayError);
     }
 
     @GetMapping("/usuario/del/{nombre}")
@@ -45,13 +45,13 @@ public class UsuarioController {
 
     @PostMapping("/usuario/save")
     public ModelAndView saveUsuario(@ModelAttribute("usuarioNuevo") @Valid Usuario usuarioNuevo,
-            BindingResult bindingResult) {
-        return usuarioService.saveUsuario(usuarioNuevo, bindingResult);
+            BindingResult bindingResult,HttpServletRequest request) {
+        return usuarioService.saveUsuario(usuarioNuevo, bindingResult, request);
     }
 
-    @GetMapping("/usuario/edit/{nombre}")
-    public ModelAndView editUsuario(@PathVariable String nombre) {
-        return usuarioService.editUsuario(nombre);
+    @GetMapping("/usuario/edit/{email}")
+    public ModelAndView editUsuario(@PathVariable String email, HttpServletRequest request) {
+        return usuarioService.editUsuario(email,request);
     }
 
     @GetMapping("/login")
