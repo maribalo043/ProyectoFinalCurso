@@ -12,6 +12,6 @@ public interface EmailService {
     
     void sendCambioContrasenia();
 
-    void sendCorreoConfirmacion();
+    public void sendConfirmacionCambioContrasenia();
     
 }

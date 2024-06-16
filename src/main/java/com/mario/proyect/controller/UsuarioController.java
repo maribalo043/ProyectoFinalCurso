@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Usuario;
+import com.mario.proyect.service.EmailService;
 import com.mario.proyect.service.UsuarioService;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,6 +23,8 @@ public class UsuarioController {
 	
     @Autowired
 	private UsuarioService usuarioService;
+    @Autowired
+    private EmailService emailService;
 
 	@GetMapping(value = {"/usuarios/{hayError}","/usuarios"})
 	public ModelAndView getUsuarios(@PathVariable(required = false) boolean hayError) {
@@ -94,6 +97,9 @@ public class UsuarioController {
 
     @PostMapping("/guardarModificacionUser")
     public ModelAndView guardarCambioContrasenia(@ModelAttribute @Valid Usuario user, BindingResult bindingResult ,HttpServletRequest request) {
+
+        emailService.sendConfirmacionCambioContrasenia();
+        
         return usuarioService.guardarCambioContrasenia(user,bindingResult,request);
     }
     

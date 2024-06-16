@@ -79,12 +79,14 @@ public class PartidoServiceImpl implements PartidoService {
     @Override
     public ModelAndView savePartido(@Valid Partido partidoNuevo, BindingResult bindingResult) {
         ModelAndView model = new ModelAndView();
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors() || partidoNuevo.getEquipoLocal() == partidoNuevo.getEquipoVisitante()) {
             model.setViewName("partidoForm");
             model.setViewName("partidoHTML/partidoForm");
             model.addObject("partidoNuevo", partidoNuevo);
             model.addObject("equipos", equipoDao.findAll());
-
+            if(partidoNuevo.getEquipoLocal() == partidoNuevo.getEquipoVisitante()){
+                model.addObject("error","Los equipos no pueden ser los mismos." );
+            }
             return model;
         }
         model.setViewName("redirect:/torneo/categoria/Torneo%20Patinalon");

@@ -107,13 +107,13 @@
           </div>
           <div class="d-flex justify-content-between mb-3">
             <div>
-              <a th:href="@{~/jugadores}" class="btn btn-warning" th:if="${jugadorNuevo.id == null}">Ver Jugadores</a>
+              <a th:href="@{~/jugadores}" class="btn btn-warning" th:if="${jugadorNuevo.id == 0}">Ver Jugadores</a>
               <a th:href="@{~/jugador/{id}(id = ${jugadorNuevo.id})}" class="btn btn-warning"
-                th:if="${jugadorNuevo.id != null}">Volver al detalle</a>
+                th:if="${jugadorNuevo.id != 0}">Volver al detalle</a>
             </div>
             <div>
-              <input type="submit" class="btn btn-warning" th:if="${jugadorNuevo.id == null}" value="Añadir Jugador" />
-              <input type="submit" class="btn btn-warning" th:if="${jugadorNuevo.id != null}" value="Editar Jugador" />
+              <input type="submit" class="btn btn-warning" th:if="${jugadorNuevo.id == 0}" value="Añadir Jugador" />
+              <input type="submit" class="btn btn-warning" th:if="${jugadorNuevo.id != 0}" value="Editar Jugador" />
             </div>
           </div>
         </form>

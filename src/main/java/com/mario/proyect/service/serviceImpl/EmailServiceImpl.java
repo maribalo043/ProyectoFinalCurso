@@ -121,11 +121,32 @@ public void sendCambioContrasenia() {
         throw new RuntimeException("Error al enviar el correo: " + e.getMessage(), e);
     }
 }
-
 @Override
-public void sendCorreoConfirmacion() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'sendCorreoConfirmacion'");
+@Transactional
+public void sendConfirmacionCambioContrasenia() {
+    try {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario logueado = (Usuario) authentication.getPrincipal();
+
+        helper.setFrom(email);
+        helper.setTo(logueado.getEmail());
+
+        helper.setSubject("Confirmación de cambio de contraseña");
+
+        // Procesar la plantilla Thymeleaf
+        Context context = new Context();
+        context.setVariable("usuario", logueado);
+        String contenidoHtml = templateEngine.process("emailHTML/emailConfirmaciónContrasenia", context);
+
+        helper.setText(contenidoHtml, true);
+        javaMailSender.send(message);
+
+    } catch (Exception e) {
+        throw new RuntimeException("Error al enviar el correo: " + e.getMessage(), e);
+    }
 }
 
 }

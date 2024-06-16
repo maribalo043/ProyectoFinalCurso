@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333333;
+        }
+        p {
+            color: #666666;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #ffffff;
+            background-color: #007BFF;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cambio de Contraseña Exitoso</h1>
+        <p>Hola,</p>
+        <p>Te confirmamos que tu contraseña ha sido cambiada exitosamente, para la cuenta <span th:text="usuario.email">mail</span>. Si no realizaste este cambio, por favor contacta a nuestro equipo de soporte de inmediato.</p>
+        <p>Gracias por utilizar nuestros servicios.</p>
+        <a href="localhost:9090/" class="button">Contactar Soporte a través del formulario de contecto.</a>
+        <div class="footer">
+            <p>Este es un mensaje automático, por favor no respondas a este correo.</p>
+            <p>&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

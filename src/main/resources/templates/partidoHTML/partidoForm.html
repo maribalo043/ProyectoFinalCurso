@@ -55,6 +55,7 @@
                 th:text="${equipo.nombre}"></option>
             </select>
           </div>
+          <p th:if="${#fields.hasErrors('golesLocal')}" th:errors="*{golesLocal}" class="text-danger">Error</p>
           <!-- Equipo Visitante -->
           <div class="form-group">
             <label for="equipoVisitante">Equipo Visitante:</label>

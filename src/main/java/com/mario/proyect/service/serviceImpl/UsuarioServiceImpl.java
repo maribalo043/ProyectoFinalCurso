@@ -236,6 +236,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     public ModelAndView registrerUser(@Valid Usuario user, BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView();
 
+        String passwordPattern = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{1,}$";
+        if (!user.getPassword().matches(passwordPattern)) {
+            bindingResult.rejectValue("password", "error.usuarioNuevo", "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.");
+        }
         if (bindingResult.hasErrors()) {
             modelAndView.setViewName("generalHTML/register");
             modelAndView.addObject("user", user);
@@ -322,7 +326,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             return model;
         }
 
-        model.setViewName("redirect:/emailConfirmacion");
+        model.setViewName("redirect:/");
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Usuario username = (Usuario) authentication.getPrincipal();

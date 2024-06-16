@@ -54,14 +54,4 @@ public class EmailController {
         }
         return new ModelAndView("generalHTML/cambioContrasenia");
     }
-
-    @GetMapping("/emailConfirmacion")
-    public ModelAndView sendCorreoConfirmacion() throws MessagingException  {
-        try {
-            emailService.sendCorreoConfirmacion();
-        } catch (Exception e) {
-            throw new MessagingException(e.getMessage());
-        }
-        return new ModelAndView("generalHTML/cambioContrasenia");
-    }
 }
