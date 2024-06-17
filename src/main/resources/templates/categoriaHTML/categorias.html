@@ -51,11 +51,34 @@
 						<td th:text="${c.activa}">Activo</td>
 						<td><a class="circular-button edit-button text-decoration-none" title="Edita"
 								th:href="@{~/categoria/{id}(id=${c.id})}">👁️</a></td>
-						<td sec:authorize="hasAuthority('ADMIN')"><a
-								class="circular-button delete-button text-decoration-none" title="Eliminar"
-								th:href="@{~/categoria/del/{id}(id=${c.id})}"
-								sec:authorize="hasAuthority('ADMIN')">❌</a>
+						<td>
+							<a class="circular-button text-decoration-none" title="eliminar" data-toggle="modal"
+								th:data-target="'#elimina_' + ${c.id}">
+								<button type="button" class="btn btn-danger">Eliminar</button>
+							</a>
 						</td>
+						<!-- Modal -->
+						<div class="modal fade" th:id="'elimina_' + ${c.id}" tabindex="-1" role="dialog"
+							aria-labelledby="userModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="userModalLabel">¿Estás seguro de eliminar esta
+											categoria?</h5>
+									</div>
+									<div class="modal-body">
+										<p><strong>Nombre:</strong> <span th:text="${c.nombre}">Estrellas</span>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Cancelar</button>
+										<a type="button" class="btn btn-warning"
+											th:href="@{~/categoria/del/{id}(id=${c.id})}">Eliminar</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin Modal -->
 					</tr>
 				</tbody>
 			</table>

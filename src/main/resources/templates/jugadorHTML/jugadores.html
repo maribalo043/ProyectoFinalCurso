@@ -32,7 +32,8 @@
     </h2>
     <div th:if="${#lists.isEmpty(jugadores)}" class="m-2">
       <h3>La tabla de Jugadores está vacía</h3>
-      <a class="btn btn-warning float-right m-2" th:href="@{/jugador/add}" th:if="${#lists.isEmpty(jugadores)}">Añadir Jugador</a>
+      <a class="btn btn-warning float-right m-2" th:href="@{/jugador/add}" th:if="${#lists.isEmpty(jugadores)}">Añadir
+        Jugador</a>
     </div>
     <table class="table table-hover table-striped" th:if="${not #lists.isEmpty(jugadores)}">
       <thead>
@@ -45,7 +46,7 @@
           <th scope="col">Talla de Camiseta</th>
           <th scope="col">Portero</th>
           <th scope="col">Ver</th>
-          <th scope="col" sec:authorize="hasAuthority('ADMIN')">Eliminar</th>
+          <th scope="col">Eliminar</th>
         </tr>
       </thead>
       <tbody>
@@ -59,9 +60,35 @@
           <td th:text="${jugador.portero ? 'SI' : 'NO'}"></td>
           <td><a class="circular-button edit-button text-decoration-none" title="Edita"
               th:href="@{/jugador/{id}(id=${jugador.id})}">👁️</a></td>
-          <td sec:authorize="hasAuthority('ADMIN')"><a sec:authorize="hasAuthority('ADMIN')"
-              class="circular-button delete-button text-decoration-none" title="Eliminar"
-              th:href="@{/jugador/del/{id}(id=${jugador.id})}">❌</a></td>
+          <td>
+            <a class="circular-button text-decoration-none" title="eliminar" data-toggle="modal"
+              th:data-target="'#elimina_' + ${jugador.id}">
+              <button type="button" class="btn btn-danger">Eliminar</button>
+            </a>
+          </td>
+          <!-- Modal -->
+          <div class="modal fade" th:id="'elimina_' + ${jugador.id}" tabindex="-1" role="dialog"
+            aria-labelledby="userModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="userModalLabel">¿Estás seguro de eliminar este
+                    Jugador?</h5>
+                </div>
+                <div class="modal-body">
+                  <p><strong>DNI:</strong> <span th:text="${jugador.dni}">34286957L</span>
+                  </p>
+                  <p><strong>Nombre:</strong> <span th:text="${jugador.nombre}">Cositas</span></p>
+                  <p><strong>Equipo:</strong> <span th:text="${jugador.equipo?.nombre}">equipo</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <a type="button" class="btn btn-warning" th:href="@{/jugador/del/{id}(id=${jugador.id})}">Eliminar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fin Modal -->
         </tr>
       </tbody>
     </table>

@@ -1,10 +1,10 @@
 package com.mario.proyect.service.serviceImpl;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scripting.bsh.BshScriptUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,13 +40,10 @@ public class UsuarioServiceImpl implements UsuarioService {
     private BCryptPasswordEncoder encriptador;
 
     @Override
-    public ModelAndView getUsuarios(boolean hayError) {
+    public ModelAndView getUsuarios() {
 
         ModelAndView model = new ModelAndView();
         model.addObject("usuarios", usuarioDao.findAll());
-        if(hayError){
-            model.addObject("error", "No puedes eliminar ese usuario ya que es con el que tienes iniciado sesión.");
-        }
         
         model.setViewName("usuarioHTML/usuarios");
 
@@ -54,15 +51,12 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public ModelAndView getUsuario(String nombre, boolean hayError) {
+    public ModelAndView getUsuario(String nombre) {
 
         Usuario usuario = usuarioDao.findById(nombre).get();
         ModelAndView model = new ModelAndView();
         model.setViewName("usuarioHTML/usuario");
         model.addObject("usuario", usuario);
-        if(hayError){
-            model.addObject("error", "No puedes editar ese usuario ya que es con el que tienes iniciado sesión.");
-        }
         
         return model;
     }
@@ -73,15 +67,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         ModelAndView model = new ModelAndView();
 
         Optional<Usuario> usuario = usuarioDao.findById(email);
-        /*Obtengo el email del usuario logueado */
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object logeado = authentication.getPrincipal();
-        String emailLogueado = ((Usuario) logeado).getEmail();
 
-        if (emailLogueado.equals(email)) {
-            model.setViewName("redirect:/usuarios/true");
-            return model;
-        }
         if (usuario.isPresent()) {
             usuarioDao.deleteById(email);
         }
@@ -138,7 +124,6 @@ public class UsuarioServiceImpl implements UsuarioService {
                 model.addObject("error", response.getError());
             }
         } else {
-            /*TODO Revisar al crear un usuario qeu si conincide el email con uno existente lo edita */
             usuarioCreado.setEmail(usuarioNuevo.getEmail());
             usuarioCreado.setPassword(encriptador.encode(usuarioNuevo.getPassword()));
             usuarioCreado.setRol(usuarioNuevo.getRol());
@@ -155,16 +140,6 @@ public class UsuarioServiceImpl implements UsuarioService {
 
         ModelAndView model = new ModelAndView();
         Optional<Usuario> userOpt = usuarioDao.findById(email);
-        /*Obtengo el email del usuario logueado */
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object logeado = authentication.getPrincipal();
-        String emailLogueado = ((Usuario) logeado).getEmail();
-
-        if (emailLogueado.equals(email)) {
-            Usuario usuario = usuarioDao.findById(email).get();
-            model.setViewName("redirect:/usuario/"+usuario.getEmail()+"/true");
-            return model;
-        }
 
         if (userOpt.isPresent()) {
             Usuario usuario = userOpt.get();
@@ -182,8 +157,37 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario findUserByUsuario(String usuario) {
-        return usuarioDao.findById(usuario).get();
+    public ModelAndView cambioValidoUsuario(String email){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("redirect:/usuarios");
+        Optional<Usuario> userOpt = usuarioDao.findById(email);
+        if(userOpt.isPresent()){
+            Usuario usuario = userOpt.get();
+            if(usuario.isEnabled()){
+                usuario.setEnabled(false);
+            }else {
+                usuario.setEnabled(true);
+            }
+            usuarioDao.save(usuario);
+        }
+        return model;
+    }
+
+    @Override
+    public ModelAndView getTarjetaUsuario(HttpServletRequest request){
+
+        ModelAndView model = new ModelAndView();
+        model.setViewName("usuarioHTML/tarjetaUsuario");
+        /*Obtengo el email del usuario logueado */
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Usuario usuario = (Usuario) authentication.getPrincipal();
+
+        if(usuario != null){
+            model.addObject("usuario", usuario);
+        }else{
+            model.setViewName("redirect:/login");
+        }
+        return model;
     }
 
     @Override

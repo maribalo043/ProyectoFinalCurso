@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta de Usuario</title>
+    <!-- Incluir Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Otros estilos y enlaces -->
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap">
+    <!-- Estilos Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../static/css/style.css" />
+    <link rel="stylesheet" href="../static/css/estilosMenuInferior.css" />
+    <style>
+        .card {
+            max-width: 400px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .card-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+            padding: 0.75rem 1.25rem;
+        }
+
+        .btn-group {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            flex-grow: 1;
+            margin: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="mb-5">
+        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+
+    <div class="container mt-5 mb-5">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Detalles del Usuario</h5>
+                <p class="card-text"><strong>Email:</strong> <span th:text="${usuario.email}"></span></p>
+                <p class="card-text"><strong>Usuario:</strong> <span th:text="${usuario.usuario}"></span></p>
+                <p class="card-text"><strong>Activo:</strong> <span th:if="${usuario.enabled}">Si</span><span th:if="${!usuario.enabled}">No</span></p>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group" role="group" aria-label="Botones">
+                    <a href="@{/cambioContrasenia}" class="btn btn-warning">Cambio Contraseña</a>
+                    <a href="/" class="btn btn-warning">Volver al inicio</a>
+                    <a class="text-decoration-none" title="deshabilitar" data-toggle="modal" data-target="#elimina"> <button type="button" class="btn btn-danger">Eliminar Usuario</button></a>
+                    <!-- Modal -->
+                    <div class="modal fade" id="elimina" tabindex="-1" role="dialog"
+                        aria-labelledby="userModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="userModalLabel">¿Estás seguro de eliminar este usuario?</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Email:</strong> <span th:text="${usuario.email}">ejemplo@gmail.com</span>
+                                    </p>
+                                    <p><strong>Username:</strong> <span th:text="${usuario.usuario}">Ampeter77</span></p>
+                                    <p class="card-text"><strong>Activo:</strong> <span th:if="${usuario.enabled}">Si</span><span th:if="${!usuario.enabled}">No</span></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <a type="button" class="btn btn-warning"
+                                    href="@{/usuario/del/{email}(email = ${usuario.email})}" >Eliminar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fin Modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="~{MenuInferior :: menuInferior}" class="footer"></footer>
+
+    <!-- Incluir Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.7.12/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

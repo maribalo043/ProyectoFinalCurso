@@ -18,6 +18,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
 @Controller
 public class UsuarioController {
 	
@@ -26,14 +27,14 @@ public class UsuarioController {
     @Autowired
     private EmailService emailService;
 
-	@GetMapping(value = {"/usuarios/{hayError}","/usuarios"})
-	public ModelAndView getUsuarios(@PathVariable(required = false) boolean hayError) {
-		return usuarioService.getUsuarios(hayError);
+	@GetMapping("/usuarios")
+	public ModelAndView getUsuarios() {
+		return usuarioService.getUsuarios();
 	}
 
-    @GetMapping(value = {"/usuario/{nombre}/{hayError}","/usuario/{nombre}"})
-    public ModelAndView getUsuario(@PathVariable String nombre, @PathVariable(required = false) boolean hayError) {
-        return usuarioService.getUsuario(nombre, hayError);
+    @GetMapping("/usuario/{nombre}")
+    public ModelAndView getUsuario(@PathVariable String nombre) {
+        return usuarioService.getUsuario(nombre);
     }
 
     @GetMapping("/usuario/del/{nombre}")
@@ -56,6 +57,17 @@ public class UsuarioController {
     public ModelAndView editUsuario(@PathVariable String email, HttpServletRequest request) {
         return usuarioService.editUsuario(email,request);
     }
+
+    @GetMapping("/changeEnabled/{email}")
+    public ModelAndView cambiarValidezUsuario(@PathVariable String email) {
+        return usuarioService.cambioValidoUsuario(email);
+    }
+    
+    @GetMapping("/tarjetaUsuario")
+    public ModelAndView getTarjetaUsuario(HttpServletRequest request) {
+        return usuarioService.getTarjetaUsuario(request);
+    }
+    
 
     @GetMapping("/login")
     public ModelAndView login() {

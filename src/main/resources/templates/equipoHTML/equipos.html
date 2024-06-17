@@ -57,9 +57,36 @@
           <td th:text="${equipo.numeroTelefonoContacto}">1234567890</td>
           <td><a class="circular-button edit-button text-decoration-none" title="Edita"
               th:href="@{~/equipo/{id}(id=${equipo.id})}">👁️</a></td>
-          <td sec:authorize="hasAuthority('ADMIN')"><a class="circular-button delete-button text-decoration-none"
-              title="Eliminar" th:href="@{~/equipo/del/{id}(id = ${equipo.id})}"
-              sec:authorize="hasAuthority('ADMIN')">❌</a></td>
+          <td>
+            <a class="circular-button text-decoration-none" title="eliminar" data-toggle="modal"
+              th:data-target="'#elimina_' + ${equipo.id}">
+              <button type="button" class="btn btn-danger">Eliminar</button>
+            </a>
+          </td>
+          <!-- Modal -->
+          <div class="modal fade" th:id="'elimina_' + ${equipo.id}" tabindex="-1" role="dialog"
+            aria-labelledby="userModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="userModalLabel">¿Estás seguro de eliminar este
+                    equipo?</h5>
+                </div>
+                <div class="modal-body">
+                  <p><strong>Nombre:</strong> <span th:text="${equipo.nombre}">Divinas</span>
+                  </p>
+                  <p><strong>Categoría:</strong> <span th:text="${equipo.categoria?.nombre}">Cositas</span></p>
+                  <p><strong>Correo Contacto:</strong>:</strong> <span th:text="${equipo.emailContacto}">ejemplo@gmail.com</span></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                  <a type="button" class="btn btn-warning"
+                  th:href="@{~/equipo/del/{id}(id = ${equipo.id})}">Eliminar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fin Modal -->
         </tr>
       </tbody>
     </table>

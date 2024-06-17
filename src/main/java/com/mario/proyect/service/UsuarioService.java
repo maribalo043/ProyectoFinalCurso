@@ -9,9 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 
 public interface UsuarioService {
 
-    ModelAndView getUsuarios(boolean hayError);
+    ModelAndView getUsuarios();
 
-    ModelAndView getUsuario(String dni, boolean hayError);
+    ModelAndView getUsuario(String dni);
 
     ModelAndView deleteUsuario(String nombre);
 
@@ -21,9 +21,12 @@ public interface UsuarioService {
 
     ModelAndView editUsuario(String dni, HttpServletRequest request);
 
+    ModelAndView cambioValidoUsuario(String email);
+
+    ModelAndView getTarjetaUsuario(HttpServletRequest request);
+
     /* Gestion de sesiones: */
 
-    Usuario findUserByUsuario(String usuario);
     void saveUser(Usuario user);
 
     ModelAndView login();

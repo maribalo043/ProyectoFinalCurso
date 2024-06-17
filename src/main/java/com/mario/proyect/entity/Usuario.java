@@ -30,6 +30,8 @@ public class Usuario implements UserDetails{
 	@Column(name = "email_antiguo")
 	private String emailAntiguo;
 
+	private boolean enabled;
+
 	@ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol;
@@ -113,8 +115,18 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		return true;
+		if(enabled==true){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
+	
+	public void setEnabled(boolean valido){
+		this.enabled = valido;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [email=" + email + ", usuario=" + usuario + ", password=" + password + " / "+ rol.getNombre() +"]";
