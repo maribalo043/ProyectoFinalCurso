@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -9,31 +9,36 @@
     <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
-        rel="stylesheet">
-        <!-- Icono del ojo de la contraseña -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <!-- Icono del ojo de la contraseña -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         .error-message {
             color: red;
             font-size: 0.875em;
         }
+
         .container {
             margin-bottom: 15%;
         }
-        .card-header{
+
+        .card-header {
             background-color: bisque;
         }
+
         .login-container {
             margin-top: 100px;
         }
-        form{
-            width: 75%;
+
+        form {
+            width: 100%;
         }
+
         .card {
-            width: 400px;
+            width: 350px; /* Ajusta el ancho máximo según tus necesidades */
             margin: 0 auto;
         }
+
         .card-body {
             padding: 20px;
         }
@@ -50,55 +55,62 @@
     </header>
     <div class="container">
         <h2>Formulario Usuario</h2>
-        <form th:action="@{/usuario/save}" th:object="${usuarioNuevo}" method="post" class="form-horizontal">
-            <div class="form-group">
-                <input type="text" th:field="*{emailAntiguo}" class="form-control" id="emailAntiguo"
-                    placeholder="emailAntiguo" hidden>
-                <label for="usuario" class="col-sm-2 control-label">Usuario</label>
-                <div class="col-sm-10">
-                    <input type="text" th:field="*{usuario}" class="form-control" id="usuario" placeholder="Usuario"
-                        required>
-                </div>
-            </div>
-            <div class="form-group password-container">
-                <label for="password">Contraseña:</label>
-                <div class="input-group">
-                    <input type="password" name="password" id="password" class="form-control"
-                        placeholder="Contraseña" required />
-                    <div class="input-group-append">
-                        <span class="input-group-text toggle-password"
-                            onclick="togglePasswordVisibility()">
-                            <i id="toggleIcon" class="fa fa-eye"></i>
-                            <script src="../../static/js/mostrarContraseña.js"></script>
-                        </span>
+        <div class="card">
+            <div class="card-body">
+                <form th:action="@{/usuario/save}" th:object="${usuarioNuevo}" method="post" class="form-horizontal">
+                    <input type="text" th:field="*{emailAntiguo}" class="form-control" id="emailAntiguo"
+                        placeholder="emailAntiguo" hidden>
+                    <div class="form-group">
+                        <label for="usuario">Usuario</label>
+                        <input type="text" th:field="*{usuario}" class="form-control" id="usuario"
+                            placeholder="Usuario" required>
                     </div>
-                </div>
+                    <div class="form-group password-container">
+                        <label for="password">Contraseña:</label>
+                        <div class="input-group">
+                            <input type="password" th:field="*{password}" id="password" class="form-control"
+                                placeholder="Contraseña" required />
+                            <div class="input-group-append">
+                                <span class="input-group-text toggle-password" onclick="togglePasswordVisibility()">
+                                    <i id="toggleIcon" class="fa fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Email"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="rol">Rol</label>
+                        <select th:field="*{rol}" class="form-control" id="rol" required>
+                            <option value="" selected disabled>Selecciona un rol</option>
+                            <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.nombre}"></option>
+                        </select>
+                    </div>
+                    <div th:if="${error != null}" class="error-message" th:text="${error}">Mensaje de error</div>
+                    <div class="form-group text-right">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <a th:href="@{/usuarios}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">Correo Electrónico</label>
-                <div class="col-sm-10">
-                    <input type="email" th:field="*{email}" class="form-control" id="email" placeholder="Email"
-                        required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="rol" class="col-sm-2 control-label">Rol</label>
-                <div class="col-sm-10">
-                    <select th:field="*{rol}" class="form-control" id="rol" required>
-                        <option value="" selected disabled>Selecciona un rol</option>
-                        <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.nombre}"></option>
-                    </select>
-                </div>
-            </div>
-            <div th:if="${error != null}" class="error-message" th:text="${error}">Mensaje de error</div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
-                    <a th:href="@{/usuarios}" class="btn btn-secondary">Cancelar</a>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            toggleIcon.classList.toggle('fa-eye');
+            toggleIcon.classList.toggle('fa-eye-slash');
+        }
+    </script>
 </body>
 
 </html>
