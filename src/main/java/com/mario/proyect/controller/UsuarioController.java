@@ -16,6 +16,8 @@ import com.mario.proyect.service.UsuarioService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 
@@ -52,6 +54,12 @@ public class UsuarioController {
             BindingResult bindingResult,HttpServletRequest request) {
         return usuarioService.saveUsuario(usuarioNuevo, bindingResult, request);
     }
+
+    @PostMapping("/usuario/save/rol")
+    public ModelAndView postMethodName(@ModelAttribute ("usuario") @Valid Usuario usuario,BindingResult bindingResult) {
+        return usuarioService.saveRol(usuario,bindingResult);
+    }
+    
 
     @GetMapping("/usuario/edit/{email}")
     public ModelAndView editUsuario(@PathVariable String email, HttpServletRequest request) {

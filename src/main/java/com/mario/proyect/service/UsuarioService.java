@@ -19,6 +19,8 @@ public interface UsuarioService {
     
     ModelAndView saveUsuario(Usuario usuarioNuevo, BindingResult bindingResult,HttpServletRequest requestS);
 
+    ModelAndView saveRol(Usuario usuario, BindingResult bindingResult);
+
     ModelAndView editUsuario(String dni, HttpServletRequest request);
 
     ModelAndView cambioValidoUsuario(String email);

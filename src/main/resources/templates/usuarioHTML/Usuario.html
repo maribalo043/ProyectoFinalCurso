@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,34 +16,62 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
     rel="stylesheet">
-    <style>
-      .error-message {
-          color: red;
-          font-size: 1.2em;
-      }
+  <style>
+    .error-message {
+      color: red;
+      font-size: 1.2em;
+    }
+
+    .custom-card {
+      max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+      margin: auto; /* Centra la tarjeta horizontalmente */
+    }
   </style>
 </head>
+
 <body>
   <header>
-		<div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
-	</header>
+    <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+  </header>
 
-  <div class="container"> 
-    <div class="card">
+  <div class="container">
+    <div class="card custom-card">
       <div class="card-body">
         <h2 class="card-title text-center">Detalle del Usuario</h2>
         <span><strong>Username: </strong><span th:text="${usuario.usuario}">nombre</span></span><br>
-        <span><strong>Password: </strong><span th:text="${usuario.password}">contraseña</span></span><br>
-        <span><strong>Rol: </strong><span th:text="${usuario.rol?.nombre}">Equipo </span></span><br>
-        <div th:if="${error != null}" class="error-message" th:text="${error}">Mensaje de error</div>
+        <span><strong>Email: </strong><span th:text="${usuario.email}">correo</span></span><br>
+        <span><strong>Rol: </strong><span th:text="${usuario.rol?.nombre}">Equipo</span></span><br>
+        <h5>Modificación de rol:</h5>
+        <form th:action="@{/usuario/save/rol}" th:object="${usuario}" method="post" class="form-inline">
+          <!-- Campos ocultos para enviar los datos actuales -->
+          <input type="hidden" th:field="*{email}" />
+          <input type="hidden" th:field="*{usuario}" />
+          <input type="hidden" th:field="*{password}" />
+          <input type="hidden" th:field="*{emailAntiguo}" />
+          <input type="hidden" th:field="*{enabled}" />
+          
+          <div class="form-group mb-2">
+            <label for="rol" class="sr-only">Rol</label>
+            <select th:field="*{rol}" class="form-control" id="rol" required>
+              <option value="" selected disabled>Selecciona un rol</option>
+              <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.nombre}"></option>
+            </select>
+          </div>
+          <div th:if="${error != null}" class="error-message ml-3" th:text="${error}">Mensaje de error</div>
+          <button type="submit" class="btn btn-primary ml-auto mb-2">Guardar</button>
+        </form>
+        <div th:if="${error != null}" class="error-message row">
+          <div class="col-sm-10 offset-sm-2" th:text="${error}">Mensaje de error</div>
+        </div>
         <div class="mt-4 d-flex justify-content-between">
           <span><a th:href="@{~/usuarios}" class="btn btn-secondary">Atrás</a></span>
-          <span><a th:href="@{~/usuario/edit/{nombre}(nombre = ${usuario.email})}" class="btn btn-primary ml-2" sec:authorize="hasAuthority('ADMIN')">Editar</a></span>
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>

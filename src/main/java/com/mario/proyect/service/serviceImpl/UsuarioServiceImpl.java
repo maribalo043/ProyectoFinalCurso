@@ -57,6 +57,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         ModelAndView model = new ModelAndView();
         model.setViewName("usuarioHTML/usuario");
         model.addObject("usuario", usuario);
+        model.addObject("roles", rolDao.findAll());
         
         return model;
     }
@@ -131,6 +132,18 @@ public class UsuarioServiceImpl implements UsuarioService {
 
             usuarioDao.save(usuarioCreado);
             model.setViewName("redirect:/usuarios");
+        }
+        return model;
+    }
+    
+    @Override
+    public ModelAndView saveRol(Usuario usuarioNuevo, BindingResult bindingResult){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("redirect:/usuarios");
+        if(usuarioNuevo != null){
+            usuarioDao.save(usuarioNuevo);
+        }else{
+            model.setViewName("redirect:/usuario/"+usuarioNuevo.getEmail());
         }
         return model;
     }
