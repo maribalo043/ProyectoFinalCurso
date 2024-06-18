@@ -89,7 +89,7 @@ public class PartidoServiceImpl implements PartidoService {
             }
             return model;
         }
-        model.setViewName("redirect:/torneo/categoria/Torneo%20Patinalon");
+        model.setViewName("redirect:/partidos");
 
         PartidoKey partidoKey = new PartidoKey();
         partidoKey.setIdEquipoLocal(partidoNuevo.getEquipoLocal().getId());

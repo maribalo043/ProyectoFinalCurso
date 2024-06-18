@@ -45,7 +45,7 @@
             <li class="nav-item dropdown" id="dropdownMenu"></li>
                 <a class="nav-link btn btn-warning" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" sec:authorize="isAuthenticated()">
-                    <span>¡Hola, <span th:text="${#authentication.name}"></span>!</span>
+                    <span>¡Hola, <span th:text="${#authentication.name}"></span>! <span class="arrow">&#9660;</span></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right dropdown-user" aria-labelledby="navbarDropdown">
                     <a class="nav-link navbar-light" th:href="@{/tarjetaUsuario}">Detalle Usuario</a>
