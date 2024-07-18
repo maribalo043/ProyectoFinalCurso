@@ -76,7 +76,6 @@ public class UsuarioController {
         return usuarioService.getTarjetaUsuario(request);
     }
     
-
     @GetMapping("/login")
     public ModelAndView login() {
         return usuarioService.login();
