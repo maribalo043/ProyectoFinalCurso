@@ -37,7 +37,7 @@ public class SecurityConfig {
         http.csrf().disable().authorizeRequests(requests -> requests
                 .requestMatchers("/","/mailForm","/nuestrosEquipos","/links","/torneo/**","/formContacto","/login","/registrer").permitAll()
 				.requestMatchers("/equipo/jugador/**","/jugadorTorneo/save","/inscripcion/equipo","/equipoTorneo/save","/enviar","/cambioContrasenia","/inscrito","/logout","/home","/cambioContrasenia","/formularioCambioContraseña","/guardarModificacionUser","/tarjetaUsuario").authenticated()
-                .requestMatchers("/categorias","/categoria/**","/jugadores","/jugador/**","/equipos","/equipo/**","/partidos","/partido/**","/estadisticas","/usuarios","/usuario/**","/changeEnabled/**","/usuario/save/rol")
+                .requestMatchers("/categorias","/categoria/**","/jugadores","/jugador/**"/* ,"/equipos","/equipo/**"*/,"/partidos","/partido/**","/estadisticas","/usuarios","/usuario/**","/changeEnabled/**","/usuario/save/rol")
                 .hasAnyAuthority("ADMIN","AUTORIZADO"))
                 .formLogin(form -> form
                         .loginPage("/login")
