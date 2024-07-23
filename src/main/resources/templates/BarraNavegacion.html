@@ -21,9 +21,6 @@
             <li class="nav-item">
                 <a class="nav-link iconoNavegacion" th:href="@{~/links}">Enlaces</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link navbar-light" th:href="@{~/equipos}">Equipos</a>
-            </li>
             <li class="nav-item dropdown" id="dropdownMenu"
                 sec:authorize="hasAuthority('ADMIN') || hasAuthority('AUTORIZADO')">
                 <a class="nav-link btn iconoNavegacion" id="navbarDropdown" role="button" data-toggle="dropdown"
