@@ -62,7 +62,7 @@ public class GeneralServiceImpl implements GeneralService {
 
     public ModelAndView getCategorias() {
         ModelAndView model = new ModelAndView();
-        model.setViewName("/torneoHTML/SeleccionCategoria");
+        model.setViewName("torneoHTML/SeleccionCategoria");
         model.addObject("mensaje", new MensajeDto());
         model.addObject("categorias", categoriaDao.categoriasActive());
         return model;
@@ -76,7 +76,7 @@ public class GeneralServiceImpl implements GeneralService {
 
         ordenarEquipos(equipos);
         model.addObject("mensaje", new MensajeDto());
-        model.setViewName("/torneoHTML/PartidosCategoria");
+        model.setViewName("torneoHTML/PartidosCategoria");
         if (!partidos.isEmpty()) {
             model.addObject("partidos", partidos);
         }
