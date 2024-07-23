@@ -211,10 +211,8 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public ModelAndView login() {
-
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("generalHTML/login");
-        modelAndView.addObject("user", new Usuario());
+        modelAndView.setViewName("login");
         return modelAndView;
     }
 
@@ -230,11 +228,11 @@ public class UsuarioServiceImpl implements UsuarioService {
                 modelAndView.setViewName("redirect:/home");
             } else {
                 modelAndView.addObject("message", "Invalid username or password");
-                modelAndView.setViewName("generalHTML/login");
+                modelAndView.setViewName("login");
             }
         } else {
             modelAndView.addObject("message", "User not found");
-            modelAndView.setViewName("generalHTML/login");
+            modelAndView.setViewName("login");
         }
 
         return modelAndView;
