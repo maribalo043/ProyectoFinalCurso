@@ -15,11 +15,6 @@ import com.mario.proyect.service.UsuarioService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
-
-
-
 
 @Controller
 public class UsuarioController {
@@ -77,8 +72,8 @@ public class UsuarioController {
     }
     
     @GetMapping("/login")
-    public ModelAndView login() {
-        return usuarioService.login();
+    public String login() {
+        return "generalHTML/login";
     }
 
     @PostMapping("/login")
