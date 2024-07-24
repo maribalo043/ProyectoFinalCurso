@@ -244,6 +244,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("generalHTML/register");
         modelAndView.addObject("user", new Usuario());
+        
         return modelAndView;
     }
 
@@ -266,6 +267,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (!usuarioOptional.isPresent()) {
             user.setRol(rolDao.findById((long) 3).get());
             user.setPassword(encriptador.encode(user.getPassword()));
+            user.setEnabled(true);
             usuarioDao.save(user);
             modelAndView.addObject("message", "El usuario se ha registrado correctamente");
             modelAndView.setViewName("generalHTML/login");
