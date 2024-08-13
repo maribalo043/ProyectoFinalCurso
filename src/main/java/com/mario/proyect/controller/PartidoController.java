@@ -26,14 +26,14 @@ public class PartidoController {
         return partidoService.getPartidos();
     }
 
-    @GetMapping("/partido/{idLocal}/{idVisitante}")
-    public ModelAndView getPartido(@PathVariable long idLocal, @PathVariable long idVisitante) {
-        return partidoService.getPartido(idLocal, idVisitante);
+    @GetMapping("/partido/{id}")
+    public ModelAndView getPartido(@PathVariable long id) {
+        return partidoService.getPartido(id);
     }
 
-    @GetMapping("/partido/del/{idLocal}/{idVisitante}")
-    public ModelAndView deletePartido(@PathVariable long idLocal, @PathVariable long idVisitante) {
-        return partidoService.deletePartido(idLocal, idVisitante);
+    @GetMapping("/partido/del/{id}")
+    public ModelAndView deletePartido(@PathVariable long id) {
+        return partidoService.deletePartido(id);
     }
 
     @GetMapping("/partido/add")
@@ -46,8 +46,8 @@ public class PartidoController {
         return partidoService.savePartido(partidoNuevo, bindingResult);
     }
 
-    @GetMapping("/partido/edit/{idLocal}/{idVisitante}")
-    public ModelAndView editPartido(@PathVariable long idLocal, @PathVariable long idVisitante) {
-        return partidoService.editPartido(idLocal, idVisitante);
+    @GetMapping("/partido/edit/{id}")
+    public ModelAndView editPartido(@PathVariable long id) {
+        return partidoService.editPartido(id);
     }    
 }

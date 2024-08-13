@@ -68,7 +68,7 @@ public class GeneralServiceImpl implements GeneralService {
         return model;
     }
 
-    public ModelAndView getPartidosCategoria(@PathVariable String cat) {
+    public ModelAndView getPartidosCategoria(String cat) {
         ModelAndView model = new ModelAndView();
         List<Partido> partidos = partidoDao.findPartidosByCategoria(cat);
         this.ordenarPartidosPorHora(partidos);

@@ -24,4 +24,7 @@ public interface EquipoDAO extends CrudRepository<Equipo,Long>{
 
     @Query("SELECT e FROM Equipo e WHERE e.categoria.id = :categoriaId")
     List<Equipo> selectEquiposPorCategoria(@Param("categoriaId") Long categoriaId);
+
+    @Query(value = "Select e.* from equipos e join categorias c on e.categoria_id = c.id and e.torneosara = false and e.categoria_id = :categoria", nativeQuery = true)
+    List<Equipo> selectEquiposPorCategoriaTorneoSeptiembre(long categoria);
 }

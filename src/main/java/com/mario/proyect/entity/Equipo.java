@@ -7,6 +7,7 @@ import com.mario.proyect.repository.EquipoDAO;
 import com.mario.proyect.repository.PartidoDAO;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,7 +25,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "equipos")
 public class Equipo {
-
+    /*ATRIBUTOS COMUNES A LOS DOS TORNEOS*/
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -65,6 +66,17 @@ public class Equipo {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    /*ATRIBUTOS SOLO DEL 3X3 */
+
+    private String usuario;
+    
+    private boolean pagado;
+    
+    @Column(name = "numero_integrantes")
+    private int numeroIntegrantes;
+
+    /*TODO ATRIBUTOS DE CONFIGURACIÓN */
 
     public long getId() {
         return id;

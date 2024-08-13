@@ -25,4 +25,7 @@ public interface CategoriaDAO extends CrudRepository<Categoria,Long>{
 
     @Query("SELECT c FROM Categoria c")
     List<Categoria> findAllCategorias();
+
+    @Query(value = "Select * from categorias where torneo_sara = false", nativeQuery = true)
+    List<Categoria> findAllCategoriasSeptiembre();
 }

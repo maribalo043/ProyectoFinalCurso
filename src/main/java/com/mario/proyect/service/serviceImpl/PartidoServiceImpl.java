@@ -9,7 +9,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mario.proyect.entity.Equipo;
 import com.mario.proyect.entity.Partido;
-import com.mario.proyect.entity.PartidoKey;
 import com.mario.proyect.repository.EquipoDAO;
 import com.mario.proyect.repository.PartidoDAO;
 import com.mario.proyect.service.PartidoService;
@@ -35,29 +34,22 @@ public class PartidoServiceImpl implements PartidoService {
     }
 
     @Override
-    public ModelAndView getPartido(long idLocal, long idVisitante) {
+    public ModelAndView getPartido(long id) {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("partidoHTML/partido");
-        Partido partido = new Partido();
-
-        PartidoKey partidoKey = formarPartidoKey(idLocal, idVisitante);
-
-        partido = partidoDao.findById(partidoKey).get();
         
-        model.addObject("partido", partido);
+        model.addObject("partido", partidoDao.findById(id).get());
         return model;
     }
 
     @Override
-    public ModelAndView deletePartido(long idLocal, long idVisitante) {
+    public ModelAndView deletePartido(long id) {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("redirect:/partidos");
 
-        PartidoKey partidoKey = formarPartidoKey(idLocal, idVisitante);
-
-        Optional<Partido> partidoOptional = partidoDao.findById(partidoKey);
+        Optional<Partido> partidoOptional = partidoDao.findById(id);
 
         if (partidoOptional.isPresent()) {
             partidoDao.delete(partidoOptional.get());
@@ -91,26 +83,19 @@ public class PartidoServiceImpl implements PartidoService {
         }
         model.setViewName("redirect:/partidos");
 
-        PartidoKey partidoKey = new PartidoKey();
-        partidoKey.setIdEquipoLocal(partidoNuevo.getEquipoLocal().getId());
-        partidoKey.setIdEquipoVisitante(partidoNuevo.getEquipoVisitante().getId());
-        partidoNuevo.setId(partidoKey);
-
         partidoDao.save(partidoNuevo);
-
         procesarPartido(partidoNuevo);
 
         return model;
     }
 
     @Override
-    public ModelAndView editPartido(long idLocal, long idVisitante) {
+    public ModelAndView editPartido(long id) {
 
         ModelAndView model = new ModelAndView();
         model.setViewName("partidoHTML/partidoForm");
 
-        PartidoKey key = formarPartidoKey(idLocal, idVisitante);
-        Optional<Partido> partido = partidoDao.findById(key);
+        Optional<Partido> partido = partidoDao.findById(id);
 
         model.addObject("partidoNuevo", partido.get());
         model.addObject("equipos", equipoDao.findAll());
@@ -118,21 +103,9 @@ public class PartidoServiceImpl implements PartidoService {
         return model;
     }
 
-    public PartidoKey formarPartidoKey(long idLocal, long idVisitante) {
-
-        PartidoKey partidoKey = new PartidoKey();
-        partidoKey.setIdEquipoLocal(idLocal);
-        partidoKey.setIdEquipoVisitante(idVisitante);
-
-        return partidoKey;
-    }
-
     private void procesarPartido(Partido partido) {
         Equipo equipoLocal = equipoDao.findById(partido.getEquipoLocal().getId()).get();
         Equipo equipoVisitante = equipoDao.findById(partido.getEquipoVisitante().getId()).get();
-
-        System.out.println(equipoLocal);
-        System.out.println(equipoVisitante);
 
         int golesLocal = partido.getGolesLocal();
         int golesVisitante = partido.getGolesVisitante();

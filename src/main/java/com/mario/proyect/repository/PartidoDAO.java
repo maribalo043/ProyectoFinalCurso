@@ -8,9 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 import com.mario.proyect.entity.Equipo;
 import com.mario.proyect.entity.Partido;
-import com.mario.proyect.entity.PartidoKey;
 
-public interface PartidoDAO extends CrudRepository<Partido,PartidoKey>{
+public interface PartidoDAO extends CrudRepository<Partido,Long>{
 
     List<Partido> findByEquipoLocalOrEquipoVisitante(Equipo equipoLocal, Equipo equipoVisitante);
 
@@ -42,4 +41,7 @@ public interface PartidoDAO extends CrudRepository<Partido,PartidoKey>{
 
     @Query("SELECT p FROM Partido p WHERE p.golesVisitante > p.golesLocal")
     List<Partido> selectPartidosGanadosVisitante();
+
+    @Query(value="select DISTINCT p.* from Partidos p join Equipos e on p.equipo_local_id = e.id or p.equipo_visitante_id = e.id join Categorias c on e.categoria_id = c.id where c.id = :categoria",nativeQuery = true)
+    List<Partido> findAllPartidosSeptiembreByCategoria (long categoria);
 }

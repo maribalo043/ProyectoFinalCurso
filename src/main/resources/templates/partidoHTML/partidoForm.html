@@ -26,9 +26,11 @@
         <h2 class="text-center mb-4">Formulario del Partido</h2>
         <form th:action="@{/partido/save}" method="post" th:object="${partidoNuevo}">
           <div class="form-group">
+            <input type="number" class="form-control" id="id" hidden th:field="*{id}" />
+          </div>
+          <div class="form-group">
             <label for="golesLocal">Goles Equipo Local:</label>
-            <input type="number" class="form-control" id="golesLocal" placeholder="Ingrese los goles del equipo Local"
-              required th:field="*{golesLocal}" />
+            <input type="number" class="form-control" id="golesLocal" placeholder="Ingrese los goles del equipo Local" required th:field="*{golesLocal}" />
             <p th:if="${#fields.hasErrors('golesLocal')}" th:errors="*{golesLocal}" class="text-danger">Error</p>
           </div>
           <div class="form-group">

@@ -1,10 +1,11 @@
 package com.mario.proyect.entity;
 
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 
@@ -12,30 +13,45 @@ import jakarta.validation.constraints.Min;
 @Table(name = "partidos")
 public class Partido {
 
-    @EmbeddedId 
-    private PartidoKey id; 
-    
-    @ManyToOne 
-    @MapsId("idEquipoLocal")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
     @JoinColumn(name = "equipo_Local_id")
     private Equipo equipoLocal;
 
     @ManyToOne
-    @MapsId("idEquipoVisitante")
     @JoinColumn(name = "equipo_Visitante_id")
     private Equipo equipoVisitante;
-    
+
     @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int golesLocal;
-    
+
     @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int golesVisitante;
-    
+
     private String pista;
     private String hora;
     private boolean finalizado;
 
-    
+    private String nombre;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public String getHora() {
         return hora;
@@ -53,22 +69,6 @@ public class Partido {
         this.finalizado = finalizado;
     }
 
-    public PartidoKey getId() {
-        return id;
-    }
-
-    public void setId(PartidoKey id) {
-        this.id = id;
-    }
-
-    public String getPista() {
-        return pista;
-    }
-
-    public void setPista(String pista) {
-        this.pista = pista;
-    }
-    
     public int getGolesLocal() {
         return golesLocal;
     }
@@ -84,7 +84,7 @@ public class Partido {
     public void setGolesVisitante(int golesVisitante) {
         this.golesVisitante = golesVisitante;
     }
-    
+
     public Equipo getEquipoLocal() {
         return equipoLocal;
     }
@@ -101,8 +101,17 @@ public class Partido {
         this.equipoVisitante = equipoVisitante;
     }
 
+    public String getPista() {
+        return pista;
+    }
+
+    public void setPista(String pista) {
+        this.pista = pista;
+    }
+
     @Override
     public String toString() {
-        return "Partido [id=" + id + ", " + golesLocal + " : " + golesVisitante  + ", Local: " + equipoLocal + ", Visitante: " + equipoVisitante + ", pista: " + pista + "]";
+        return "Partido [id=" + id + ", golesLocal=" + golesLocal + ", golesVisitante=" + golesVisitante
+                + ", equipoLocal=" + equipoLocal + ", equipoVisitante=" + equipoVisitante + ", pista=" + pista + "]";
     }
 }

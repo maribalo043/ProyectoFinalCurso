@@ -52,7 +52,7 @@
           <td th:if="${!p.finalizado}">No finalizado</td>
           <td>
             <a class="circular-button edit-button text-decoration-none" title="Edita"
-              th:href="@{~/partido/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}">👁️</a>
+              th:href="@{~/partido/{id}(id=${p?.id})}">👁️</a>
           </td>
           <td>
             <a class="circular-button text-decoration-none" title="eliminar" data-toggle="modal"
@@ -79,7 +79,7 @@
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                   <a type="button" class="btn btn-warning"
-                    th:href="@{~/partido/del/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}">Eliminar</a>
+                    th:href="@{~/partido/del/{id}(id=${p?.id})}">Eliminar</a>
                 </div>
               </div>
             </div>

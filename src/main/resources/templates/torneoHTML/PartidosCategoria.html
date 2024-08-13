@@ -40,16 +40,16 @@
       </thead>
       <tbody>
         <tr th:each="p:${partidos}">
-          <td th:text="${p.equipoLocal?.nombre}">Equipo 1</td>
+          <td th:text="${p?.equipoLocal?.nombre}">Equipo 1</td>
           <td class="result">
-            <span th:text="${p.golesLocal}"></span>-<span th:text="${p.golesVisitante}"></span>
+            <span th:text="${p?.golesLocal}"></span>-<span th:text="${p.golesVisitante}"></span>
           </td>
-          <td th:text="${p.equipoVisitante?.nombre}">Equipo 1</td>
-          <td th:text="${p.hora}">33:33</td>
-          <td th:text="${p.pista}">Pista 1</td>
+          <td th:text="${p?.equipoVisitante?.nombre}">Equipo 1</td>
+          <td th:text="${p?.hora}">33:33</td>
+          <td th:text="${p?.pista}">Pista 1</td>
           <td sec:authorize="hasAnyAuthority('ADMIN', 'AUTORIZADO')">
             <a class="circular-button edit-button text-decoration-none" title="Edita"
-              th:href="@{~/partido/{idLocal}/{idVisitante}(idLocal=${p.equipoLocal.id}, idVisitante=${p.equipoVisitante.id})}">Edit</a>
+              th:href="@{~/partido/{id}(id=${p?.id})}">Edit</a>
           </td>
         </tr>
       </tbody>

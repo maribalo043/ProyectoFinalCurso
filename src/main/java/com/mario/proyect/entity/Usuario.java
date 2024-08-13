@@ -14,7 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "usuarios")
@@ -42,18 +41,23 @@ public class Usuario implements UserDetails{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 	public Rol getRol() {
 		return rol;
 	}
+
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
+
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -115,12 +119,7 @@ public class Usuario implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		if(enabled==true){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return this.enabled;
 	}
 	
 	public void setEnabled(boolean valido){

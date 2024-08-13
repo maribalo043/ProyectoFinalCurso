@@ -9,13 +9,13 @@ public interface PartidoService {
     
     ModelAndView getPartidos();
 
-    ModelAndView getPartido(long idLocal,long idVisitante);
+    ModelAndView getPartido(long id);
 
-    ModelAndView deletePartido(long idLocal,long idVisitante);
+    ModelAndView deletePartido(long id);
 
     ModelAndView addPartido();
 
     ModelAndView savePartido(Partido partidoNuevo, BindingResult bindingResult);
 
-    ModelAndView editPartido(long idLocal,long idVisitante);
+    ModelAndView editPartido(long id);
 }

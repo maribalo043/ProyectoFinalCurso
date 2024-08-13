@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccion Categoria</title>
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
+    <!-- Style seleccion categoria -->
+    <link rel="stylesheet" href="../../static/css/estilosSeleccionCategoria.css">
+</head>
+
+<body>
+    <header>
+        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+    <h1 >Seleccion categoría torneo Septiembre</h1>
+    <div class="row">
+        <div class="col-md-12 contenedorBotones">
+            <div th:each="categoria: ${categorias}">
+                <a th:href="@{~/partidosSep/{categoria}(categoria=${categoria.id})}" class="categoria-button btn">
+                    <img th:src="${categoria.urlImg}" alt="Imagen de categoría">
+                    <span th:text="${categoria.nombre}"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

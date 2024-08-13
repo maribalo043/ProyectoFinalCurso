@@ -1,12 +1,12 @@
 .bg-red {
     background-color: #d41a1e;
-    color: white;
+    font-weight: bold;
 }
 a{
     font-family: "Open Sans";
 }
 .iconoNavegacion{
-    font-size: 16px;
+    font-size: 18px;
 }
 .dropdown-user{
     margin-right: 1vh;
