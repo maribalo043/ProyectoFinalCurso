@@ -29,6 +29,12 @@ public class TorneoSeptimebreContoller {
         return torneoService.getPartidos(categoria);
     }
 
+    @GetMapping("/jugadores/clasificacion/{categoria}")
+    public ModelAndView getClasificacionCategoria(@PathVariable long categoria){
+        //return torneoService.getJugadoresGoles(categoria);
+        return null;
+    }
+
     @GetMapping("/jugadores/goles/{categoria}")
     public ModelAndView getJugadoresGoles(@PathVariable long categoria){
         return torneoService.getJugadoresGoles(categoria);

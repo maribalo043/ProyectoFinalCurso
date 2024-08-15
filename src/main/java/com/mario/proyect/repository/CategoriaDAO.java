@@ -11,6 +11,9 @@ import com.mario.proyect.entity.Equipo;
 
 public interface CategoriaDAO extends CrudRepository<Categoria,Long>{
 
+    @Query(value = "SELECT * FROM categorias WHERE activa=true and torneo_sara = true",nativeQuery = true)
+    List<Categoria> categoriasActiveSara();
+
     @Query(value = "SELECT * FROM categorias WHERE activa=true",nativeQuery = true)
     List<Categoria> categoriasActive();
     
@@ -26,6 +29,6 @@ public interface CategoriaDAO extends CrudRepository<Categoria,Long>{
     @Query("SELECT c FROM Categoria c")
     List<Categoria> findAllCategorias();
 
-    @Query(value = "Select * from categorias where torneo_sara = false", nativeQuery = true)
+    @Query(value = "Select * from categorias where torneo_sara = false order by id", nativeQuery = true)
     List<Categoria> findAllCategoriasSeptiembre();
 }

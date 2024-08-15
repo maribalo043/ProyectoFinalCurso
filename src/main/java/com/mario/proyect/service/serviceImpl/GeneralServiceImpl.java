@@ -64,7 +64,7 @@ public class GeneralServiceImpl implements GeneralService {
         ModelAndView model = new ModelAndView();
         model.setViewName("torneoHTML/SeleccionCategoria");
         model.addObject("mensaje", new MensajeDto());
-        model.addObject("categorias", categoriaDao.categoriasActive());
+        model.addObject("categorias", categoriaDao.categoriasActiveSara());
         return model;
     }
 

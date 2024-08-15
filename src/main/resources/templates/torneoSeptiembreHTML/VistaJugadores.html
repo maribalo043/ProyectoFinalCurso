@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Jugadores ' + ${categoria.nombre}">Jugadores</title>
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
+    <!-- Estilos personalizados del html -->
+</head>
+
+<body>
+    <header>
+        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+
+    <div class="container mt-5">
+        <!-- Título centrado -->
+        <h1 class="text-center">Goles de cada jugador</h1>
+        <a th:href="@{~/partidosSep/{categoria}(categoria=${categoria.id})}">Atrás</a>
+        <!-- Cuadro para el jugador con más goles -->
+        <div class="card my-4">
+            <div class="card-body">
+                <h5 class="card-title">Jugador con más goles</h5>
+                <p class="card-text">
+                    <!-- Información del jugador con más goles -->
+                    Nombre: <span>Nombre del Jugador</span><br>
+                    Goles: <span>0</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Tabla de jugadores y goles -->
+        <h3 th:if="${not #lists.isEmpty(partidos)}">No se ha anotado todavía ningún gol en esta categoría</h3>
+        <table class="table table-striped" th:if="${not #lists.isEmpty(jugadores)}">
+            <thead>
+                <tr>
+                    <th>Nombre del Jugador</th>
+                    <th>Goles</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="jugador : ${jugadores}">
+                    <td th:text="${jugador.nombre}">Nombre del Jugador</td>
+                    <td th:text="${jugador.goles}">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

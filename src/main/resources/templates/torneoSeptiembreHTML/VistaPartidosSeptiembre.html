@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat. <p th:text="${categoria.nombre}"></p>
+    <title th:text="'Cat. ' + ${categoria.nombre}">Jugadores</title>
     </title>
     <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
@@ -27,12 +27,29 @@
     <header>
         <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
     </header>
-    <h1>Seleccion categoría torneo Septiembre</h1>
-
     <div class="container">
         <h1>Lista de Partidos</h1>
         <p th:if="${#lists.isEmpty(partidos)}">Todavía no hay ningún equipo inscrito, por lo tanto no hay
             partidos</p>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-auto mb-2">
+                        <a class="btn btn-warning w-100 text-center" th:href="@{~/jugadores/clasificacion/{categoria}(categoria = ${categoria.id})}">
+                            Clasificación
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-auto mb-2">
+                        <a class="btn btn-warning w-100 text-center" th:href="@{~/jugadores/goles/{categoria}(categoria = ${categoria.id})}">
+                            Goles
+                        </a>
+                    </div>
+                    <div class="col-12 col-md-auto mb-2">
+                        <a class="btn btn-warning w-100 text-center" th:href="@{~/jugadores/tarjetas/{categoria}(categoria = ${categoria.id})}">
+                            Tarjetas
+                        </a>
+                    </div>
+                </div>
+            </div>
         <table th:if="${not #lists.isEmpty(partidos)}" class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -61,7 +78,7 @@
             </tbody>
         </table>
     </div>
-    <div class="container">
+    <!-- <div class="container">
         <h2>Clasificación de los equipos:</h2>
         <p th:if="${#lists.isEmpty(equipos)}">Todavía no hay ningún equipo insertado</p>
         <table th:if="${not #lists.isEmpty(equipos)}" class="table table-striped table-hover">
@@ -92,7 +109,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div> -->
 
     <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

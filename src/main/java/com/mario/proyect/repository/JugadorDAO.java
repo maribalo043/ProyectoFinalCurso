@@ -22,7 +22,7 @@ public interface JugadorDAO extends CrudRepository<Jugador,Long>{
     @Query("SELECT j FROM Jugador j WHERE j.edad < :edad")
     List<Jugador> selectJugadoresMenoresDeEdad(@Param("edad") int edad);
 
-    @Query(value = "select j.* from jugadores j join equipos e on j.equipo_id = e.id join categorias c on c.id = e.id where j.torneo_sara = false and e.categoria_id = :categoria", nativeQuery = true)
+    @Query(value = "select j.* from jugadores j join equipos e on j.equipo_id = e.id join categorias c on c.id = e.id where j.torneo_sara = false and e.categoria_id = :categoria order by j.goles DESC", nativeQuery = true)
     List<Jugador> findJugadoresByCategoriaSeptiembre(long categoria);
 
     @Query(value = "select j.* from jugadores j join equipos e on j.equipo_id = e.id where j.activa = true and j.torneo_sara = false and j.goles > 0 and equipo.categoria_id = :categoria", nativeQuery = true)

@@ -47,8 +47,9 @@ public class TorneoSeptiembreServiceImpl implements TorneoSeptiembreService{
 
     @Override
     public ModelAndView getJugadoresGoles(long categoria) {
-        ModelAndView model = new ModelAndView("torneoSeptiembreHTML/");
+        ModelAndView model = new ModelAndView("torneoSeptiembreHTML/VistaJugadores");
         model.addObject("jugadores", jugadorDao.findJugadoresByCategoriaSeptiembre(categoria));
+        model.addObject("categoria", categoriaDao.findById(categoria).get());
         /*Opcional: ruta que sea el mayor goleador */
         model.addObject("filtro", "goles");
         return model;
@@ -58,6 +59,7 @@ public class TorneoSeptiembreServiceImpl implements TorneoSeptiembreService{
     public ModelAndView getJugadoresTarjetas(long categoria) {
         ModelAndView model = new ModelAndView("torneoSeptiembreHTML/");
         model.addObject("jugadores", jugadorDao.findJugadoresByCategoriaSeptiembre(categoria));
+        model.addObject("categoria", categoriaDao.findById(categoria).get());
         /*Opcional: ruta para obtener el jugador con mayor numero de azules y mayor numero de rojas*/
         model.addObject("filtro", "tarjetas");
         return model;
