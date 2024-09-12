@@ -31,11 +31,19 @@ public class Partido {
     @Min(value = 0, message = "Debe ser un número entero no negativo")
     private int golesVisitante;
 
+    private int faltasLocal;
+
+    private int faltasVisitante;
+
+    private int periodo;
+
     private String pista;
     private String hora;
     private boolean finalizado;
 
     private String nombre;
+
+    // Getters y Setters
 
     public Long getId() {
         return id;
@@ -109,9 +117,34 @@ public class Partido {
         this.pista = pista;
     }
 
+    public int getFaltasLocal() {
+        return faltasLocal;
+    }
+
+    public void setFaltasLocal(int faltasLocal) {
+        this.faltasLocal = faltasLocal;
+    }
+
+    public int getFaltasVisitante() {
+        return faltasVisitante;
+    }
+
+    public void setFaltasVisitante(int faltasVisitante) {
+        this.faltasVisitante = faltasVisitante;
+    }
+
+    public int getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(int periodo) {
+        this.periodo = periodo;
+    }
+
     @Override
     public String toString() {
         return "Partido [id=" + id + ", golesLocal=" + golesLocal + ", golesVisitante=" + golesVisitante
-                + ", equipoLocal=" + equipoLocal + ", equipoVisitante=" + equipoVisitante + ", pista=" + pista + "]";
+                + ", equipoLocal=" + equipoLocal + ", equipoVisitante=" + equipoVisitante + ", pista=" + pista 
+                + "]";
     }
 }

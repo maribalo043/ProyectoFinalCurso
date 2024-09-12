@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Cat. ' + ${categoria.nombre}">Titulo</title>
+    <link rel="icon" type="image/png" href="../../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
+</head>
+
+<body>
+    <header>
+        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+    <main class="container mt-5">
+        <div class="container">
+            <h2>Clasificación de los equipos:</h2>
+            <p th:if="${#lists.isEmpty(equipos)}">Todavía no hay ningún equipo insertado</p>
+            <table th:if="${not #lists.isEmpty(equipos)}" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Equipo</th>
+                        <th>PJ</th>
+                        <th>PG</th>
+                        <th>PE</th>
+                        <th>PP</th>
+                        <th>GF</th>
+                        <th>GC</th>
+                        <th>GA</th>
+                        <th>TP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="equipo : ${equipos}">
+                        <td th:text="${equipo?.nombre}"></td>
+                        <td th:text="${equipo?.partidosJugados}"></td>
+                        <td th:text="${equipo?.partidosGanados}"></td>
+                        <td th:text="${equipo?.partidosEmpatados}"></td>
+                        <td th:text="${equipo?.partidosPerdidos}"></td>
+                        <td th:text="${equipo?.golesFavor}"></td>
+                        <td th:text="${equipo?.golesContra}"></td>
+                        <td th:text="${equipo?.golesFavor - equipo.golesContra}"></td>
+                        <td th:text="${equipo?.puntos}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

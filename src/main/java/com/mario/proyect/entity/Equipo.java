@@ -63,6 +63,10 @@ public class Equipo {
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Jugador> jugadores;
 
+    //@ManyToOne(fetch = FetchType.EAGER)
+	//@JoinColumn(name = "equipo_id", nullable = true)
+	//private Equipo equipo;
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
@@ -72,6 +76,8 @@ public class Equipo {
     private String usuario;
     
     private boolean pagado;
+
+    private String urlImg;
     
     @Column(name = "numero_integrantes")
     private int numeroIntegrantes;
@@ -174,7 +180,37 @@ public class Equipo {
         this.categoria = categoria;
     }
 
-    
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public boolean isPagado() {
+        return pagado;
+    }
+
+    public void setPagado(boolean pagado) {
+        this.pagado = pagado;
+    }
+
+    public String getUrlImg() {
+        return urlImg;
+    }
+
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
+    }
+
+    public int getNumeroIntegrantes() {
+        return numeroIntegrantes;
+    }
+
+    public void setNumeroIntegrantes(int numeroIntegrantes) {
+        this.numeroIntegrantes = numeroIntegrantes;
+    }
 
     public int getGolAverage() {
         return this.golesFavor - this.golesContra;

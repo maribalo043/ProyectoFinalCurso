@@ -8,11 +8,11 @@ public interface TorneoSeptiembreService {
 
     ModelAndView getPartidos(long categoria);
 
-    ModelAndView getJugadoresGoles(long categoria);
+    ModelAndView getDetallePartido(long partido, long categoria); 
 
-    ModelAndView getJugadoresTarjetas(long categoria);
+    ModelAndView getModificacionPartido(long partido, long categoria);
 
-    ModelAndView getDetallePartido(long partido); 
+    ModelAndView getEquiposClasificacion(long categoria);
 
-    ModelAndView getModificacionPartido(long partido);
+    public ModelAndView modificarPartido (String modificador,String equipo, long id, long categoria);
 }

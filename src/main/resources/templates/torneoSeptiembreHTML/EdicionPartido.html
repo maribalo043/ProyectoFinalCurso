@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Cat. ' + ${categoria.nombre}">Jugadores</title>
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap" />
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/estilosMenuInferior.css">
+    <style>
+        body {
+            padding: 5vh;
+        }
+
+        .botones-estado {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .botones-estado button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+    <main class="container mt-5 tarjetaMarcador">
+        <div class="card text-center">
+            <div class="card-header">
+                <h2 id="nombre-partido" th:text="${partido.nombre}">Semifinal</h2>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <!-- Equipo Local -->
+                    <div class="col-12 col-md-4 text-center mb-4">
+                        <img th:src="${partido.equipoLocal?.urlImg}" alt="Escudo Local" class="img-fluid">
+                        <h3 id="equipo-local" th:text="${partido.equipoLocal?.nombre}">Equipo Local</h3>
+                        <p id="faltas-local" th:text="${partido.faltasLocal}">Faltas: 3</p>
+                        <div class="botones-estado">
+                            <a class="btn btn-primary btn-sm mt-2" th:href="@{/partidoSep/modificar/gol/{id}/local/{cat}(id=${partido.id},cat = ${categoria.id})}">Subir Gol Local</a>
+                            <a class="btn btn-primary btn-sm mt-2" th:href="@{/partidoSep/modificar/falta/{id}/local/{cat}(id=${partido.id},cat = ${categoria.id})}">Subir Falta</a>
+                        </div>
+                    </div>
+
+                    <!-- Información Central -->
+                    <div class="col-12 col-md-4 text-center mb-4">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h1 class="mr-3" id="goles-local" th:text="${partido.golesLocal}">2</h1>
+                            <h2>VS</h2>
+                            <h1 class="ml-3" id="goles-visitante" th:text="${partido.golesVisitante}">1</h1>
+                        </div>
+                        <p class="mt-3">Periodo 1</p>
+                        <h2 id="estado-partido" th:text="${estado}">En Juego</h2>
+                        <div class="botones-estado">
+                            <button class="btn btn-primary btn-sm">Comenzar Partido</button>
+                            <button class="btn btn-primary btn-sm">Tiempo Muerto</button>
+                            <button class="btn btn-primary btn-sm">Descanso</button>
+                            <button class="btn btn-primary btn-sm">Continuar Partido</button>
+                            <button class="btn btn-primary btn-sm">Finalizar Partido</button>
+                        </div>
+                    </div>
+
+                    <!-- Equipo Visitante -->
+                    <div class="col-12 col-md-4 text-center mb-4">
+                        <img th:src="${partido.equipoVisitante?.urlImg}" alt="Escudo Visitante" class="img-fluid">
+                        <h3 id="equipo-visitante" th:text="${partido.equipoVisitante?.nombre}">Equipo Visitante</h3>
+                        <p id="faltas-visitante" th:text="${partido.faltasVisitante}">Faltas: 3</p>
+                        <div class="botones-estado">
+                            <a class="btn btn-primary btn-sm mt-2" th:href="@{/partidoSep/modificar/gol/{id}/visitante/{cat}(id=${partido.id},cat = ${categoria.id})}">Subir Gol Visitante</a>
+                            <a class="btn btn-primary btn-sm mt-2" th:href="@{/partidoSep/modificar/falta/{id}/visitante/{cat}(id=${partido.id},cat = ${categoria.id})}">Subir Falta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted"></div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

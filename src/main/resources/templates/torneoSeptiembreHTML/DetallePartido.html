@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Cat. ' + ${categoria.nombre}">Titulo</title>
+    <link rel="icon" type="image/png" href="../static/img/EscudoPatinalon.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Arial:wght@400;700&display=swap"/>
+    <!-- Cosas Barra de navegación -->
+    <link rel="stylesheet" href="../../static/css/estilosNavBar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!-- Estilos Barra inferior -->
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="../../static/css/estilosMenuInferior.css">
+</head>
+<body>
+    <header>
+        <div class="row" th:replace="~{BarraNavegacion :: menuSuperior}"></div>
+    </header>
+    <main class="container mt-5">
+        <div class="card text-center">
+            <div class="card-header">
+                <h2 id="nombre-partido" th:text="${partido.nombre}">Semifinal</h2>
+            </div>
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center">
+                        <img th:src="${partido.equipoLocal?.urlImg}" alt="Escudo Local" class="img-fluid img-thumbnail w-50">
+                        <h3 id="equipo-local" th:text="${partido.equipoLocal?.nombre}">Equipo Local</h3>
+                        <p id="faltas-local">Faltas: <i th:text="${partido.faltasLocal}"></i></p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <h1 class="mr-3" id="goles-local" th:text="${partido.golesLocal}">2</h1>
+                            <h2>-</h2>
+                            <h1 class="ml-3" id="goles-visitante" th:text="${partido.golesVisitante}">1</h1>
+                        </div>
+                        <p>Periodo <p th:text="${partido.periodo}"></p></p>
+                        <h2 id="estado-partido">En Juego</h2>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <img th:src="${partido.equipoVisitante?.urlImg}" alt="Escudo Visitante" class="img-fluid img-thumbnail w-50">
+                        <h3 id="equipo-visitante" th:text="${partido.equipoVisitante?.nombre}">Equipo Visitante</h3>
+                        <p id="faltas-visitante">Faltas: <i th:text="${partido.faltasVisitante}"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted"></div>
+        </div>
+    </main>
+
+    <footer th:replace="~{MenuInferior :: menuInferior}"></footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
