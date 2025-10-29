@@ -10,7 +10,7 @@ COPY src ./src
 
 # Construye el jar
 RUN mvn clean package -DskipTests
-
+ 
 # ======= Etapa 2: Run =======
 FROM eclipse-temurin:17-jdk
 
