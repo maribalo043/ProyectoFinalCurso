@@ -15,8 +15,8 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-# Copiamos cualquier JAR generado en target/ y lo renombramos a app.jar
-COPY --from=build /app/target/*.jar app.jar
+# Copiar el .jar final (tu proyecto genera siempre un JAR que termina en SNAPSHOT.jar)
+COPY --from=build /app/target/*SNAPSHOT.jar app.jar
 
 # Puerto que usará Render
 EXPOSE 8080
